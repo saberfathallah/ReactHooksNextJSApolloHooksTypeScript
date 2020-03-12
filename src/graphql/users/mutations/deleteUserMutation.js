@@ -8,7 +8,6 @@ const DELETE_USER = gql`
       user {
         email
         name
-        password
       }
       error
     }

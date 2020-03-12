@@ -9,6 +9,7 @@ module.exports = {
     ].forEach(item => {
       config.resolve.alias[`@${item}`] = path.join(__dirname, `src/${item}`);
   });
+  config.resolve.extensions= ['.js', '.jsx', '.ts', '.tsx'];
   return config;
   },
 };

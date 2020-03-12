@@ -8,7 +8,6 @@ const CREATE_USER = gql`
       user {
         email
         name
-        password
       }
       error
     }

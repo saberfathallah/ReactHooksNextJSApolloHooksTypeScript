@@ -5,7 +5,6 @@ const USERS = gql`
     users {
       users {
         name
-        password
         email
       }
     }
