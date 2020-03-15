@@ -6,6 +6,7 @@ const client = new ApolloClient({
   uri: 'http://localhost:4002/graphql',
   fetch,
 });
+console.log("master");
 
 function MyApp({ Component, pageProps }) {
     return (
