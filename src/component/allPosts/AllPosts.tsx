@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
+import Post from '../post';
 import GET_ALL_POSTS from '../../graphql/posts/getAllPosts';
 
 interface IPostsResponse {
@@ -20,7 +21,6 @@ interface IPost {
   description: string;
   id: string;
 }
-  
 
 const AllPosts: React.FC<{}> = () => {
   const { data, loading } = useQuery<IPostsResponse>(GET_ALL_POSTS);
@@ -30,7 +30,11 @@ const AllPosts: React.FC<{}> = () => {
   return (
     <div>
       {
-        data.getAllPosts.posts.map(post => <p key={post.id}>{post.description}</p>)
+        data.getAllPosts.posts.map(({ description }) => 
+          <Post
+            description={description}
+          />
+        )
       }
     </div>
   );
