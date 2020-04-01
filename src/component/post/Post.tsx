@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+import Comments  from '../comments';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
@@ -17,9 +19,17 @@ const useStyles = makeStyles((theme: Theme) =>
     media: {
       height: 250,
     },
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: '25ch',
+    },
   }),
 );
-
 
 interface IComment {
   description: string;
@@ -56,9 +66,7 @@ const Post: React.FC<IPostProps> = (props: IPostProps) => {
              description
             }
           </Typography>
-           {
-             comments.map(comment => <p key={comment.description}>{comment.description}</p>)
-           }
+            <Comments comments={comments} />
       </CardContent>
     </Card>
   );

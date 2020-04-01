@@ -13,7 +13,7 @@ const HomePage: React.FC<{}> = () => {
     return ( 
       <div>
         <Grid container>
-          <Grid style={{ textAlign: 'center' }} item xs={12} sm={3}>
+          <Grid style={{ textAlign: 'center', marginTop: '18px' }} item xs={12} sm={3}>
             <Categories />
           </Grid>
           <Grid style={{ textAlign: 'center' }} item xs={12} sm={9}>
