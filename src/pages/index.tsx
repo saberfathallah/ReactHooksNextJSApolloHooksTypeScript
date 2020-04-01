@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import Navbar from '../component/navbar';
 import Login from '../component/login';
 import Categories from '../component/categories';
 import PostsContainer from '../component/postsContainer';
@@ -13,7 +12,6 @@ const HomePage: React.FC<{}> = () => {
   if (isAuth) {
     return ( 
       <div>
-        <Navbar />
         <Grid container>
           <Grid style={{ textAlign: 'center' }} item xs={12} sm={3}>
             <Categories />

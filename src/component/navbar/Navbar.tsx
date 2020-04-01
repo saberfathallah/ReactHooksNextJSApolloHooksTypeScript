@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Router from 'next/router'
 import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(2),
     },
     title: {
+      paddingRight: 30,
       display: 'none',
       [theme.breakpoints.up('sm')]: {
         display: 'block',
@@ -179,8 +181,21 @@ function NavBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography
+            className={classes.title}
+            variant="h6"
+            noWrap
+            onClick={() => Router.push('/')}
+          >
             Forum
+          </Typography>
+          <Typography
+            className={classes.title}
+            variant="h6"
+            noWrap
+            onClick={() => Router.push('/profil')}
+          >
+            profil
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
