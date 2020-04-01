@@ -20,12 +20,17 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+
+interface IComment {
+  description: string;
+}
 interface IPostProps {
   description: string;
+  comments: IComment[];
 }
 
 const Post: React.FC<IPostProps> = (props: IPostProps) => {
-  const { description } = props;
+  const { description, comments } = props;
   const classes = useStyles();
 
   return (
@@ -51,6 +56,9 @@ const Post: React.FC<IPostProps> = (props: IPostProps) => {
              description
             }
           </Typography>
+           {
+             comments.map(comment => <p key={comment.description}>{comment.description}</p>)
+           }
       </CardContent>
     </Card>
   );

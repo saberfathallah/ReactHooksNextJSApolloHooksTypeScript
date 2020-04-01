@@ -30,10 +30,13 @@ const AllPosts: React.FC<{}> = () => {
   return (
     <div>
       {
-        data.getAllPosts.posts.map(({ description }) => 
-          <Post
-            description={description}
-          />
+        data.getAllPosts.posts.map(({ description, comments, id }) => 
+          <div key={id}>
+            <Post
+              description={description}
+              comments={comments}
+            />
+          </div>
         )
       }
     </div>
