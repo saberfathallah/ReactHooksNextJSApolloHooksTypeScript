@@ -2,6 +2,7 @@ import ApolloClient from 'apollo-boost';
 import fetch from 'node-fetch'
 import { ApolloProvider } from '@apollo/react-hooks';
 
+import Navbar from '../component/navbar';
 import buildCookies from '../services/cookies';
 import { USER_NAME, TOKEN_COOKIE } from '../constants/cookies';
 import { UserProvider } from '../context/userContext';
@@ -44,6 +45,7 @@ function MyApp({ Component, pageProps }) {
       userName={userName}
     >
       <ApolloProvider client={client}>
+        <Navbar />
         <Component {...pageProps} />
       </ApolloProvider>
     </UserProvider>
