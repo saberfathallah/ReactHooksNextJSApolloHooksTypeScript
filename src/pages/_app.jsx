@@ -6,6 +6,19 @@ import buildCookies from '../services/cookies';
 import TOKEN_COOKIE from '../constants/cookies';
 
 const client = new ApolloClient({
+  clientState: {
+    defaults: {
+      currentCategoryId: '',
+    },
+    resolvers: {
+      Mutation: {
+        changeCurrentCategory: (_, { currentCategoryId}, { cache }) => {
+          cache.writeData({ data: { currentCategoryId }});
+          return null;
+        }
+      }
+    }
+  },
   request: operation => {
     const token = buildCookies().get(TOKEN_COOKIE);
 
