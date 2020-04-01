@@ -7,6 +7,18 @@ const CATEGORIES = gql`
         name
         id
         level
+        children {
+          name
+          id
+          children {
+            name
+            id
+            children {
+              name
+              id
+            }
+          }
+        }
       }
     }
   }
