@@ -3,7 +3,10 @@ import fetch from 'node-fetch'
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import buildCookies from '../services/cookies';
-import TOKEN_COOKIE from '../constants/cookies';
+import { USER_NAME, TOKEN_COOKIE } from '../constants/cookies';
+import { UserProvider } from '../context/userContext';
+
+const token = buildCookies().get(TOKEN_COOKIE);
 
 const client = new ApolloClient({
   clientState: {
@@ -20,7 +23,6 @@ const client = new ApolloClient({
     }
   },
   request: operation => {
-    const token = buildCookies().get(TOKEN_COOKIE);
 
     operation.setContext({
       headers: {
@@ -33,10 +35,18 @@ const client = new ApolloClient({
 });
 
 function MyApp({ Component, pageProps }) {
+    const isAuth = !!token;
+    const userName = buildCookies().get(USER_NAME);
+
     return (
-    <ApolloProvider client={client}>
-    <Component {...pageProps} />
-    </ApolloProvider>
+    <UserProvider
+      isAuth={isAuth}
+      userName={userName}
+    >
+      <ApolloProvider client={client}>
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </UserProvider>
     )
   }
   export default MyApp

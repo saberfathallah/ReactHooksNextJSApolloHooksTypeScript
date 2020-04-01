@@ -6,9 +6,15 @@ import { TextField } from 'formik-material-ui';
 
 import LOGIN_MUTATION from '../../graphql/users/mutations/loginMutation';
 import buildCookies from '../../services/cookies';
-import TOKEN_COOKIE from '../../constants/cookies';
+import { TOKEN_COOKIE, USER_NAME } from '../../constants/cookies';
 
 interface Values {
+  email: string;
+  name: string;
+  password: string;
+}
+
+interface IInputValues {
   email: string;
   password: string;
 }
@@ -23,7 +29,7 @@ interface ILonginResponse {
 }
   
 interface InputMyFormValues {
-  loginInput: Values
+  loginInput: IInputValues
 }
 
 const Login: React.FC<{}> = () => {
@@ -55,6 +61,7 @@ const Login: React.FC<{}> = () => {
             }},
         });
         buildCookies().set(TOKEN_COOKIE, data.login.token, { path: "/" });
+        buildCookies().set(USER_NAME, data.login.user.name, { path: "/" });
         window.location.reload()
       }}
     >

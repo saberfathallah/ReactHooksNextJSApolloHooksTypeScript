@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,6 +14,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+
+import UserContext from "../../context/userContext";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -122,6 +124,8 @@ function NavBar() {
     </Menu>
   );
 
+  const { userName } = useContext(UserContext);
+
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
@@ -203,6 +207,10 @@ function NavBar() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+            {userName &&
+              <IconButton color="inherit">
+                {userName}
+              </IconButton>}
             <IconButton
               edge="end"
               aria-label="account of current user"

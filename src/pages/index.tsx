@@ -1,19 +1,16 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { useQuery } from '@apollo/react-hooks';
 
 import Navbar from '../component/navbar';
 import Login from '../component/login';
 import Categories from '../component/categories';
 import PostsContainer from '../component/postsContainer';
-import buildCookies from '../services/cookies';
-import TOKEN_COOKIE from '../constants/cookies';
-import GET_CURRENT_CATEGORY_ID from '../graphql/client/queries/getCurrentCategoryId';
+import UserContext from "../context/userContext";
 
 const HomePage: React.FC<{}> = () => {
-  const token = buildCookies().get(TOKEN_COOKIE);
-  
-  if (token) {
+  const { isAuth } = React.useContext(UserContext);
+
+  if (isAuth) {
     return ( 
       <div>
         <Navbar />
