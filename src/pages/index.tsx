@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 
+import Navbar from '../component/navbar';
 import Login from '../component/login';
 import Categories from '../component/categories';
 import AllPosts from '../component/allPosts';
@@ -13,7 +14,7 @@ const HomePage: React.FC<{}> = () => {
   if (token) {
     return ( 
       <div>
-        <p>connected</p>
+        <Navbar />
         <Grid container>
           <Grid style={{ textAlign: 'center' }} item xs={12} sm={3}>
             <Categories />
