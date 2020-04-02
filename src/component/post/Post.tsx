@@ -38,15 +38,18 @@ interface IUser {
 interface IComment {
   userId: IUser;
   description: string;
+  postId: string;
 }
 interface IPostProps {
+  categoryId: string;
+  postId: string;
   userName: string;
   description: string;
   comments: IComment[];
 }
 
 const Post: React.FC<IPostProps> = (props: IPostProps) => {
-  const { description, comments, userName } = props;
+  const { description, comments, userName, categoryId, postId } = props;
   const classes = useStyles();
 
   return (
@@ -72,7 +75,11 @@ const Post: React.FC<IPostProps> = (props: IPostProps) => {
              description
             }
           </Typography>
-            <Comments comments={comments} />
+            <Comments
+              comments={comments}
+              categoryId={categoryId}
+              postId={postId}
+            />
       </CardContent>
     </Card>
   );

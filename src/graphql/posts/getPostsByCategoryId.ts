@@ -8,6 +8,7 @@ query getPostsByCategoryId($categoryId: ID) {
         name
       }
       comments {
+        postId
         description
         userId {
           name

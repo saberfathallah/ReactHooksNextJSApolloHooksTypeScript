@@ -15,6 +15,7 @@ interface IPosts {
 interface IComment {
   description: string;
   userId: IUser;
+  postId: string;
 }
 
 interface IUser {
@@ -23,6 +24,8 @@ interface IUser {
   
 interface IPost {
   userId: IUser;
+  categoryId: string;
+  postId: string;
   comments: IComment[];
   description: string;
   id: string;
@@ -42,9 +45,17 @@ const PostsCategory: React.FC<IPostsCategory> = (props: IPostsCategory) => {
   return (
     <div>
       {
-        data.getPostsByCategoryId.posts.map(({ userId: { name }, description, comments, id }) => 
+        data.getPostsByCategoryId.posts.map((
+          { userId: { name },
+          description,
+          comments,
+          id,
+          categoryId,
+          }) => 
           <div key={id}>
             <Post
+              categoryId={categoryId}
+              postId={id}
               userName={name}
               description={description}
               comments={comments}

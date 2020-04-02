@@ -6,6 +6,7 @@ query {
     posts {
       description
       comments {
+        postId
         description
       }
       categoryId
