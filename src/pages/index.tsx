@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 
 import Login from '../component/login';
 import Categories from '../component/categories';
+import NewPost from '../component/newPost';
 import PostsContainer from '../component/postsContainer';
 import UserContext from "../context/userContext";
 
@@ -17,6 +18,7 @@ const HomePage: React.FC<{}> = () => {
             <Categories />
           </Grid>
           <Grid style={{ textAlign: 'center' }} item xs={12} sm={9}>
+            <NewPost />
             <PostsContainer />
           </Grid>
         </Grid>
