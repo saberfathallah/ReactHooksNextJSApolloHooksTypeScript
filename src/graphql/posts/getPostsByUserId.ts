@@ -5,6 +5,9 @@ query {
   getPostsByUserId {
     posts {
       description
+      userId {
+        name
+      }
       comments {
         postId
         description

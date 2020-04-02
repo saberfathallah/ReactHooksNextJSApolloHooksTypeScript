@@ -12,12 +12,22 @@ interface IPostsResponse {
 interface IPosts {
   posts: IPost[]
 }
+
+
+interface IUser {
+  name: string;
+}
   
 interface IComment {
   description: string;
+  userId: IUser;
+  postId: string;
 }
     
 interface IPost {
+  userId: IUser;
+  categoryId: string;
+  postId: string;
   comments: IComment[];
   description: string;
   id: string;
@@ -33,9 +43,18 @@ const Profil: React.FC<{}> = () => {
     <div>
       {
         data.getPostsByUserId.posts.length > 0 ? 
-        data.getPostsByUserId.posts.map(({ description, comments, id }) => 
+        data.getPostsByUserId.posts.map(({
+          userId: { name },
+          description,
+          comments,
+          id,
+          categoryId,
+        }) => 
           <div key={id}>
             <Post
+              postId={id}
+              categoryId={categoryId}
+              userName={name}
               description={description}
               comments={comments}
             />
