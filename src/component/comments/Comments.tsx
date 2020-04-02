@@ -44,8 +44,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+interface IUser {
+  name: string;
+}
+
 interface IComment {
   description: string;
+  userId: IUser;
 }
 interface ICommentProps {
   comments: IComment[];
@@ -58,13 +63,13 @@ const Comments: React.FC<ICommentProps> = (props: ICommentProps) => {
   return (
     <>
       <List className={classes.list}>
-        {comments.map(({ description }) => (
+        {comments.map(({ userId: { name }, description }) => (
           <React.Fragment key={description}>
               <ListItem button>
                 <ListItemAvatar>
                   <Avatar alt="Profile Picture" src="" />
                 </ListItemAvatar>
-                <ListItemText primary="hedi kortas" secondary={description} />
+                <ListItemText primary={name} secondary={description} />
               </ListItem>
             </React.Fragment>
           ))}

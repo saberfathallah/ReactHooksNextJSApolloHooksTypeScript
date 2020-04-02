@@ -12,11 +12,17 @@ interface IPosts {
   posts: IPost[]
 }
 
+interface IUser {
+  name: string;
+}
+
 interface IComment {
   description: string;
+  userId: IUser;
 }
   
 interface IPost {
+  userId: IUser;
   comments: IComment[];
   description: string;
   id: string;
@@ -30,9 +36,10 @@ const AllPosts: React.FC<{}> = () => {
   return (
     <div>
       {
-        data.getAllPosts.posts.map(({ description, comments, id }) => 
+        data.getAllPosts.posts.map(({ userId: { name }, description, comments, id }) => 
           <div key={id}>
             <Post
+              userName={name}
               description={description}
               comments={comments}
             />

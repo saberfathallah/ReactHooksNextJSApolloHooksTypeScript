@@ -31,16 +31,22 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+interface IUser {
+  name: string;
+}
+
 interface IComment {
+  userId: IUser;
   description: string;
 }
 interface IPostProps {
+  userName: string;
   description: string;
   comments: IComment[];
 }
 
 const Post: React.FC<IPostProps> = (props: IPostProps) => {
-  const { description, comments } = props;
+  const { description, comments, userName } = props;
   const classes = useStyles();
 
   return (
@@ -57,7 +63,7 @@ const Post: React.FC<IPostProps> = (props: IPostProps) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title='Ted'
+        title={userName}
         subheader='5 hours ago'
       />
       <CardContent>
