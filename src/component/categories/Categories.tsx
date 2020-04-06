@@ -32,26 +32,30 @@ const useStyles = makeStyles({
   },
 });
 
-const categoryChildren:any = (children, changeCurrentCategory): ICategory[] => {
+const categoryChildren:any = (children, changeCurrentCategory, isDisplayCategories, selectCategoryId): ICategory[] => {
   return children && children.length > 0 ? 
     children.map(child => (
       <div key={child.id}>
         <TreeItem
           onClick={ () => {
-            changeCurrentCategory({ variables: { currentCategoryId: child.id }})
+            if (isDisplayCategories) {
+              changeCurrentCategory({ variables: { currentCategoryId: child.id }})
+            } else {
+              selectCategoryId(child.id)
+            }
           }}
           nodeId={child.id}
           label={child.name}>
-          {categoryChildren(child.children, changeCurrentCategory)}
+          {categoryChildren(child.children, changeCurrentCategory, isDisplayCategories, selectCategoryId)}
         </TreeItem>
       </div>
     ))
   :
   null;
 }
-  
 
-const Categories: React.FC<{}> = () => {
+const Categories: React.FC<any> = (props: any) => {
+  const { selectCategoryId, isDisplayCategories } = props;
   const classes = useStyles();
   const { data, loading } = useQuery<ICategoriesResponse>(CATEGORIES);
   const [changeCurrentCategory] = useMutation(CHANGE_CURRENT_CATEGORY);
@@ -72,12 +76,16 @@ const Categories: React.FC<{}> = () => {
             <div key={category.id}>
               <TreeItem
                 onClick={ () => {
-                  changeCurrentCategory({ variables: { currentCategoryId: category.id }})
+                  if (isDisplayCategories) {
+                    changeCurrentCategory({ variables: { currentCategoryId: category.id }})
+                  } else {
+                    selectCategoryId(category.id)
+                  }
                 }}
                 nodeId={category.id}
                 label={category.name}
                >
-                {categoryChildren(category.children, changeCurrentCategory)}
+                {categoryChildren(category.children, changeCurrentCategory, isDisplayCategories, selectCategoryId)}
               </TreeItem>           
             </div>
           )

@@ -15,7 +15,7 @@ const HomePage: React.FC<{}> = () => {
       <div>
         <Grid container>
           <Grid style={{ textAlign: 'center', marginTop: '18px' }} item xs={12} sm={3}>
-            <Categories />
+            <Categories isDisplayCategories />
           </Grid>
           <Grid style={{ textAlign: 'center' }} item xs={12} sm={9}>
             <NewPost />
