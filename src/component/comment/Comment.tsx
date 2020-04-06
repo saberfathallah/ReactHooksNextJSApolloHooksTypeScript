@@ -7,7 +7,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
-import DELETE_COMMENT from '../../graphql/comments/mutation/deleteComment';
+import DELETE_COMMENT, { updateCacheAfterDeleteComment } from '../../graphql/comments/mutation/deleteComment';
 
 interface IUser {
   name: string;
@@ -21,7 +21,8 @@ interface ICommetProps {
   userCommentedId: string;
   userConnected: IUser
   postId: string;
-  id,
+  id: string;
+  currentCategoryId: string;
 }
 
 const Comment: React.FC<ICommetProps> = (props: ICommetProps) => {
@@ -32,10 +33,13 @@ const Comment: React.FC<ICommetProps> = (props: ICommetProps) => {
     userCommentedId,
     creatorId, 
     postId,
-    id
+    id,
+    currentCategoryId
   } = props;
   const [isShown, setIsShown] = React.useState(false);
-  const [deleteComment] = useMutation<any>(DELETE_COMMENT);
+  const [deleteComment] = useMutation<any>(DELETE_COMMENT, { 
+    update: (cache, { data }) => updateCacheAfterDeleteComment(cache, data, currentCategoryId) 
+  });
 
   return (
     <div style={{ display: "contents" }}

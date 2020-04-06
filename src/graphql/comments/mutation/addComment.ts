@@ -7,12 +7,13 @@ const ADD_COMMENT = gql`
   mutation addComment($commentInput: CommentInput) {
     addComment(commentInput: $commentInput) {
       comment {
+        id
         postId
+        description
         userId {
           name
           id
         }
-        description
       }
       error
     }
@@ -33,7 +34,7 @@ export const updateCacheAfterAddComment = (cache, data, currentCategoryId) => {
     cache.writeQuery({  
       query: GET_POSTS_BY_CATEGORY_ID,
       variables: { categoryId: currentCategoryId },
-      data: { getPostsByCategoryId: { ...existingPostsByCurrentCategoryId, __typename: 'getPostsByCategoryId' } }
+      data: { getPostsByCategoryId: { ...existingPostsByCurrentCategoryId.getPostsByCategoryId, __typename: 'getPostsByCategoryId' } }
     });
   }
 
@@ -41,10 +42,9 @@ const foundIndex = existingAllPosts.getAllPosts.posts.findIndex(post => post.id 
 
 existingAllPosts.getAllPosts.posts[foundIndex].comments.push(data.addComment.comment);
 cache.writeQuery({  
-  query: GET_ALL_POSTS,
-  data: { getAllPosts: { ...existingAllPosts, __typename: 'Posts', } }
-});
-
+    query: GET_ALL_POSTS,
+    data: { getAllPosts: { ...existingAllPosts.getAllPosts, __typename: 'Posts', } }
+  });
 };
 
 export default ADD_COMMENT;

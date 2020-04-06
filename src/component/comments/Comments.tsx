@@ -3,11 +3,8 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import { Formik } from 'formik';
 import TextField from '@material-ui/core/TextField';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
@@ -84,7 +81,6 @@ interface ICommnetFormInput {
 const Comments: React.FC<ICommentProps> = (props: ICommentProps) => {
 
   const { comments, categoryId, postId, userConnected, creatorId } = props;
-  console.log("comments", comments);
   const { data: { currentCategoryId } } = useQuery(GET_CURRENT_CATEGORY_ID);
   const [addComment] = useMutation<any>(ADD_COMMENT, { update: (cache, { data }) => updateCacheAfterAddComment(cache, data, currentCategoryId) });
   const classes = useStyles();
@@ -97,6 +93,7 @@ const Comments: React.FC<ICommentProps> = (props: ICommentProps) => {
           <React.Fragment key={description}>
               <ListItem button>
                 <Comment
+                  currentCategoryId={currentCategoryId}
                   id={id}
                   postId={postId}
                   creatorId={creatorId}
