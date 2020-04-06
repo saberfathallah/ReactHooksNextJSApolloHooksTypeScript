@@ -13,6 +13,7 @@ import Icon from '@material-ui/core/Icon';
 
 import ADD_COMMENT, { updateCacheAfterAddComment } from '../../graphql/comments/mutation/addComment';
 import GET_CURRENT_CATEGORY_ID from '../../graphql/client/queries/getCurrentCategoryId';
+import Comment from '../comment';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -57,17 +58,21 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface IUser {
   name: string;
+  id: string;
 }
 
 interface IComment {
   description: string;
   userId: IUser;
   postId: string;
+  id: string;
 }
 interface ICommentProps {
   comments: IComment[];
   postId: string;
   categoryId: string;
+  userConnected: IUser;
+  creatorId: string;
 }
 
 interface ICommnetFormInput {
@@ -78,7 +83,8 @@ interface ICommnetFormInput {
 
 const Comments: React.FC<ICommentProps> = (props: ICommentProps) => {
 
-  const { comments, categoryId, postId } = props;
+  const { comments, categoryId, postId, userConnected, creatorId } = props;
+  console.log("comments", comments);
   const { data: { currentCategoryId } } = useQuery(GET_CURRENT_CATEGORY_ID);
   const [addComment] = useMutation<any>(ADD_COMMENT, { update: (cache, { data }) => updateCacheAfterAddComment(cache, data, currentCategoryId) });
   const classes = useStyles();
@@ -87,13 +93,18 @@ const Comments: React.FC<ICommentProps> = (props: ICommentProps) => {
   return (
     <>
       <List className={classes.list}>
-        {comments.map(({ userId: { name }, description }) => (
+        {comments.map(({ userId: { name, id: userCommentedId }, description, postId, id }) => (
           <React.Fragment key={description}>
               <ListItem button>
-                <ListItemAvatar>
-                  <Avatar alt="Profile Picture" src="" />
-                </ListItemAvatar>
-                <ListItemText primary={name} secondary={description} />
+                <Comment
+                  id={id}
+                  postId={postId}
+                  creatorId={creatorId}
+                  userConnected={userConnected}
+                  name={name}
+                  description={description}
+                  userCommentedId={userCommentedId}
+                />
               </ListItem>
             </React.Fragment>
           ))}

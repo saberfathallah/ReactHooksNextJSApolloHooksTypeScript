@@ -10,6 +10,7 @@ const ADD_COMMENT = gql`
         postId
         userId {
           name
+          id
         }
         description
       }
