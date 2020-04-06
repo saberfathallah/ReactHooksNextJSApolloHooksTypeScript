@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
-import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -38,7 +38,7 @@ const NewPost = () => {
   return (
     <div className={classes.root}>
       <Fab onClick={handleClickOpen} color="secondary" aria-label="edit">
-        <EditIcon />
+        <AddIcon />
       </Fab>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Nouvelle publication</DialogTitle>
