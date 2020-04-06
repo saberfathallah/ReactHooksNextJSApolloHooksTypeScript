@@ -9,11 +9,14 @@ const GET_ALL_POSTS = gql`
         description
         userId {
           name
+          id
         }
         comments {
+          id
           postId
           description
           userId {
+            id
             name
           }
         }
