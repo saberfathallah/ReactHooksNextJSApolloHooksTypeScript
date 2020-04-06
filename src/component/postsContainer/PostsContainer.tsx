@@ -5,14 +5,21 @@ import AllPosts from '../../component/allPosts';
 import PostsCategory from '../../component/postsCategory';
 
 import GET_CURRENT_CATEGORY_ID from '../../graphql/client/queries/getCurrentCategoryId';
+import GET_USER_DETAILS from '../../graphql/users/queries/getUserDetails';
 
 const PostsContainer: React.FC<{}> = () => {
+  const { data, loading: loadingUserDetails } = useQuery(GET_USER_DETAILS);
   const { data: { currentCategoryId }, loading } = useQuery(GET_CURRENT_CATEGORY_ID);
-  if (loading) return <p>laoding....</p>;
+  
+  if (loading || loadingUserDetails) return <p>laoding....</p>;
+    const { getUserDetails: { user: userConnected } } = data;
     return ( 
       <>
         {
-          currentCategoryId === '' ? <AllPosts /> : <PostsCategory currentCategoryId={currentCategoryId} />
+          currentCategoryId === '' ? 
+            <AllPosts userConnected={userConnected} />
+              :
+            <PostsCategory userConnected={userConnected} currentCategoryId={currentCategoryId} />
         }
       </>
     )

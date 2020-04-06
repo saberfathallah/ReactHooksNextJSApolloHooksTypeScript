@@ -33,12 +33,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface IUser {
   name: string;
+  id: string;
 }
 
 interface IComment {
   userId: IUser;
   description: string;
   postId: string;
+  id: string;
 }
 interface IPostProps {
   categoryId: string;
@@ -46,10 +48,12 @@ interface IPostProps {
   userName: string;
   description: string;
   comments: IComment[];
+  userConnected: IUser;
+  creatorId: string;
 }
 
 const Post: React.FC<IPostProps> = (props: IPostProps) => {
-  const { description, comments, userName, categoryId, postId } = props;
+  const { description, comments, userName, categoryId, postId, creatorId, userConnected } = props;
   const classes = useStyles();
 
   return (
@@ -62,7 +66,7 @@ const Post: React.FC<IPostProps> = (props: IPostProps) => {
           />
         }
         action={
-          <IconButton aria-label="settings">
+          userConnected.id === creatorId &&  <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
@@ -76,6 +80,8 @@ const Post: React.FC<IPostProps> = (props: IPostProps) => {
             }
           </Typography>
             <Comments
+              creatorId={creatorId}
+              userConnected= {userConnected}
               comments={comments}
               categoryId={categoryId}
               postId={postId}

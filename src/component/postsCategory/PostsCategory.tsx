@@ -16,10 +16,12 @@ interface IComment {
   description: string;
   userId: IUser;
   postId: string;
+  id: string;
 }
 
 interface IUser {
   name: string;
+  id: string;
 }
   
 interface IPost {
@@ -29,14 +31,16 @@ interface IPost {
   comments: IComment[];
   description: string;
   id: string;
+  creatorId: string;
 }
 
 interface IPostsCategory {
   currentCategoryId: string;
+  userConnected: IUser
 }
 
 const PostsCategory: React.FC<IPostsCategory> = (props: IPostsCategory) => { 
-  const { currentCategoryId } = props;
+  const { currentCategoryId, userConnected } = props;
   const { loading, data } = useQuery<IPostsResponse>(GET_POSTS_BY_CATEGORY_ID, {
     variables: { categoryId: currentCategoryId },
   });
@@ -46,7 +50,7 @@ const PostsCategory: React.FC<IPostsCategory> = (props: IPostsCategory) => {
     <div>
       {
         data.getPostsByCategoryId.posts.map((
-          { userId: { name },
+          { userId: { name, id: creatorId },
           description,
           comments,
           id,
@@ -54,6 +58,8 @@ const PostsCategory: React.FC<IPostsCategory> = (props: IPostsCategory) => {
           }) => 
           <div key={id}>
             <Post
+              creatorId={creatorId}
+              userConnected={userConnected}
               categoryId={categoryId}
               postId={id}
               userName={name}

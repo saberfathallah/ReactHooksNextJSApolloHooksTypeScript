@@ -13,12 +13,15 @@ interface IPosts {
 }
 
 interface IUser {
+  userId: string;
   name: string;
+  id: string;
 }
 
 interface IComment {
   description: string;
   postId: string;
+  id: string;
   userId: IUser;
 }
   
@@ -31,7 +34,12 @@ interface IPost {
   id: string;
 }
 
-const AllPosts: React.FC<{}> = () => {
+interface IAllPostsProps {
+  userConnected: IUser
+};
+
+const AllPosts: React.FC<IAllPostsProps> = (props: IAllPostsProps) => {
+  const { userConnected } = props;
   const { data, loading } = useQuery<IPostsResponse>(GET_ALL_POSTS);
   if (loading) return <p>loading...</p>
 
@@ -39,7 +47,7 @@ const AllPosts: React.FC<{}> = () => {
     <div>
       {
         data.getAllPosts.posts.map((
-          { userId: { name },
+          { userId: { name, id: creatorId },
           description,
           comments,
           id,
@@ -47,6 +55,8 @@ const AllPosts: React.FC<{}> = () => {
         }) => 
           <div key={id}>
             <Post
+              creatorId={creatorId}
+              userConnected={userConnected}
               postId={id}
               categoryId={categoryId}
               userName={name}
