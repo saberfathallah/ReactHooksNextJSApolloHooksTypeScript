@@ -15,13 +15,16 @@ interface IPosts {
 
 
 interface IUser {
+  userId: string;
   name: string;
+  id: string;
 }
   
 interface IComment {
   description: string;
-  userId: IUser;
   postId: string;
+  id: string;
+  userId: IUser;
 }
     
 interface IPost {
@@ -38,13 +41,13 @@ const Profil: React.FC<{}> = () => {
   const { data, loading } = useQuery<IPostsResponse>(GET_POSTS_BY_USER_ID);
 
   if (loading) return <p>loading...</p>
-
+  console.log("data.getPostsByUserId.posts", data.getPostsByUserId.posts);
   return (
     <div>
       {
         data.getPostsByUserId.posts.length > 0 ? 
         data.getPostsByUserId.posts.map(({
-          userId: { name },
+          userId,
           description,
           comments,
           id,
@@ -52,9 +55,11 @@ const Profil: React.FC<{}> = () => {
         }) => 
           <div key={id}>
             <Post
+              creatorId={userId.id}
+              userConnected={userId}
               postId={id}
               categoryId={categoryId}
-              userName={name}
+              userName={userId.name}
               description={description}
               comments={comments}
             />
