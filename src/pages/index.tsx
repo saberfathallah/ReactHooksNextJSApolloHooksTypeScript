@@ -25,7 +25,7 @@ const HomePage: React.FC<{}> = () => {
       </div>
     )
   }
-  return <Login />
+  return <div style={{ textAlign: "center", paddingTop: "30px" }}><Login /></div>;
 }
 
 export default HomePage;

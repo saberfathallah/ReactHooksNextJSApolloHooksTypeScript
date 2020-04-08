@@ -2,6 +2,7 @@ import { gql } from 'apollo-boost';
 
 import GET_ALL_POSTS from '../../posts/getAllPosts';
 import GET_POSTS_BY_CATEGORY_ID from '../../posts/getPostsByCategoryId';
+import { LIMIT, FROM } from '../../../constants/posts';
 
 const ADD_COMMENT = gql`
   mutation addComment($commentInput: CommentInput) {
@@ -21,6 +22,7 @@ const ADD_COMMENT = gql`
 `
 export const updateCacheAfterAddComment = (cache, data, currentCategoryId) => {
   const existingAllPosts = cache.readQuery({
+    variables: { from: FROM, limit: LIMIT },
     query: GET_ALL_POSTS
   });
   
@@ -43,6 +45,7 @@ const foundIndex = existingAllPosts.getAllPosts.posts.findIndex(post => post.id 
 existingAllPosts.getAllPosts.posts[foundIndex].comments.push(data.addComment.comment);
 cache.writeQuery({  
     query: GET_ALL_POSTS,
+    variables: { from: FROM, limit: LIMIT },
     data: { getAllPosts: { ...existingAllPosts.getAllPosts, __typename: 'Posts', } }
   });
 };

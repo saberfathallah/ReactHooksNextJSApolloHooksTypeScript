@@ -15,6 +15,7 @@ import Categories from '../categories';
 import ADD_POST from '../../graphql/posts/mutation/addPost';
 import GET_ALL_POSTS from '../../graphql/posts/getAllPosts';
 import GET_POSTS_BY_CATEGORY_ID from '../../graphql/posts/getPostsByCategoryId';
+import { LIMIT, FROM } from '../../constants/posts';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,7 +37,7 @@ const NewPost = () => {
   const [categoryId, setCategoryId] = React.useState("");
   const [addPost] = useMutation(ADD_POST, { refetchQueries : 
     [ 
-      { query : GET_ALL_POSTS },
+      { query : GET_ALL_POSTS, variables: { from: FROM, limit: LIMIT } },
       { query : GET_POSTS_BY_CATEGORY_ID, variables: { categoryId } },
     ]
   });

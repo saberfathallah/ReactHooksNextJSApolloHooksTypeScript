@@ -2,6 +2,7 @@ import { gql } from 'apollo-boost';
 
 import GET_POSTS_BY_CATEGORY_ID from '../../posts/getPostsByCategoryId';
 import GET_ALL_POSTS from '../../posts/getAllPosts';
+import { LIMIT, FROM } from '../../../constants/posts';
 
 const DELETE_COMMENT = gql`
 mutation deleteComment($deleteCommentInput: DeleteCommentInput) {
@@ -31,6 +32,7 @@ export const updateCacheAfterDeleteComment = (cache, data, currentCategoryId) =>
   }
 
   const { getAllPosts } = cache.readQuery({
+    variables: { from: FROM, limit: LIMIT },
     query: GET_ALL_POSTS
   });
   const cloneAllPosts = JSON.parse(JSON.stringify(getAllPosts))
@@ -41,6 +43,7 @@ export const updateCacheAfterDeleteComment = (cache, data, currentCategoryId) =>
   cloneAllPosts.posts[foundIndex].comments = comments;
   
   cache.writeQuery({  
+    variables: { from: FROM, limit: LIMIT },
     query: GET_ALL_POSTS,
     data: { getAllPosts: { ...cloneAllPosts, __typename: 'Posts', } }
   });
