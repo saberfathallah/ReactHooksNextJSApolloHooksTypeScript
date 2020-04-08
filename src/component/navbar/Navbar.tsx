@@ -17,6 +17,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import UserContext from "../../context/userContext";
+import buildCookies from '../../services/cookies';
+import { TOKEN_COOKIE, USER_NAME } from '../../constants/cookies';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -122,7 +124,12 @@ function NavBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => {
+        handleMenuClose
+        buildCookies().remove(TOKEN_COOKIE, { path: "/" });
+        buildCookies().remove(USER_NAME, { path: "/" });
+        window.location.replace("/");
+      }}>Se deconnéter</MenuItem>
     </Menu>
   );
 
@@ -189,6 +196,7 @@ function NavBar() {
           >
             Forum
           </Typography>
+          {userName &&
           <Typography
             className={classes.title}
             variant="h6"
@@ -196,7 +204,7 @@ function NavBar() {
             onClick={() => Router.push('/profil')}
           >
             profil
-          </Typography>
+          </Typography>}
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -251,7 +259,7 @@ function NavBar() {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
+      {userName && renderMenu}
     </div>
   );
 }

@@ -72,6 +72,7 @@ const Login: React.FC<{}> = () => {
           name="email"
           type="email"
           label="Email"
+          style={{ width: "225px" }}
         />
         <br />
         <Field
@@ -79,6 +80,7 @@ const Login: React.FC<{}> = () => {
           type="password"
           label="Password"
           name="password"
+          style={{ marginBottom: "20px", width: "225px" }}
         />
         {isSubmitting && <LinearProgress />}
         <br />
