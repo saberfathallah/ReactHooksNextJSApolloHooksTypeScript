@@ -9,6 +9,6 @@ mutation addPost($postInput: PostInput){
     error
   }
 }
-`
+`;
 
 export default ADD_POST;

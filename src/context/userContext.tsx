@@ -1,11 +1,6 @@
-import React, { createContext, useState } from "react";
-
-interface IContextValue {
-  isAuth: boolean;
-  userName: string;
-  setUserName: (userName: string) => void;
-  setIsAuth: (isAuth: boolean) => void;
-}
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable react/prop-types */
+import React, { createContext, useState } from 'react';
 
 const UserContext = createContext({
   isAuth: false,
@@ -18,7 +13,7 @@ export const UserProvider = ({
   children,
   isAuth,
   userName,
-}) => {
+}): JSX.Element => {
   const initialState = {
     userName,
     isAuth,
@@ -26,11 +21,11 @@ export const UserProvider = ({
 
   const [state, setState] = useState(initialState);
 
-  const setUserName = (userName:string): void=> setState({ ...state, userName });
-  const setIsAuth = (isAuth: boolean): void => setState({ ...state, isAuth });
+  const setUserName = (name: string): void => setState({ ...state, userName: name });
+  const setIsAuth = (auth: boolean): void => setState({ ...state, isAuth: auth });
 
 
-  const updatedInitialState: any= {
+  const updatedInitialState: any = {
     ...state,
     setUserName,
     setIsAuth,

@@ -19,34 +19,39 @@ const ADD_COMMENT = gql`
       error
     }
   }
-`
-export const updateCacheAfterAddComment = (cache, data, currentCategoryId) => {
+`;
+export const updateCacheAfterAddComment = (cache, data, currentCategoryId): void => {
   const existingAllPosts = cache.readQuery({
     variables: { from: FROM, limit: LIMIT },
-    query: GET_ALL_POSTS
+    query: GET_ALL_POSTS,
   });
-  
+
   if (currentCategoryId !== '') {
     const existingPostsByCurrentCategoryId = cache.readQuery({
       query: GET_POSTS_BY_CATEGORY_ID,
       variables: { categoryId: currentCategoryId },
     });
-    const index = existingPostsByCurrentCategoryId.getPostsByCategoryId.posts.findIndex(post => post.id === data.addComment.comment.postId);
-    existingPostsByCurrentCategoryId.getPostsByCategoryId.posts[index].comments.push(data.addComment.comment);
-    cache.writeQuery({  
+    const index = existingPostsByCurrentCategoryId.getPostsByCategoryId.posts.findIndex(
+      (post) => post.id === data.addComment.comment.postId,
+    );
+    existingPostsByCurrentCategoryId.getPostsByCategoryId.posts[index].comments
+      .push(data.addComment.comment);
+    cache.writeQuery({
       query: GET_POSTS_BY_CATEGORY_ID,
       variables: { categoryId: currentCategoryId },
-      data: { getPostsByCategoryId: { ...existingPostsByCurrentCategoryId.getPostsByCategoryId, __typename: 'getPostsByCategoryId' } }
+      data: { getPostsByCategoryId: { ...existingPostsByCurrentCategoryId.getPostsByCategoryId, __typename: 'getPostsByCategoryId' } },
     });
   }
 
-const foundIndex = existingAllPosts.getAllPosts.posts.findIndex(post => post.id === data.addComment.comment.postId);
+  const foundIndex = existingAllPosts.getAllPosts.posts.findIndex(
+    (post) => post.id === data.addComment.comment.postId,
+  );
 
-existingAllPosts.getAllPosts.posts[foundIndex].comments.push(data.addComment.comment);
-cache.writeQuery({  
+  existingAllPosts.getAllPosts.posts[foundIndex].comments.push(data.addComment.comment);
+  cache.writeQuery({
     query: GET_ALL_POSTS,
     variables: { from: FROM, limit: LIMIT },
-    data: { getAllPosts: { ...existingAllPosts.getAllPosts, __typename: 'Posts', } }
+    data: { getAllPosts: { ...existingAllPosts.getAllPosts, __typename: 'Posts' } },
   });
 };
 

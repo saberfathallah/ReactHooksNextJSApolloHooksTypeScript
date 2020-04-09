@@ -11,6 +11,6 @@ const LOGIN_MUTATION = gql`
       token
     }
   }
-`
+`;
 
 export default LOGIN_MUTATION;

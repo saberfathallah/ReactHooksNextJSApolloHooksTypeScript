@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import Router from 'next/router'
-import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Router from 'next/router';
+import {
+  fade, makeStyles, Theme, createStyles,
+} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,76 +18,74 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
-import UserContext from "../../context/userContext";
+import UserContext from '../../context/userContext';
 import buildCookies from '../../services/cookies';
 import { TOKEN_COOKIE, USER_NAME } from '../../constants/cookies';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    grow: {
-      flexGrow: 1,
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    paddingRight: 30,
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
     },
-    menuButton: {
-      marginRight: theme.spacing(2),
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    title: {
-      paddingRight: 30,
-      display: 'none',
-      [theme.breakpoints.up('sm')]: {
-        display: 'block',
-      },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
     },
-    search: {
-      position: 'relative',
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: fade(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: fade(theme.palette.common.white, 0.25),
-      },
-      marginRight: theme.spacing(2),
-      marginLeft: 0,
-      width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-      },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
     },
-    searchIcon: {
-      padding: theme.spacing(0, 2),
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
       display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
     },
-    inputRoot: {
-      color: 'inherit',
-    },
-    inputInput: {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-      transition: theme.transitions.create('width'),
-      width: '100%',
-      [theme.breakpoints.up('md')]: {
-        width: '20ch',
-      },
-    },
-    sectionDesktop: {
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
       display: 'none',
-      [theme.breakpoints.up('md')]: {
-        display: 'flex',
-      },
     },
-    sectionMobile: {
-      display: 'flex',
-      [theme.breakpoints.up('md')]: {
-        display: 'none',
-      },
-    },
-  }),
-);
+  },
+}));
 
 function NavBar() {
   const classes = useStyles();
@@ -99,11 +99,11 @@ function NavBar() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
+  const handleMobileMenuClose = (): void => {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
+  const handleMenuClose = (): void => {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
@@ -124,12 +124,18 @@ function NavBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={() => {
-        handleMenuClose
-        buildCookies().remove(TOKEN_COOKIE, { path: "/" });
-        buildCookies().remove(USER_NAME, { path: "/" });
-        window.location.replace("/");
-      }}>Se deconnéter</MenuItem>
+      <MenuItem onClick={(): void => {
+        // eslint-disable-next-line no-unused-expressions
+        handleMenuClose;
+        buildCookies().remove(TOKEN_COOKIE, { path: '/' });
+        buildCookies().remove(USER_NAME, { path: '/' });
+        // eslint-disable-next-line no-undef
+        window.location.replace('/');
+      }}
+      >
+        Se deconnéter
+
+      </MenuItem>
     </Menu>
   );
 
@@ -192,19 +198,21 @@ function NavBar() {
             className={classes.title}
             variant="h6"
             noWrap
-            onClick={() => Router.push('/')}
+            onClick={(): Promise<boolean> => Router.push('/')}
           >
             Forum
           </Typography>
-          {userName &&
-          <Typography
-            className={classes.title}
-            variant="h6"
-            noWrap
-            onClick={() => Router.push('/profil')}
-          >
-            profil
-          </Typography>}
+          {userName
+          && (
+            <Typography
+              className={classes.title}
+              variant="h6"
+              noWrap
+              onClick={(): Promise<boolean> => Router.push('/profil')}
+            >
+              profil
+            </Typography>
+          )}
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -230,10 +238,12 @@ function NavBar() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            {userName &&
-              <IconButton color="inherit">
-                {userName}
-              </IconButton>}
+            {userName
+              && (
+                <IconButton color="inherit">
+                  {userName}
+                </IconButton>
+              )}
             <IconButton
               edge="end"
               aria-label="account of current user"
