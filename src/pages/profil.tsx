@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import withApollo from '@lib/withApollo';
 
 import Post from '@component/post';
 import GET_POSTS_BY_USER_ID from '@graphql/posts/getPostsByUserId';
@@ -12,7 +12,6 @@ interface PostsResponse {
 interface Posts {
   posts: Post[];
 }
-
 
 interface User {
   userId: string;
@@ -36,17 +35,14 @@ interface Post {
   id: string;
 }
 
-const Profil: React.FC<{}> = () => {
-  // TODO client side to server side
-  const { data, loading } = useQuery<PostsResponse>(GET_POSTS_BY_USER_ID);
-
-  if (loading) return <p>loading...</p>;
+const Profil = (props: PostsResponse): JSX.Element => {
+  const { getPostsByUserId } = props;
 
   return (
     <div>
       {
-        data.getPostsByUserId.posts.length > 0
-          ? data.getPostsByUserId.posts.map(({
+        getPostsByUserId.posts.length > 0
+          ? getPostsByUserId.posts.map(({
             userId,
             description,
             comments,
@@ -71,4 +67,13 @@ const Profil: React.FC<{}> = () => {
   );
 };
 
-export default Profil;
+Profil.getInitialProps = async function ({ apolloClient }: any): Promise<any> {
+  const { data: { getPostsByUserId } } = await apolloClient.query({
+    query: GET_POSTS_BY_USER_ID,
+  });
+
+  return {
+    getPostsByUserId,
+  };
+};
+export default withApollo(Profil);
