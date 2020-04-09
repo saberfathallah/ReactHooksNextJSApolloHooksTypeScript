@@ -9,8 +9,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import DELETE_COMMENT, { updateCacheAfterDeleteComment } from '../../graphql/comments/mutation/deleteComment';
-import UPDATE_COMMENT, { updateCacheAfterUpdateComment } from '../../graphql/comments/mutation/updateComment';
+import DELETE_COMMENT, { updateCacheAfterDeleteComment } from '@graphql/comments/mutation/deleteComment';
+import UPDATE_COMMENT, { updateCacheAfterUpdateComment } from '@graphql/comments/mutation/updateComment';
 
 interface User {
   name: string;

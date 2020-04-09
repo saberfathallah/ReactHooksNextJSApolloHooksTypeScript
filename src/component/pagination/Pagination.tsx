@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
-import { LIMIT } from '../../constants/posts';
+import { LIMIT } from '@constants/posts';
 
 const useStyles = makeStyles((theme) => ({
   root: {

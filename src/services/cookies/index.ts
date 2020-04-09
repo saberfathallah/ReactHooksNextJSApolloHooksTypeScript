@@ -1,5 +1,5 @@
-import Cookie from '../../facade/Cookie';
-import isBrowser from '../../utils/isBrowser';
+import Cookie from '@facade/Cookie';
+import isBrowser from '@utils/isBrowser';
 
 const buildCookies = (context = null): any => {
   const isServer = !isBrowser();

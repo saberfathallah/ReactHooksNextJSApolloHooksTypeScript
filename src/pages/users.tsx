@@ -2,9 +2,9 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Formik } from 'formik';
 
-import USERS from '../graphql/users/queries/usersQuery';
-import CREATE_USER, { updateCacheAfterCreateUser } from '../graphql/users/mutations/createUserMutation';
-import DELETE_USER, { updateCacheAfterDeleteUser } from '../graphql/users/mutations/deleteUserMutation';
+import USERS from '@graphql/users/queries/usersQuery';
+import CREATE_USER, { updateCacheAfterCreateUser } from '@graphql/users/mutations/createUserMutation';
+import DELETE_USER, { updateCacheAfterDeleteUser } from '@graphql/users/mutations/deleteUserMutation';
 
 interface MyFormValues {
   email: string;

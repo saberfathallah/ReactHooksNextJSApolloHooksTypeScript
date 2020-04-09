@@ -1,8 +1,9 @@
 import { gql } from 'apollo-boost';
 
+import { LIMIT, FROM } from '@constants/posts';
+
 import GET_POSTS_BY_CATEGORY_ID from '../../posts/getPostsByCategoryId';
 import GET_ALL_POSTS from '../../posts/getAllPosts';
-import { LIMIT, FROM } from '../../../constants/posts';
 
 const UPDATE_COMMENT = gql`
 mutation updateComment($updateCommentInput: UpdateCommentInput) {

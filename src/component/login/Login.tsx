@@ -3,10 +3,11 @@ import { useMutation } from '@apollo/react-hooks';
 import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
+import buildCookies from '@services/cookies';
 
-import LOGIN_MUTATION from '../../graphql/users/mutations/loginMutation';
-import buildCookies from '../../services/cookies';
-import { TOKEN_COOKIE, USER_NAME } from '../../constants/cookies';
+import LOGIN_MUTATION from '@graphql/users/mutations/loginMutation';
+import { TOKEN_COOKIE, USER_NAME } from '@constants/cookies';
+
 
 interface Values {
   email: string;

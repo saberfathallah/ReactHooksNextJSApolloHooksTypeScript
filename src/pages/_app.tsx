@@ -3,11 +3,11 @@
 import ApolloClient from 'apollo-boost';
 import fetch from 'node-fetch';
 import { ApolloProvider } from '@apollo/react-hooks';
+import buildCookies from '@services/cookies';
 
-import Navbar from '../component/navbar';
-import buildCookies from '../services/cookies';
-import { USER_NAME, TOKEN_COOKIE } from '../constants/cookies';
-import { UserProvider } from '../context/userContext';
+import Navbar from '@component/navbar';
+import { USER_NAME, TOKEN_COOKIE } from '@constants/cookies';
+import { UserProvider } from '@context/userContext';
 
 const token = buildCookies().get(TOKEN_COOKIE);
 

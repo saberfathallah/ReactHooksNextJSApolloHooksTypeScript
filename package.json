@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next ./src",
     "build": "next build",
-    "start": "next ./src",
+    "start": "next",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
