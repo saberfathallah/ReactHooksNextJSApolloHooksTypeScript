@@ -1,4 +1,4 @@
-import Cookies from "universal-cookie";
+import Cookies from 'universal-cookie';
 
 // TODO: use this variable intside the class.
 let clientCookies;
@@ -26,7 +26,7 @@ class Cookie {
 
   set = (name, value, options = {}) => this.cookies.set(name, value, options);
 
-  get = name => this.cookies.get(name);
+  get = (name) => this.cookies.get(name);
 
   remove = (name, options = {}) => this.cookies.remove(name, options);
 }

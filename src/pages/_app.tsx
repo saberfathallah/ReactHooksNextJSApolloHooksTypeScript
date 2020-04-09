@@ -1,5 +1,7 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/jsx-props-no-spreading */
 import ApolloClient from 'apollo-boost';
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import Navbar from '../component/navbar';
@@ -16,30 +18,29 @@ const client = new ApolloClient({
     },
     resolvers: {
       Mutation: {
-        changeCurrentCategory: (_, { currentCategoryId}, { cache }) => {
-          cache.writeData({ data: { currentCategoryId }});
+        changeCurrentCategory: (_, { currentCategoryId }, { cache }): null => {
+          cache.writeData({ data: { currentCategoryId } });
           return null;
-        }
-      }
-    }
+        },
+      },
+    },
   },
-  request: operation => {
-
+  request: (operation): void => {
     operation.setContext({
       headers: {
         authorization: token || '',
       },
-    })
+    });
   },
   uri: 'http://localhost:4002/graphql',
   fetch,
 });
+// eslint-disable-next-line react/prop-types
+const MyApp: React.FC<any> = ({ Component, pageProps }): any => {
+  const isAuth = !!token;
+  const userName = buildCookies().get(USER_NAME);
 
-function MyApp({ Component, pageProps }) {
-    const isAuth = !!token;
-    const userName = buildCookies().get(USER_NAME);
-
-    return (
+  return (
     <UserProvider
       isAuth={isAuth}
       userName={userName}
@@ -49,6 +50,6 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </ApolloProvider>
     </UserProvider>
-    )
-  }
-  export default MyApp
+  );
+};
+export default MyApp;

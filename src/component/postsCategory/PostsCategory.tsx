@@ -4,58 +4,60 @@ import { useQuery } from '@apollo/react-hooks';
 import Post from '../post';
 import GET_POSTS_BY_CATEGORY_ID from '../../graphql/posts/getPostsByCategoryId';
 
-interface IPostsResponse {
-  getPostsByCategoryId: IPosts;
-}
-  
-interface IPosts {
-  posts: IPost[]
+interface PostsResponse {
+  getPostsByCategoryId: PostsType;
 }
 
-interface IComment {
+interface PostsType {
+  posts: PostType[];
+}
+
+interface Comment {
   description: string;
-  userId: IUser;
+  userId: User;
   postId: string;
   id: string;
 }
 
-interface IUser {
+interface User {
   name: string;
   id: string;
 }
-  
-interface IPost {
-  userId: IUser;
+
+interface PostType {
+  userId: User;
   categoryId: string;
   postId: string;
-  comments: IComment[];
+  comments: Comment[];
   description: string;
   id: string;
   creatorId: string;
 }
 
-interface IPostsCategory {
+interface PostsCategory {
   currentCategoryId: string;
-  userConnected: IUser
+  userConnected: User;
 }
 
-const PostsCategory: React.FC<IPostsCategory> = (props: IPostsCategory) => { 
+const PostsCategory: React.FC<PostsCategory> = (props: PostsCategory) => {
   const { currentCategoryId, userConnected } = props;
-  const { loading, data } = useQuery<IPostsResponse>(GET_POSTS_BY_CATEGORY_ID, {
+  const { loading, data } = useQuery<PostsResponse>(GET_POSTS_BY_CATEGORY_ID, {
     variables: { categoryId: currentCategoryId },
   });
-  if (loading) return <p>loading...</p>
+  if (loading) return <p>loading...</p>;
 
   return (
     <div>
       {
         data.getPostsByCategoryId.posts.map((
-          { userId: { name, id: creatorId },
-          description,
-          comments,
-          id,
-          categoryId,
-          }) => 
+          {
+            userId: { name, id: creatorId },
+            description,
+            comments,
+            id,
+            categoryId,
+          },
+        ) => (
           <div key={id}>
             <Post
               creatorId={creatorId}
@@ -67,10 +69,10 @@ const PostsCategory: React.FC<IPostsCategory> = (props: IPostsCategory) => {
               comments={comments}
             />
           </div>
-        )
+        ))
       }
     </div>
   );
-}
-  
+};
+
 export default PostsCategory;

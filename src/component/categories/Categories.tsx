@@ -9,19 +9,19 @@ import TreeItem from '@material-ui/lab/TreeItem';
 import CATEGORIES from '../../graphql/categories/queries/getAllCategories';
 import CHANGE_CURRENT_CATEGORY from '../../graphql/client/mutation/changeCurrentCategory';
 
-interface ICategoriesResponse {
-  getAllCategoriesQuery: ICategories;
+interface CategoriesResponse {
+  getAllCategoriesQuery: Categories;
 }
-  
-interface ICategories {
-  categories: ICategory[]
+
+interface Categories {
+  categories: Category[];
 }
-  
-interface ICategory {
+
+interface Category {
   level: number;
   name: string;
   id: string;
-  children: ICategory[];
+  children: Category[];
 }
 
 const useStyles = makeStyles({
@@ -32,35 +32,37 @@ const useStyles = makeStyles({
   },
 });
 
-const categoryChildren:any = (children, changeCurrentCategory, isDisplayCategories, selectCategoryId): ICategory[] => {
-  return children && children.length > 0 ? 
-    children.map(child => (
-      <div key={child.id}>
-        <TreeItem
-          onClick={ () => {
-            if (isDisplayCategories) {
-              changeCurrentCategory({ variables: { currentCategoryId: child.id }})
-            } else {
-              selectCategoryId(child.id)
-            }
-          }}
-          nodeId={child.id}
-          label={child.name}>
-          {categoryChildren(child.children, changeCurrentCategory, isDisplayCategories, selectCategoryId)}
-        </TreeItem>
-      </div>
-    ))
-  :
-  null;
-}
+const categoryChildren: any = (
+  children, changeCurrentCategory, isDisplayCategories, selectCategoryId,
+): Category[] => (children && children.length > 0
+  ? children.map((child) => (
+    <div key={child.id}>
+      <TreeItem
+        onClick={(): void => {
+          if (isDisplayCategories) {
+            changeCurrentCategory({ variables: { currentCategoryId: child.id } });
+          } else {
+            selectCategoryId(child.id);
+          }
+        }}
+        nodeId={child.id}
+        label={child.name}
+      >
+        {categoryChildren(
+          child.children, changeCurrentCategory, isDisplayCategories, selectCategoryId,
+        )}
+      </TreeItem>
+    </div>
+  ))
+  : null);
 
 const Categories: React.FC<any> = (props: any) => {
   const { selectCategoryId, isDisplayCategories } = props;
   const classes = useStyles();
-  const { data, loading } = useQuery<ICategoriesResponse>(CATEGORIES);
+  const { data, loading } = useQuery<CategoriesResponse>(CATEGORIES);
   const [changeCurrentCategory] = useMutation(CHANGE_CURRENT_CATEGORY);
-  
-  if (loading) return <p>loading...</p>
+
+  if (loading) return <p>loading...</p>;
 
   return (
     <div>
@@ -70,30 +72,33 @@ const Categories: React.FC<any> = (props: any) => {
         defaultExpandIcon={<ChevronRightIcon />}
         multiSelect
       >
-      {
-        data.getAllCategoriesQuery.categories.map(category =>
-          (
+        {
+          data.getAllCategoriesQuery.categories.map((category) => (
             <div key={category.id}>
               <TreeItem
-                onClick={ () => {
+                onClick={(): void => {
                   if (isDisplayCategories) {
-                    changeCurrentCategory({ variables: { currentCategoryId: category.id }})
+                    changeCurrentCategory({ variables: { currentCategoryId: category.id } });
                   } else {
-                    selectCategoryId(category.id)
+                    selectCategoryId(category.id);
                   }
                 }}
                 nodeId={category.id}
                 label={category.name}
-               >
-                {categoryChildren(category.children, changeCurrentCategory, isDisplayCategories, selectCategoryId)}
-              </TreeItem>           
+              >
+                {categoryChildren(
+                  category.children,
+                  changeCurrentCategory,
+                  isDisplayCategories,
+                  selectCategoryId,
+                )}
+              </TreeItem>
             </div>
-          )
-        )
-      }
+          ))
+        }
       </TreeView>
     </div>
   );
-}
-  
+};
+
 export default Categories;

@@ -12,161 +12,167 @@ import ADD_COMMENT, { updateCacheAfterAddComment } from '../../graphql/comments/
 import GET_CURRENT_CATEGORY_ID from '../../graphql/client/queries/getCurrentCategoryId';
 import Comment from '../comment';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    text: {
-      padding: theme.spacing(2, 2, 0),
-    },
-    paper: {
-      paddingBottom: 50,
-    },
-    list: {
-      marginBottom: theme.spacing(2),
-    },
-    subheader: {
-      backgroundColor: theme.palette.background.paper,
-    },
-    appBar: {
-      top: 'auto',
-      bottom: 0,
-    },
-    grow: {
-      flexGrow: 1,
-    },
-    fabButton: {
-      position: 'absolute',
-      zIndex: 1,
-      top: -30,
-      left: 0,
-      right: 0,
-      margin: '0 auto',
-    },
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: '25ch',
-    },
-    button: {
-      margin: theme.spacing(1),
-      float: 'right',
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  text: {
+    padding: theme.spacing(2, 2, 0),
+  },
+  paper: {
+    paddingBottom: 50,
+  },
+  list: {
+    marginBottom: theme.spacing(2),
+  },
+  subheader: {
+    backgroundColor: theme.palette.background.paper,
+  },
+  appBar: {
+    top: 'auto',
+    bottom: 0,
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  fabButton: {
+    position: 'absolute',
+    zIndex: 1,
+    top: -30,
+    left: 0,
+    right: 0,
+    margin: '0 auto',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: '25ch',
+  },
+  button: {
+    margin: theme.spacing(1),
+    float: 'right',
+  },
+}));
 
-interface IUser {
+interface User {
   name: string;
   id: string;
 }
 
-interface IComment {
+interface Comment {
   description: string;
-  userId: IUser;
+  userId: User;
   postId: string;
   id: string;
 }
-interface ICommentProps {
-  comments: IComment[];
+interface CommentProps {
+  comments: Comment[];
   postId: string;
   categoryId: string;
-  userConnected: IUser;
+  userConnected: User;
   creatorId: string;
 }
 
-interface ICommnetFormInput {
+interface CommnetFormInput {
   description: string;
   postId: string;
   categoryId: string;
 }
 
-const Comments: React.FC<ICommentProps> = (props: ICommentProps) => {
-
-  const { comments, categoryId, postId, userConnected, creatorId } = props;
+const Comments: React.FC<CommentProps> = (props: CommentProps) => {
+  const {
+    comments, categoryId, postId, userConnected, creatorId,
+  } = props;
   const { data: { currentCategoryId } } = useQuery(GET_CURRENT_CATEGORY_ID);
-  const [addComment] = useMutation<any>(ADD_COMMENT, { update: (cache, { data }) => updateCacheAfterAddComment(cache, data, currentCategoryId) });
+  const [addComment] = useMutation<any>(ADD_COMMENT,
+    { update: (cache, { data }) => updateCacheAfterAddComment(cache, data, currentCategoryId) });
   const classes = useStyles();
-  const initialValues: ICommnetFormInput = { description: '', postId: '', categoryId: '' };
+  const initialValues: CommnetFormInput = { description: '', postId: '', categoryId: '' };
 
   return (
     <>
       <List className={classes.list}>
-        {comments.map(({ userId: { name, id: userCommentedId }, description, postId, id }) => (
+        {comments.map(({
+          userId: { name, id: userCommentedId }, description, postId: postIdent, id,
+        }) => (
           <React.Fragment key={description}>
-              <ListItem button>
-                <Comment
-                  currentCategoryId={currentCategoryId}
-                  id={id}
-                  postId={postId}
-                  creatorId={creatorId}
-                  userConnected={userConnected}
-                  name={name}
-                  description={description}
-                  userCommentedId={userCommentedId}
-                />
-              </ListItem>
-            </React.Fragment>
-          ))}
+            <ListItem button>
+              <Comment
+                currentCategoryId={currentCategoryId}
+                id={id}
+                postId={postIdent}
+                creatorId={creatorId}
+                userConnected={userConnected}
+                name={name}
+                description={description}
+                userCommentedId={userCommentedId}
+              />
+            </ListItem>
+          </React.Fragment>
+        ))}
       </List>
       <Formik
         initialValues={initialValues}
-        validate={values => {
+        validate={(values): object => {
           let errors = {};
           if (!values.description) {
             errors = {
               ...errors,
               email: 'Required',
-            }
+            };
           }
           return errors;
         }}
-        onSubmit={async values => {
-          await addComment({ variables: { commentInput: {
-            ...values,
-            categoryId,
-            postId,
-          }},
-        })}}
+        onSubmit={async (values): Promise<void> => {
+          await addComment({
+            variables: {
+              commentInput: {
+                ...values,
+                categoryId,
+                postId,
+              },
+            },
+          });
+        }}
       >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-      }) => (
-        <form onSubmit={handleSubmit}>
-          <TextField
-            type="description"
-            name="description"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.description}
-            id="standard-full-width"
-            label="Ajouter un commentaire"
-            style={{ margin: 8 }}
-            placeholder=""
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          {errors.description && touched.description && errors.description}
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            size="small"
-            className={classes.button}
-            endIcon={<Icon>send</Icon>}
-          >
-          Commenter
-         </Button>
-        </form>
-      )}
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+        }): any => (
+          <form onSubmit={handleSubmit}>
+            <TextField
+              type="description"
+              name="description"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.description}
+              id="standard-full-width"
+              label="Ajouter un commentaire"
+              style={{ margin: 8 }}
+              placeholder=""
+              fullWidth
+              margin="normal"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            {errors.description && touched.description && errors.description}
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              size="small"
+              className={classes.button}
+              endIcon={<Icon>send</Icon>}
+            >
+              Commenter
+            </Button>
+          </form>
+        )}
       </Formik>
     </>
   );
-} 
-  
+};
+
 export default Comments;

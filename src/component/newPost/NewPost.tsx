@@ -17,36 +17,35 @@ import GET_ALL_POSTS from '../../graphql/posts/getAllPosts';
 import GET_POSTS_BY_CATEGORY_ID from '../../graphql/posts/getPostsByCategoryId';
 import { LIMIT, FROM } from '../../constants/posts';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
     },
-    extendedIcon: {
-      marginRight: theme.spacing(1),
-    },
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
 
-  }),
-);
+}));
 
 const NewPost = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [categoryId, setCategoryId] = React.useState("");
-  const [addPost] = useMutation(ADD_POST, { refetchQueries : 
-    [ 
-      { query : GET_ALL_POSTS, variables: { from: FROM, limit: LIMIT } },
-      { query : GET_POSTS_BY_CATEGORY_ID, variables: { categoryId } },
-    ]
+  const [categoryId, setCategoryId] = React.useState('');
+  const [addPost] = useMutation(ADD_POST, {
+    refetchQueries:
+    [
+      { query: GET_ALL_POSTS, variables: { from: FROM, limit: LIMIT } },
+      { query: GET_POSTS_BY_CATEGORY_ID, variables: { categoryId } },
+    ],
   });
-  const initialValues = { description: "", categoryId };
+  const initialValues = { description: '', categoryId };
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (): void => {
     setOpen(true);
   };
-  const handleClose = () => {
+  const handleClose = (): void => {
     setOpen(false);
   };
 
@@ -57,73 +56,76 @@ const NewPost = () => {
       </Fab>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Nouvelle publication</DialogTitle>
-          <Formik
-            initialValues={initialValues}
-            validate={values => {
-              let errors = {};
-              if (!values.description) {
-                errors = {
-                  ...errors,
-                  description: 'Required',
-                }
-              }
-              return errors;
-            }}
-            onSubmit={async values => {
-               if (categoryId) {
-                 await addPost({ variables: { postInput: {
-                   ...values,
-                   categoryId,
-                 }},
-                 })
-                 handleClose()
-               }
-            }}
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-            }) => (
-              <>
-                <DialogContent>
-                  <Categories selectCategoryId={setCategoryId} />
-                  {!categoryId && <p>Il faut séléctionner une catégorie</p>}
-                  <TextField
-                    type="description"
-                    name="description"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.description}
-                    id="standard-full-width"
-                    label="Ajouter un commentaire"
-                    style={{ width: '500px' }}
-                    placeholder=""
-                    fullWidth
-                    margin="normal"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-                  {errors.description && touched.description && errors.description}
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleClose} color="primary">
-                    Annuler
-                  </Button>
-                  <Button onClick={() => handleSubmit()} color="primary">
-                    Ajouter
-                  </Button>
-                </DialogActions>
-              </>
-            )}
-          </Formik> 
-        </Dialog>
-      </div>
-    );
-  };
+        <Formik
+          initialValues={initialValues}
+          validate={(values): object => {
+            let errors = {};
+            if (!values.description) {
+              errors = {
+                ...errors,
+                description: 'Required',
+              };
+            }
+            return errors;
+          }}
+          onSubmit={async (values): Promise<void> => {
+            if (categoryId) {
+              await addPost({
+                variables: {
+                  postInput: {
+                    ...values,
+                    categoryId,
+                  },
+                },
+              });
+              handleClose();
+            }
+          }}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+          }): any => (
+            <>
+              <DialogContent>
+                <Categories selectCategoryId={setCategoryId} />
+                {!categoryId && <p>Il faut séléctionner une catégorie</p>}
+                <TextField
+                  type="description"
+                  name="description"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.description}
+                  id="standard-full-width"
+                  label="Ajouter un commentaire"
+                  style={{ width: '500px' }}
+                  placeholder=""
+                  fullWidth
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                {errors.description && touched.description && errors.description}
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                  Annuler
+                </Button>
+                <Button onClick={(): void => handleSubmit()} color="primary">
+                  Ajouter
+                </Button>
+              </DialogActions>
+            </>
+          )}
+        </Formik>
+      </Dialog>
+    </div>
+  );
+};
 
 export default NewPost;

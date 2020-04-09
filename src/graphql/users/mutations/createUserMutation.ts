@@ -12,15 +12,15 @@ const CREATE_USER = gql`
       error
     }
   }
-`
+`;
 
-export const updateCacheAfterCreateUser = (cache, { data }) => {
-  const existingUsers= cache.readQuery({
-    query: USERS
-  });
-  cache.writeQuery({  
+export const updateCacheAfterCreateUser = (cache, { data }): void => {
+  const existingUsers = cache.readQuery({
     query: USERS,
-    data: { users: { users: [...existingUsers.users.users, data.createUser.user] } }
+  });
+  cache.writeQuery({
+    query: USERS,
+    data: { users: { users: [...existingUsers.users.users, data.createUser.user] } },
   });
 };
 

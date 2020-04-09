@@ -5,16 +5,16 @@ import Login from '../component/login';
 import Categories from '../component/categories';
 import NewPost from '../component/newPost';
 import PostsContainer from '../component/postsContainer';
-import UserContext from "../context/userContext";
+import UserContext from '../context/userContext';
 
 const HomePage: React.FC<{}> = () => {
   const { isAuth } = React.useContext(UserContext);
 
   if (isAuth) {
-    return ( 
+    return (
       <div>
         <Grid container>
-          <Grid style={{ textAlign: 'center', marginTop: '18px' }} item xs={12} sm={3}>
+          <Grid style={{ textAlign: 'center', marginTop: '18px' }} item xs={12} sm={3}>
             <Categories isDisplayCategories />
           </Grid>
           <Grid style={{ textAlign: 'center' }} item xs={12} sm={9}>
@@ -23,9 +23,9 @@ const HomePage: React.FC<{}> = () => {
           </Grid>
         </Grid>
       </div>
-    )
+    );
   }
-  return <div style={{ textAlign: "center", paddingTop: "30px" }}><Login /></div>;
-}
+  return <div style={{ textAlign: 'center', paddingTop: '30px' }}><Login /></div>;
+};
 
 export default HomePage;
