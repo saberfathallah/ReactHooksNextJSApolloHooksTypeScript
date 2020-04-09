@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
-import Post from '../component/post';
-import GET_POSTS_BY_USER_ID from '../graphql/posts/getPostsByUserId';
+import Post from '@component/post';
+import GET_POSTS_BY_USER_ID from '@graphql/posts/getPostsByUserId';
 
 interface PostsResponse {
   getPostsByUserId: Posts;

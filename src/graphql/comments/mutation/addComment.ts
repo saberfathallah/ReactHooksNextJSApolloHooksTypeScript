@@ -1,8 +1,9 @@
 import { gql } from 'apollo-boost';
 
+import { LIMIT, FROM } from '@constants/posts';
+
 import GET_ALL_POSTS from '../../posts/getAllPosts';
 import GET_POSTS_BY_CATEGORY_ID from '../../posts/getPostsByCategoryId';
-import { LIMIT, FROM } from '../../../constants/posts';
 
 const ADD_COMMENT = gql`
   mutation addComment($commentInput: CommentInput) {

@@ -1,15 +1,26 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
 const path = require('path');
 
 module.exports = {
   webpack(config) {
     [
+      'component',
+      'constants',
+      'context',
+      'facade',
+      'services',
       'graphql',
-      'components',
       'pages',
-    ].forEach((item) => {
-      config.resolve.alias[`@${item}`] = path.join(__dirname, `src/${item}`);
-    });
-    config.resolve.extensions = ['.js', '.jsx', '.ts', '.tsx'];
+      'utils',
+    ].forEach(
+      (item) => (config.resolve.alias[`@${item}`] = path.resolve('src/', `${item}/`)),
+    );
+
+    ['config'].forEach(
+      (item) => (config.resolve.alias[`@${item}`] = path.resolve(`${item}/`)),
+    );
     return config;
   },
 };

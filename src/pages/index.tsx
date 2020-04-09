@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import Login from '../component/login';
-import Categories from '../component/categories';
-import NewPost from '../component/newPost';
-import PostsContainer from '../component/postsContainer';
-import UserContext from '../context/userContext';
+import Login from '@component/login';
+import Categories from '@component/categories';
+import NewPost from '@component/newPost';
+import PostsContainer from '@component/postsContainer';
+import UserContext from '@context/userContext';
 
 const HomePage: React.FC<{}> = () => {
   const { isAuth } = React.useContext(UserContext);

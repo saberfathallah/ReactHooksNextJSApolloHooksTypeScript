@@ -8,8 +8,9 @@ import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
-import ADD_COMMENT, { updateCacheAfterAddComment } from '../../graphql/comments/mutation/addComment';
-import GET_CURRENT_CATEGORY_ID from '../../graphql/client/queries/getCurrentCategoryId';
+import ADD_COMMENT, { updateCacheAfterAddComment } from '@graphql/comments/mutation/addComment';
+import GET_CURRENT_CATEGORY_ID from '@graphql/client/queries/getCurrentCategoryId';
+
 import Comment from '../comment';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({

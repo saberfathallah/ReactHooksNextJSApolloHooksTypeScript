@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
+import GET_CURRENT_CATEGORY_ID from '@graphql/client/queries/getCurrentCategoryId';
+import GET_USER_DETAILS from '@graphql/users/queries/getUserDetails';
+
 import AllPosts from '../allPosts';
 import PostsCategory from '../postsCategory';
-import GET_CURRENT_CATEGORY_ID from '../../graphql/client/queries/getCurrentCategoryId';
-import GET_USER_DETAILS from '../../graphql/users/queries/getUserDetails';
 
 const PostsContainer: React.FC<{}> = () => {
   const { data, loading: loadingUserDetails } = useQuery(GET_USER_DETAILS);

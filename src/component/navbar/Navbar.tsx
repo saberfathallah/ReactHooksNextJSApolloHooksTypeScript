@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
 import Router from 'next/router';
 import {
-  fade, makeStyles, Theme, createStyles,
+  fade,
+  makeStyles,
+  Theme,
+  createStyles,
 } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,10 +20,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import buildCookies from '@services/cookies';
 
-import UserContext from '../../context/userContext';
-import buildCookies from '../../services/cookies';
-import { TOKEN_COOKIE, USER_NAME } from '../../constants/cookies';
+import UserContext from '@context/userContext';
+import { TOKEN_COOKIE, USER_NAME } from '@constants/cookies';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   grow: {
@@ -90,7 +93,10 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 function NavBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [
+    mobileMoreAnchorEl,
+    setMobileMoreAnchorEl,
+  ] = React.useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -124,17 +130,17 @@ function NavBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={(): void => {
-        // eslint-disable-next-line no-unused-expressions
-        handleMenuClose;
-        buildCookies().remove(TOKEN_COOKIE, { path: '/' });
-        buildCookies().remove(USER_NAME, { path: '/' });
-        // eslint-disable-next-line no-undef
-        window.location.replace('/');
-      }}
+      <MenuItem
+        onClick={(): void => {
+          // eslint-disable-next-line no-unused-expressions
+          handleMenuClose;
+          buildCookies().remove(TOKEN_COOKIE, { path: '/' });
+          buildCookies().remove(USER_NAME, { path: '/' });
+          // eslint-disable-next-line no-undef
+          window.location.replace('/');
+        }}
       >
         Se deconnéter
-
       </MenuItem>
     </Menu>
   );
@@ -202,8 +208,7 @@ function NavBar() {
           >
             Forum
           </Typography>
-          {userName
-          && (
+          {userName && (
             <Typography
               className={classes.title}
               variant="h6"
@@ -238,12 +243,7 @@ function NavBar() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            {userName
-              && (
-                <IconButton color="inherit">
-                  {userName}
-                </IconButton>
-              )}
+            {userName && <IconButton color="inherit">{userName}</IconButton>}
             <IconButton
               edge="end"
               aria-label="account of current user"

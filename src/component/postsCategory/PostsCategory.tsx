@@ -1,8 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
+import GET_POSTS_BY_CATEGORY_ID from '@graphql/posts/getPostsByCategoryId';
+
 import Post from '../post';
-import GET_POSTS_BY_CATEGORY_ID from '../../graphql/posts/getPostsByCategoryId';
 
 interface PostsResponse {
   getPostsByCategoryId: PostsType;
