@@ -14,6 +14,7 @@ module.exports = {
       'graphql',
       'pages',
       'utils',
+      'lib',
     ].forEach(
       (item) => (config.resolve.alias[`@${item}`] = path.resolve('src/', `${item}/`)),
     );

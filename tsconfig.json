@@ -23,6 +23,7 @@
       "@graphql/*": ["src/graphql/*"],
       "@pages/*": ["src/pages/*"],
       "@utils/*": ["src/utils/*"],
+      "@lib/*": ["src/lib/*"],
     },
     "typeRoots": ["./node_modules/@types"],
     "strict": false,
