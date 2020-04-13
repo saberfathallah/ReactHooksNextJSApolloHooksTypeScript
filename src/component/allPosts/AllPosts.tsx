@@ -17,7 +17,6 @@ interface Posts {
 }
 
 interface User {
-  userId: string;
   name: string;
   id: string;
 }
