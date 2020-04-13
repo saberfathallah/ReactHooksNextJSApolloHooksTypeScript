@@ -4,8 +4,8 @@ import { gql } from 'apollo-boost';
 const SEARCH = gql`
 query search($query: String) {
     search(query: $query) {
-      posts
-      { 
+      posts { 
+        likes
         userId {
           name
           id

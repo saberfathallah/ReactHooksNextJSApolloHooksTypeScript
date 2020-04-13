@@ -4,6 +4,7 @@ const GET_POSTS_BY_USER_ID = gql`
 query {
   getPostsByUserId {
     posts {
+      likes
       userId {
         name
         id

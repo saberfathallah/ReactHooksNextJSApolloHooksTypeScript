@@ -33,6 +33,7 @@ interface PostType {
   description: string;
   id: string;
   creatorId: string;
+  likes: string[];
 }
 
 interface SearchQueryType {
@@ -63,6 +64,7 @@ const ContentSearch: React.FC<ContentSearchProps> = (props: ContentSearchProps) 
             comments,
             id,
             categoryId,
+            likes,
           },
         ) => (
           <div key={id}>
@@ -74,6 +76,7 @@ const ContentSearch: React.FC<ContentSearchProps> = (props: ContentSearchProps) 
               userName={name}
               description={description}
               comments={comments}
+              likes={likes}
             />
           </div>
         ))

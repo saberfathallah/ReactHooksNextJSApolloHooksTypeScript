@@ -35,6 +35,7 @@ interface Post {
   comments: Comment[];
   description: string;
   id: string;
+  likes: string[];
 }
 
 interface AllPostsProps {
@@ -87,9 +88,11 @@ const AllPosts: React.FC<AllPostsProps> = (props: AllPostsProps) => {
           comments,
           id,
           categoryId,
+          likes,
         }) => (
           <div key={id}>
             <Post
+              likes={likes}
               creatorId={creatorId}
               userConnected={userConnected}
               postId={id}

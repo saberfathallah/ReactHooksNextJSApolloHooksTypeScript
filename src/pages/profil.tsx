@@ -1,6 +1,6 @@
 import React from 'react';
-import withApollo from '@lib/withApollo';
 
+import withApollo from '@lib/withApollo';
 import Post from '@component/post';
 import GET_POSTS_BY_USER_ID from '@graphql/posts/getPostsByUserId';
 
@@ -32,6 +32,7 @@ interface Post {
   comments: Comment[];
   description: string;
   id: string;
+  likes: string[];
 }
 
 const Profil = (props: PostsResponse): JSX.Element => {
@@ -47,9 +48,11 @@ const Profil = (props: PostsResponse): JSX.Element => {
             comments,
             id,
             categoryId,
+            likes,
           }) => (
             <div key={id}>
               <Post
+                likes={likes}
                 creatorId={userId.id}
                 userConnected={userId}
                 postId={id}
