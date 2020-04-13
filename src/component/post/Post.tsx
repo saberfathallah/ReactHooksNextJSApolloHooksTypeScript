@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import Comments from '../comments';
+import Like from '../like';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   card: {
@@ -21,6 +22,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+  },
+  heart: {
+    float: 'right',
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -48,11 +52,12 @@ interface PostProps {
   comments: Comment[];
   userConnected: User;
   creatorId: string;
+  likes: string[];
 }
 
 const Post: React.FC<PostProps> = (props: PostProps) => {
   const {
-    description, comments, userName, categoryId, postId, creatorId, userConnected,
+    description, comments, userName, categoryId, postId, creatorId, userConnected, likes,
   } = props;
   const classes = useStyles();
 
@@ -81,6 +86,7 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
             description
           }
         </Typography>
+        <Like likes={likes} userConnected={userConnected} />
         <Comments
           creatorId={creatorId}
           userConnected={userConnected}

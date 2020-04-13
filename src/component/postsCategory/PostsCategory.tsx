@@ -33,6 +33,7 @@ interface PostType {
   description: string;
   id: string;
   creatorId: string;
+  likes: string[];
 }
 
 interface PostsCategory {
@@ -57,10 +58,12 @@ const PostsCategory: React.FC<PostsCategory> = (props: PostsCategory) => {
             comments,
             id,
             categoryId,
+            likes,
           },
         ) => (
           <div key={id}>
             <Post
+              likes={likes}
               creatorId={creatorId}
               userConnected={userConnected}
               categoryId={categoryId}

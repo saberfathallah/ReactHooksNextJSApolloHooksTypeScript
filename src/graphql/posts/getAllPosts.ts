@@ -5,6 +5,7 @@ query
 getAllPosts($from: Int, $limit: Int) {
   getAllPosts(from: $from, limit: $limit) {
     posts {
+      likes
       id
       categoryId
       description
