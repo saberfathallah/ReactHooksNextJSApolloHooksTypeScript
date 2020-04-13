@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Router from 'next/router';
+import { useMutation } from '@apollo/react-hooks';
 import {
   fade,
   makeStyles,
@@ -20,10 +21,12 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import buildCookies from '@services/cookies';
 
+import buildCookies from '@services/cookies';
 import UserContext from '@context/userContext';
 import { TOKEN_COOKIE, USER_NAME } from '@constants/cookies';
+import CHANGE_SEARCH_QUERY from '@graphql/client/mutation/changeSearchQuery';
+import CHANGE_CURRENT_CATEGORY from '@graphql/client/mutation/changeCurrentCategory';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   grow: {
@@ -146,7 +149,13 @@ function NavBar() {
   );
 
   const { userName } = useContext(UserContext);
+  const [changeSearchQuery] = useMutation(CHANGE_SEARCH_QUERY);
+  const [changeCurrentCategory] = useMutation(CHANGE_CURRENT_CATEGORY);
 
+  const handleChange = (e: any): void => {
+    changeCurrentCategory({ variables: { currentCategoryId: '' } });
+    changeSearchQuery({ variables: { query: e.target.value } });
+  };
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
@@ -223,6 +232,7 @@ function NavBar() {
               <SearchIcon />
             </div>
             <InputBase
+              onChange={handleChange}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,

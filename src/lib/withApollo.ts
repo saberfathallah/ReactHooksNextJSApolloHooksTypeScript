@@ -1,8 +1,8 @@
 
 import withApollo from 'next-with-apollo';
 import ApolloClient from 'apollo-boost';
-import buildCookies from '@services/cookies';
 
+import buildCookies from '@services/cookies';
 import { TOKEN_COOKIE } from '@constants/cookies';
 
 function createClient(ctx): any {
@@ -21,11 +21,16 @@ function createClient(ctx): any {
     clientState: {
       defaults: {
         currentCategoryId: '',
+        searchQuery: '',
       },
       resolvers: {
         Mutation: {
           changeCurrentCategory: (_, { currentCategoryId }, { cache }): null => {
             cache.writeData({ data: { currentCategoryId } });
+            return null;
+          },
+          changeSearchQuery: (_, { query }, { cache }): null => {
+            cache.writeData({ data: { query } });
             return null;
           },
         },
