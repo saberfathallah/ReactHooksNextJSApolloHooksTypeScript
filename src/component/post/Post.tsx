@@ -86,7 +86,11 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
             description
           }
         </Typography>
-        <Like likes={likes} userConnected={userConnected} />
+        <Like
+          likes={likes}
+          userConnected={userConnected}
+          postId={postId}
+        />
         <Comments
           creatorId={creatorId}
           userConnected={userConnected}
