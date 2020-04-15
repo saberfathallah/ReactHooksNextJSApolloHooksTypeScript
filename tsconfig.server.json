@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "module": "commonjs",
+    "outDir": ".next/server",
+    "isolatedModules": false
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["test/**/*.ts"]
+}
