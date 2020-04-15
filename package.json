@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "next ./src",
+    "dev": "ts-node --project tsconfig.server.json server.ts",
     "build": "next build",
     "start": "next",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
@@ -21,6 +21,7 @@
     "apollo-client": "^2.6.8",
     "apollo-link-http": "^1.5.16",
     "babel-loader": "^8.1.0",
+    "express": "^4.17.1",
     "formik": "^2.1.4",
     "formik-material-ui": "^2.0.0-beta.1",
     "graphql": "^14.6.0",
@@ -31,6 +32,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-svg-loader": "^3.0.3",
+    "ts-node": "^8.8.2",
     "universal-cookie": "^4.0.3"
   },
   "devDependencies": {
