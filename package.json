@@ -7,7 +7,8 @@
     "dev": "ts-node --project tsconfig.server.json server.ts",
     "build": "next build",
     "start": "next",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prod_start":  "next start"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
@@ -21,6 +22,8 @@
     "apollo-client": "^2.6.8",
     "apollo-link-http": "^1.5.16",
     "babel-loader": "^8.1.0",
+    "babel-preset-es2015": "^6.24.1",
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "formik": "^2.1.4",
     "formik-material-ui": "^2.0.0-beta.1",

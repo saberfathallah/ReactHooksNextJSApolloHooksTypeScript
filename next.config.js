@@ -18,7 +18,6 @@ module.exports = {
     ].forEach(
       (item) => (config.resolve.alias[`@${item}`] = path.resolve('src/', `${item}/`)),
     );
-
     ['public'].forEach((item) => {
       config.resolve.alias[`@${item}`] = path.resolve(`${item}/`);
     });
@@ -40,7 +39,7 @@ module.exports = {
       ],
 
     });
-
+    config.optimization.minimize = true
     return config;
   },
 };

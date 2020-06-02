@@ -148,7 +148,7 @@ const Comments: React.FC<CommentProps> = (props: CommentProps) => {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.description}
-              id="standard-full-width"
+              id={`${postId}standard-full-width`}
               label="Ajouter un commentaire"
               style={{ margin: 8 }}
               placeholder=""

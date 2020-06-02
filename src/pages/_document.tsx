@@ -11,7 +11,7 @@ const theme = responsiveFontSizes(createMuiTheme());
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="fr">
         <Head>
           <meta charSet="utf-8" />
           <meta
@@ -20,7 +20,7 @@ class MyDocument extends Document {
           />
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link
-            rel="stylesheet"
+            rel="noopener"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
           />
           <style jsx global>

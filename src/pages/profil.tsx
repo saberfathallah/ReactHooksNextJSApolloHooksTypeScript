@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from "next/head";
 
 import withApollo from '@lib/withApollo';
 import Post from '@component/post';
@@ -40,6 +41,11 @@ const Profil = (props: PostsResponse): JSX.Element => {
 
   return (
     <div>
+      <Head>
+        <title>forum</title>
+        <meta name="description" content="profil forum" />
+      </Head>
+
       {
         getPostsByUserId.posts.length > 0
           ? getPostsByUserId.posts.map(({
