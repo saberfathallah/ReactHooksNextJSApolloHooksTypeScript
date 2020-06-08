@@ -1,0 +1,61 @@
+module.exports = {
+  automock: false,
+  rootDir: '../../',
+  setupFiles: ['<rootDir>/config/jest/setupEnzyme.ts'],
+  preset: 'ts-jest',
+  testMatch: [
+    '**/__tests__/**/*.+(ts|tsx|js)',
+    '**/?(*.)+(spec|test).+(ts|tsx|js)',
+  ],
+  transform: {
+    '^.+\\.tsx?$': 'babel-jest',
+    '^.+\\.ts?$': 'ts-jest',
+  },
+  moduleNameMapper: {
+    '^@config/(.*)$': '<rootDir>config/$1',
+    '^@component/(.*)$': '<rootDir>src/component/$1',
+    '^@context/(.*)$': '<rootDir>src/context/$1',
+    '^@facade/(.*)$': '<rootDir>src/facade/$1',
+    '^@lib/(.*)$': '<rootDir>src/lib/$1',
+    '^@graphql/(.*)$': '<rootDir>src/graphql/$1',
+    '^@pages/(.*)$': '<rootDir>src/pages/$1',
+    '^@services/(.*)$': '<rootDir>src/services/$1',
+    '^@utils/(.*)$': '<rootDir>src/utils/$1',
+  },
+  coverageThreshold: {
+    global: {
+      branches: 68,
+      functions: 77,
+      lines: 81,
+      statements: 81,
+    },
+  },
+  testPathIgnorePatterns: [
+    '.next/',
+    'node_modules/',
+    'server/',
+    '\\stories.(js|jsx|ts|tsx)',
+    '.history',
+    'config',
+  ],
+  moduleFileExtensions: [
+    'js',
+    'json',
+    'jsx',
+    'ts',
+    'tsx',
+    'node',
+    'svg',
+    'gif',
+  ],
+  collectCoverageFrom: [
+    '**/src/**',
+    '!<rootDir>/src/**/stories.{js,jsx,ts,tsx}',
+    '!<rootDir>/src/component/**/index.ts',
+  ],
+  coveragePathIgnorePatterns: [
+    'src/pages/.*',
+    '.*/__tests__/.*',
+    '.*/config/.*',
+  ],
+};
