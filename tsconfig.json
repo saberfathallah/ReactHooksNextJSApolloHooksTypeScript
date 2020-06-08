@@ -25,6 +25,7 @@
       "@utils/*": ["src/utils/*"],
       "@lib/*": ["src/lib/*"],
       "@public/*": ["public/*"],
+      "@config/*": ["config/*"],
     },
     "typeRoots": ["./node_modules/@types"],
     "strict": false,
