@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import withApollo from '@lib/withApollo';
 import Post from '@component/post';
@@ -40,6 +41,9 @@ const Profil = (props: PostsResponse): JSX.Element => {
 
   return (
     <div>
+      <Link href="/editProfil">
+        <a>modifier profil</a>
+      </Link>
       {
         getPostsByUserId.posts.length > 0
           ? getPostsByUserId.posts.map(({

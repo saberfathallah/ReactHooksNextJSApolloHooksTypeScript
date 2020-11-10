@@ -1,12 +1,24 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
-import buildCookies from '@services/cookies';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import Link from 'next/link';
 
+import buildCookies from '@services/cookies';
 import LOGIN_MUTATION from '@graphql/users/mutations/loginMutation';
 import { TOKEN_COOKIE, USER_NAME } from '@constants/cookies';
+
+
+const useStyles = makeStyles(() => createStyles({
+  msgError: {
+    color: 'red',
+  },
+  button: {
+    marginRight: '10px',
+  },
+}));
 
 
 interface Values {
@@ -34,8 +46,9 @@ interface MyFormValues {
 }
 
 const Login: React.FC<{}> = () => {
+  const classes = useStyles();
   const [login] = useMutation<LonginResponse, MyFormValues>(LOGIN_MUTATION);
-
+  const [error, setError] = useState('');
   return (
     <Formik
       initialValues={{
@@ -57,17 +70,22 @@ const Login: React.FC<{}> = () => {
         return errors;
       }}
       onSubmit={async (values): Promise<void> => {
-        const { data } = await login({
+        setError('');
+        const { data }: any = await login({
           variables: {
             loginInput: {
               ...values,
             },
           },
         });
-        buildCookies().set(TOKEN_COOKIE, data.login.token, { path: '/' });
-        buildCookies().set(USER_NAME, data.login.user.name, { path: '/' });
-        // eslint-disable-next-line no-undef
-        window.location.reload();
+        if (data.login.error) {
+          setError(data.login.error);
+        } else {
+          buildCookies().set(TOKEN_COOKIE, data.login.token, { path: '/' });
+          buildCookies().set(USER_NAME, data.login.user.name, { path: '/' });
+          // eslint-disable-next-line no-undef
+          window.location.reload();
+        }
       }}
     >
       {({ submitForm, isSubmitting }): any => (
@@ -89,14 +107,21 @@ const Login: React.FC<{}> = () => {
           />
           {isSubmitting && <LinearProgress />}
           <br />
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={isSubmitting}
-            onClick={submitForm}
-          >
-            Se connecter
-          </Button>
+          <div>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              disabled={isSubmitting}
+              onClick={submitForm}
+            >
+              Se connecter
+            </Button>
+            <Link href="/inscription">
+              <a>Inscription</a>
+            </Link>
+          </div>
+          {error && <p className={classes.msgError}>{error}</p>}
         </Form>
       )}
     </Formik>

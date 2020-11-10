@@ -9,6 +9,7 @@ const LOGIN_MUTATION = gql`
         password
       }
       token
+      error
     }
   }
 `;
