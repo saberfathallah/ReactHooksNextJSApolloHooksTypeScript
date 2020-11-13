@@ -6,16 +6,11 @@ import From from '@component/form';
 import UserContext from '@context/userContext';
 
 
-const EditProfil = (props) => {
+const EditProfil = () => {
   const { isAuth } = useContext(UserContext);
-
-  console.log('props', props);
-  console.log('isAuth', isAuth);
   const { data, loading } = useQuery(GET_USER_DETAILS, {
     skip: !isAuth,
   });
-  console.log('data', data);
-
 
   return (
     <div>

@@ -2,18 +2,30 @@ module.exports = {
   automock: false,
   rootDir: '../../',
   setupFiles: ['<rootDir>/config/jest/setupEnzyme.ts'],
+  // setupFilesAfterEnv: ["<rootDir>/config/jest/jest.after_setup.js"],
   preset: 'ts-jest',
+  // file extesion to test
   testMatch: [
     '**/__tests__/**/*.+(ts|tsx|js)',
+    '**/__tests__/**/*.+(js|jsx|js)',
     '**/?(*.)+(spec|test).+(ts|tsx|js)',
   ],
+  // configurate typeScript javascript in file tests
   transform: {
+    "\\.(jpg|png|gif)": "<rootDir>/config/jest/__mocks__/fileMock.js",
+    "\\.(svg)?inline$ ": "<rootDir>/config/jest/__mocks__/fileMock.js",
+    "^.+\\.svg$": "jest-svg-transformer",
+    "^.+\\.jsx$": "babel-jest",
+    "^.+\\.js$": "babel-jest",
     '^.+\\.tsx?$': 'babel-jest',
     '^.+\\.ts?$': 'ts-jest',
   },
+  // module to import 
   moduleNameMapper: {
     '^@config/(.*)$': '<rootDir>config/$1',
     '^@component/(.*)$': '<rootDir>src/component/$1',
+    '^@public/(.*)$': '<rootDir>public/$1',
+    '^@constants/(.*)$': '<rootDir>src/constants/$1',
     '^@context/(.*)$': '<rootDir>src/context/$1',
     '^@facade/(.*)$': '<rootDir>src/facade/$1',
     '^@lib/(.*)$': '<rootDir>src/lib/$1',
@@ -53,9 +65,11 @@ module.exports = {
     '!<rootDir>/src/**/stories.{js,jsx,ts,tsx}',
     '!<rootDir>/src/component/**/index.ts',
   ],
+  // ignore folder in count coverage
   coveragePathIgnorePatterns: [
     'src/pages/.*',
     '.*/__tests__/.*',
     '.*/config/.*',
+    '.*/graphql/.*',
   ],
 };
