@@ -71,5 +71,7 @@ module.exports = {
     '.*/__tests__/.*',
     '.*/config/.*',
     '.*/graphql/.*',
+    '.*/lib/.*',
+    '.*/context/.*',
   ],
 };

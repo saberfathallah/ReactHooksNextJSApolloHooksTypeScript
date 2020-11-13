@@ -1,0 +1,417 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BrandName should match snapshot 1`] = `
+<div
+  className="makeStyles-root-1"
+>
+  <nav
+    aria-label="pagination navigation"
+    className="MuiPagination-root"
+  >
+    <ul
+      className="MuiPagination-ul"
+    >
+      <li>
+        <button
+          aria-label="Go to previous page"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page Mui-disabled Mui-disabled"
+          disabled={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={-1}
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root MuiPaginationItem-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+            />
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button
+          aria-current="true"
+          aria-label="page 1"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page Mui-selected"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          1
+        </button>
+      </li>
+      <li>
+        <button
+          aria-label="Go to page 2"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          2
+        </button>
+      </li>
+      <li>
+        <button
+          aria-label="Go to next page"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root MuiPaginationItem-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+            />
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+`;
+
+exports[`BrandName should match snapshot when totalPosts % LIMIT === 0 1`] = `
+<div
+  className="makeStyles-root-1"
+>
+  <nav
+    aria-label="pagination navigation"
+    className="MuiPagination-root"
+  >
+    <ul
+      className="MuiPagination-ul"
+    >
+      <li>
+        <button
+          aria-label="Go to previous page"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page Mui-disabled Mui-disabled"
+          disabled={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={-1}
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root MuiPaginationItem-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+            />
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button
+          aria-current="true"
+          aria-label="page 1"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page Mui-selected"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          1
+        </button>
+      </li>
+      <li>
+        <button
+          aria-label="Go to page 2"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          2
+        </button>
+      </li>
+      <li>
+        <button
+          aria-label="Go to next page"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root MuiPaginationItem-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+            />
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+`;
+
+exports[`BrandName should match snapshot when totalPosts % LIMIT > 0 1`] = `
+<div
+  className="makeStyles-root-1"
+>
+  <nav
+    aria-label="pagination navigation"
+    className="MuiPagination-root"
+  >
+    <ul
+      className="MuiPagination-ul"
+    >
+      <li>
+        <button
+          aria-label="Go to previous page"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page Mui-disabled Mui-disabled"
+          disabled={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={-1}
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root MuiPaginationItem-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+            />
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button
+          aria-current="true"
+          aria-label="page 1"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page Mui-selected"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          1
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </button>
+      </li>
+      <li>
+        <button
+          aria-label="Go to page 2"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          2
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </button>
+      </li>
+      <li>
+        <button
+          aria-label="Go to page 3"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          3
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </button>
+      </li>
+      <li>
+        <button
+          aria-label="Go to next page"
+          className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root MuiPaginationItem-icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+            />
+          </svg>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+`;
