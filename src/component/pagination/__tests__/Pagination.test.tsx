@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Pagination from "../Pagination";
-import { shallow } from "enzyme";
 
 describe("BrandName", () => {
   it("should match snapshot when totalPosts % LIMIT === 0", () => {

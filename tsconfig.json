@@ -23,6 +23,7 @@
       "@graphql/*": ["src/graphql/*"],
       "@pages/*": ["src/pages/*"],
       "@utils/*": ["src/utils/*"],
+      "@helpers/*": ["src/helpers/*"],
       "@lib/*": ["src/lib/*"],
       "@public/*": ["public/*"],
       "@config/*": ["config/*"],

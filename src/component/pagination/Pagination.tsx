@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
-import { LIMIT } from '@constants/posts';
+import getPaginationCount from '@helpers/posts';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,8 +22,8 @@ const PaginationControlled:
 React.FC<PaginationControlledProps> = (props: PaginationControlledProps) => {
   const classes = useStyles();
   const { page, fetchMorePost, totalPosts } = props;
-  const count = totalPosts % LIMIT > 0 ? Math.trunc(totalPosts / LIMIT + 1) : totalPosts / LIMIT;
-
+  const count = getPaginationCount(totalPosts);
+   
   return (
     <div className={classes.root}>
       <Pagination count={count} page={page} onChange={fetchMorePost} />

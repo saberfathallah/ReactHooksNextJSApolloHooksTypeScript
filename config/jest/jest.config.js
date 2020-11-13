@@ -27,6 +27,7 @@ module.exports = {
     '^@public/(.*)$': '<rootDir>public/$1',
     '^@constants/(.*)$': '<rootDir>src/constants/$1',
     '^@context/(.*)$': '<rootDir>src/context/$1',
+    '^@helpers/(.*)$': '<rootDir>src/helpers/$1',
     '^@facade/(.*)$': '<rootDir>src/facade/$1',
     '^@lib/(.*)$': '<rootDir>src/lib/$1',
     '^@graphql/(.*)$': '<rootDir>src/graphql/$1',
