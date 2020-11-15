@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comment should display posts snapshot 1`] = `
+<div
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "display": "contents",
+    }
+  }
+>
+  <div
+    className="MuiListItemAvatar-root"
+  >
+    <div
+      className="MuiAvatar-root MuiAvatar-circle MuiAvatar-colorDefault"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root MuiAvatar-fallback"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className="MuiListItemText-root MuiListItemText-multiline"
+  >
+    <span
+      className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+    >
+      commment
+    </span>
+    <p
+      className="MuiTypography-root MuiListItemText-secondary MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+    >
+      description
+    </p>
+  </div>
+</div>
+`;

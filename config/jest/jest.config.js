@@ -31,7 +31,9 @@ module.exports = {
     '^@facade/(.*)$': '<rootDir>src/facade/$1',
     '^@lib/(.*)$': '<rootDir>src/lib/$1',
     '^@graphql/(.*)$': '<rootDir>src/graphql/$1',
+    '^@hooks/(.*)$': '<rootDir>src/hooks/$1',
     '^@pages/(.*)$': '<rootDir>src/pages/$1',
+    '^@HOC/(.*)$': '<rootDir>src/HOC/$1',
     '^@services/(.*)$': '<rootDir>src/services/$1',
     '^@utils/(.*)$': '<rootDir>src/utils/$1',
   },
@@ -61,10 +63,11 @@ module.exports = {
     'svg',
     'gif',
   ],
+  // don't test 
   collectCoverageFrom: [
     '**/src/**',
     '!<rootDir>/src/**/stories.{js,jsx,ts,tsx}',
-    '!<rootDir>/src/component/**/index.ts',
+    '!<rootDir>/src/component/**/index.tsx',
   ],
   // ignore folder in count coverage
   coveragePathIgnorePatterns: [
@@ -74,5 +77,7 @@ module.exports = {
     '.*/graphql/.*',
     '.*/lib/.*',
     '.*/context/.*',
+    '.*/HOC/.*',
+    '.*/hooks/.*',
   ],
 };

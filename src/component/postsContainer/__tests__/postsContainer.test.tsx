@@ -1,32 +1,43 @@
 import React from "react";
-import ShallowRenderer from "react-test-renderer/shallow";
-
-import { MockedProvider } from "@apollo/client/testing";
+import renderer from "react-test-renderer";
 
 import PostsContainer from "../PostsContainer";
-import GET_SEARCH_QUERY from '@graphql/client/queries/getSearchQuery';
+import { useQuery } from "../../../hooks/useQuery";
+import { USER_CONNECTED } from "../../../../mock/usersMock";
 
-const renderer = new ShallowRenderer();
+jest.mock("../../../hooks/useQuery", () => ({
+  useQuery: jest.fn(),
+}));
 
-describe("<PostsContainer />", () => {
-  it("should display ContentSearch snapshot", () => {
-    const mocks = [
-        {
-          request: {
-            query: GET_SEARCH_QUERY,
-          },
-          data: {
-            query: "s",
-          },
-        },
-      ];
+// @ts-ignore
+useQuery.mockImplementation(() => ({
+  data: { getUserDetails: { user: USER_CONNECTED }, getPostsByCategoryId: { posts: [] } },
+}));
 
-    const tree = renderer.render(
-      <MockedProvider mocks={mocks}>
-        <PostsContainer />
-      </MockedProvider>
-    );
+describe("PostsContainer", () => {
+  it("should display snapshot", () => {
+    const props = {
+      currentCategoryId: "5e89c6028245cd0d75dec50b",
+      data: { getUserDetails: { user: USER_CONNECTED } },
+      dataSearchQuery: { query: "" },
+      loading: false,
+      loadingSearchQuery: false,
+      loadingUserDetails: false,
+    };
+    const tree = renderer.create(<PostsContainer {...props} />);
     expect(tree).toMatchSnapshot();
   });
 
+  it("should display loadiing snapshot", () => {
+    const props = {
+      currentCategoryId: "5e89c6028245cd0d75dec50b",
+      data: { getUserDetails: { user: USER_CONNECTED } },
+      dataSearchQuery: { query: "" },
+      loading: true,
+      loadingSearchQuery: false,
+      loadingUserDetails: false,
+    };
+    const tree = renderer.create(<PostsContainer {...props} />);
+    expect(tree).toMatchSnapshot();
+  });
 });

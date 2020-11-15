@@ -16,6 +16,8 @@ module.exports = {
       'utils',
       'lib',
       'helpers',
+      'HOC',
+      'hooks,'
     ].forEach(
       (item) => (config.resolve.alias[`@${item}`] = path.resolve('src/', `${item}/`)),
     );

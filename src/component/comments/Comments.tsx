@@ -1,74 +1,74 @@
-import React from 'react';
-import { useMutation, useQuery } from '@apollo/react-hooks';
-import { Formik } from 'formik';
-import TextField from '@material-ui/core/TextField';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
+import React from "react";
+import { Formik } from "formik";
+import TextField from "@material-ui/core/TextField";
+import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Button from "@material-ui/core/Button";
+import Icon from "@material-ui/core/Icon";
 
-import ADD_COMMENT, { updateCacheAfterAddComment } from '@graphql/comments/mutation/addComment';
-import GET_CURRENT_CATEGORY_ID from '@graphql/client/queries/getCurrentCategoryId';
+import Comment from "../comment";
+import { CommentType } from '../../types/comment';
+import { User } from '../../types/user';
 
-import Comment from '../comment';
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    text: {
+      padding: theme.spacing(2, 2, 0),
+    },
+    paper: {
+      paddingBottom: 50,
+    },
+    list: {
+      marginBottom: theme.spacing(2),
+    },
+    subheader: {
+      backgroundColor: theme.palette.background.paper,
+    },
+    appBar: {
+      top: "auto",
+      bottom: 0,
+    },
+    grow: {
+      flexGrow: 1,
+    },
+    fabButton: {
+      position: "absolute",
+      zIndex: 1,
+      top: -30,
+      left: 0,
+      right: 0,
+      margin: "0 auto",
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: "25ch",
+    },
+    button: {
+      margin: theme.spacing(1),
+      float: "right",
+    },
+  })
+);
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  text: {
-    padding: theme.spacing(2, 2, 0),
-  },
-  paper: {
-    paddingBottom: 50,
-  },
-  list: {
-    marginBottom: theme.spacing(2),
-  },
-  subheader: {
-    backgroundColor: theme.palette.background.paper,
-  },
-  appBar: {
-    top: 'auto',
-    bottom: 0,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  fabButton: {
-    position: 'absolute',
-    zIndex: 1,
-    top: -30,
-    left: 0,
-    right: 0,
-    margin: '0 auto',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '25ch',
-  },
-  button: {
-    margin: theme.spacing(1),
-    float: 'right',
-  },
-}));
-
-interface User {
-  name: string;
-  id: string;
-}
-
-interface Comment {
-  description: string;
-  userId: User;
-  postId: string;
-  id: string;
+interface AddCommentVariables {
+  variables: {
+    commentInput: {
+      description: string;
+      categoryId: string;
+      postId: string;
+    };
+  };
 }
 interface CommentProps {
-  comments: Comment[];
+  comments: CommentType[];
   postId: string;
   categoryId: string;
   userConnected: User;
   creatorId: string;
+  currentCategoryId: string;
+  addComment: (variables: AddCommentVariables) => any;
 }
 
 interface CommnetFormInput {
@@ -79,35 +79,47 @@ interface CommnetFormInput {
 
 const Comments: React.FC<CommentProps> = (props: CommentProps) => {
   const {
-    comments, categoryId, postId, userConnected, creatorId,
+    comments,
+    categoryId,
+    postId,
+    userConnected,
+    creatorId,
+    currentCategoryId,
+    addComment,
   } = props;
-  const { data: { currentCategoryId } } = useQuery(GET_CURRENT_CATEGORY_ID);
-  const [addComment] = useMutation<any>(ADD_COMMENT,
-    { update: (cache, { data }) => updateCacheAfterAddComment(cache, data, currentCategoryId) });
   const classes = useStyles();
-  const initialValues: CommnetFormInput = { description: '', postId: '', categoryId: '' };
+  const initialValues: CommnetFormInput = {
+    description: "",
+    postId: "",
+    categoryId: "",
+  };
 
   return (
     <>
       <List className={classes.list}>
-        {comments.map(({
-          userId: { name, id: userCommentedId }, description, postId: postIdent, id,
-        }) => (
-          <React.Fragment key={description}>
-            <ListItem button>
-              <Comment
-                currentCategoryId={currentCategoryId}
-                id={id}
-                postId={postIdent}
-                creatorId={creatorId}
-                userConnected={userConnected}
-                name={name}
-                description={description}
-                userCommentedId={userCommentedId}
-              />
-            </ListItem>
-          </React.Fragment>
-        ))}
+        {comments.map(
+          ({
+            userId: { name, id: userCommentedId },
+            description,
+            postId: postIdent,
+            id,
+          }) => (
+            <React.Fragment key={description}>
+              <ListItem button>
+                <Comment
+                  currentCategoryId={currentCategoryId}
+                  id={id}
+                  postId={postIdent}
+                  creatorId={creatorId}
+                  userConnected={userConnected}
+                  name={name}
+                  description={description}
+                  userCommentedId={userCommentedId}
+                />
+              </ListItem>
+            </React.Fragment>
+          )
+        )}
       </List>
       <Formik
         initialValues={initialValues}
@@ -116,7 +128,7 @@ const Comments: React.FC<CommentProps> = (props: CommentProps) => {
           if (!values.description) {
             errors = {
               ...errors,
-              email: 'Required',
+              email: "Required",
             };
           }
           return errors;

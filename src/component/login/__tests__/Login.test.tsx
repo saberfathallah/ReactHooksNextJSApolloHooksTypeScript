@@ -1,40 +1,23 @@
 import React from "react";
-import ShallowRenderer from "react-test-renderer/shallow";
-
-import LOGIN_MUTATION from '@graphql/users/mutations/loginMutation';
-import { MockedProvider } from '@apollo/client/testing';
+import renderer from "react-test-renderer";
 
 import Login from "../Login";
+import { useMutation } from "../../../hooks/useMutation";
 
-const renderer = new ShallowRenderer();
+jest.mock("../../../hooks/useMutation", () => ({
+  useMutation: jest.fn(),
+}));
 
-const mocks = [
-  {
-    request: {
-      query: LOGIN_MUTATION,
-      variables: {
-        loginInput: { email: "saber@gmail.com", password: "xxxxxx"},
-      },
-    },
-    result: {
-      data: {
-        login: { user: {   email: "email",
-          name: "name",
-          password: "password", }, token: 'token' },
-      },
-    },
-  },
-];
+// @ts-ignore
+useMutation.mockImplementation(() => [() => {}, { loading: false}]);
 
 
 describe("<Login />", () => {
   it("should match snapshot", () => {
-    const tree = renderer.render(
-      <MockedProvider mocks={mocks}>
+    const tree = renderer.create(
       <Login />
-      </MockedProvider>,
-
     );
+
     expect(tree).toMatchSnapshot();
   });
 })

@@ -1,27 +1,25 @@
-import React from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import { makeStyles } from '@material-ui/core/styles';
-import TreeView from '@material-ui/lab/TreeView';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import TreeItem from '@material-ui/lab/TreeItem';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import TreeView from "@material-ui/lab/TreeView";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import TreeItem from "@material-ui/lab/TreeItem";
 
-import CATEGORIES from '@graphql/categories/queries/getAllCategories';
-import CHANGE_CURRENT_CATEGORY from '@graphql/client/mutation/changeCurrentCategory';
-
+import { CategoriesType, Category } from "../../types/categories";
 interface CategoriesResponse {
-  getAllCategoriesQuery: Categories;
+  getAllCategoriesQuery: CategoriesType;
 }
-
-interface Categories {
-  categories: Category[];
+interface Variables {
+  variables: {
+    currentCategoryId: string;
+  };
 }
-
-interface Category {
-  level: number;
-  name: string;
-  id: string;
-  children: Category[];
+interface CategoriesProps {
+  loading: boolean;
+  isDisplayCategories: boolean;
+  selectCategoryId: (categoryId: string) => string;
+  changeCurrentCategory: (variables: Variables) => string;
+  data: CategoriesResponse | undefined;
 }
 
 const useStyles = makeStyles({
@@ -33,36 +31,50 @@ const useStyles = makeStyles({
 });
 
 const categoryChildren: any = (
-  children, changeCurrentCategory, isDisplayCategories, selectCategoryId,
-): Category[] => (children && children.length > 0
-  ? children.map((child) => (
-    <div key={child.id}>
-      <TreeItem
-        onClick={(): void => {
-          if (isDisplayCategories) {
-            changeCurrentCategory({ variables: { currentCategoryId: child.id } });
-          } else {
-            selectCategoryId(child.id);
-          }
-        }}
-        nodeId={child.id}
-        label={child.name}
-      >
-        {categoryChildren(
-          child.children, changeCurrentCategory, isDisplayCategories, selectCategoryId,
-        )}
-      </TreeItem>
-    </div>
-  ))
-  : null);
+  children,
+  changeCurrentCategory,
+  isDisplayCategories,
+  selectCategoryId
+): Category[] =>
+  children && children.length > 0
+    ? children.map((child) => (
+        <div key={child.id}>
+          <TreeItem
+            onClick={(): void => {
+              if (isDisplayCategories) {
+                changeCurrentCategory({
+                  variables: { currentCategoryId: child.id },
+                });
+              } else {
+                selectCategoryId(child.id);
+              }
+            }}
+            nodeId={child.id}
+            label={child.name}
+          >
+            {categoryChildren(
+              child.children,
+              changeCurrentCategory,
+              isDisplayCategories,
+              selectCategoryId
+            )}
+          </TreeItem>
+        </div>
+      ))
+    : <div></div>;
 
-const Categories: React.FC<any> = (props: any) => {
-  const { selectCategoryId, isDisplayCategories } = props;
-  const classes = useStyles();
-  const { data, loading } = useQuery<CategoriesResponse>(CATEGORIES);
-  const [changeCurrentCategory] = useMutation(CHANGE_CURRENT_CATEGORY);
+const Categories: React.FC<CategoriesProps> = (props: CategoriesProps) => {
+  const {
+    selectCategoryId,
+    isDisplayCategories,
+    loading,
+    data,
+    changeCurrentCategory,
+  } = props;
 
   if (loading) return <p>loading...</p>;
+
+  const classes = useStyles();
 
   return (
     <div>
@@ -72,30 +84,30 @@ const Categories: React.FC<any> = (props: any) => {
         defaultExpandIcon={<ChevronRightIcon />}
         multiSelect
       >
-        {
-          data.getAllCategoriesQuery.categories.map((category) => (
-            <div key={category.id}>
-              <TreeItem
-                onClick={(): void => {
-                  if (isDisplayCategories) {
-                    changeCurrentCategory({ variables: { currentCategoryId: category.id } });
-                  } else {
-                    selectCategoryId(category.id);
-                  }
-                }}
-                nodeId={category.id}
-                label={category.name}
-              >
-                {categoryChildren(
-                  category.children,
-                  changeCurrentCategory,
-                  isDisplayCategories,
-                  selectCategoryId,
-                )}
-              </TreeItem>
-            </div>
-          ))
-        }
+        {data.getAllCategoriesQuery.categories.map((category) => (
+          <div key={category.id}>
+            <TreeItem
+              onClick={(): void => {
+                if (isDisplayCategories) {
+                  changeCurrentCategory({
+                    variables: { currentCategoryId: category.id },
+                  });
+                } else {
+                  selectCategoryId(category.id);
+                }
+              }}
+              nodeId={category.id}
+              label={category.name}
+            >
+              {categoryChildren(
+                category.children,
+                changeCurrentCategory,
+                isDisplayCategories,
+                selectCategoryId
+              )}
+            </TreeItem>
+          </div>
+        ))}
       </TreeView>
     </div>
   );

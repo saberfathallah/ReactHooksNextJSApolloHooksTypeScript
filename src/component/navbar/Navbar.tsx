@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Router from 'next/router';
-import { useMutation } from '@apollo/react-hooks';
 import {
   fade,
   makeStyles,
@@ -23,11 +22,25 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import buildCookies from '@services/cookies';
-import UserContext from '@context/userContext';
 import { TOKEN_COOKIE, USER_NAME } from '@constants/cookies';
-import CHANGE_SEARCH_QUERY from '@graphql/client/mutation/changeSearchQuery';
-import CHANGE_CURRENT_CATEGORY from '@graphql/client/mutation/changeCurrentCategory';
 
+interface Variables {
+  variables: {
+    currentCategoryId: string;
+  };
+}
+
+interface SearchVariables {
+  variables: {
+    query: string;
+  };
+}
+
+interface NavBarProps {
+  userName: string;
+  changeSearchQuery: (variables: SearchVariables) => string;
+  changeCurrentCategory: (variables: Variables) => string;
+}
 const useStyles = makeStyles((theme: Theme) => createStyles({
   grow: {
     flexGrow: 1,
@@ -93,7 +106,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-function NavBar() {
+function NavBar(props: NavBarProps) {
+  const { userName, changeSearchQuery, changeCurrentCategory} = props;
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
@@ -147,10 +161,6 @@ function NavBar() {
       </MenuItem>
     </Menu>
   );
-
-  const { userName } = useContext(UserContext);
-  const [changeSearchQuery] = useMutation(CHANGE_SEARCH_QUERY);
-  const [changeCurrentCategory] = useMutation(CHANGE_CURRENT_CATEGORY);
 
   const handleChange = (e: any): void => {
     changeCurrentCategory({ variables: { currentCategoryId: '' } });

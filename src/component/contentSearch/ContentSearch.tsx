@@ -1,10 +1,8 @@
-import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import React from "react";
 
-import SEARCH from '@graphql/posts/search';
-
-import Post from '../post';
-
+import Post from "../post";
+import { User } from '../../types/user';
+import { CommentType } from '../../types/comment'
 interface PostsResponse {
   search: PostsType;
 }
@@ -13,60 +11,40 @@ interface PostsType {
   posts: PostType[];
 }
 
-interface Comment {
-  description: string;
-  userId: User;
-  postId: string;
-  id: string;
-}
-
-interface User {
-  name: string;
-  id: string;
-}
-
 interface PostType {
   userId: User;
   categoryId: string;
-  postId: string;
-  comments: Comment[];
+  comments: CommentType[];
   description: string;
   id: string;
   creatorId: string;
   likes: string[];
 }
 
-interface SearchQueryType {
-  query: string;
-}
-
 interface ContentSearchProps {
-  dataSearchQuery: SearchQueryType;
+  data: PostsResponse | undefined;
   userConnected: User;
+  loading: boolean;
 }
 
-const ContentSearch: React.FC<ContentSearchProps> = (props: ContentSearchProps) => {
-  const { dataSearchQuery, userConnected } = props;
-
-
-  const { loading, data } = useQuery<PostsResponse>(SEARCH, {
-    variables: { query: dataSearchQuery.query },
-  });
+const ContentSearch: React.FC<ContentSearchProps> = (
+  props: ContentSearchProps
+) => {
+  const { loading, data, userConnected } = props;
 
   if (loading) return <p>loading...</p>;
+
   return (
     <div>
-      {
-        data.search.posts.map((
-          {
-            userId: { name, id: creatorId },
-            description,
-            comments,
-            id,
-            categoryId,
-            likes,
-          },
-        ) => (
+      {data.search.posts.map(
+        ({
+          userId: { name, id: creatorId },
+          description,
+          comments,
+          id,
+          categoryId,
+          likes,
+        }) => (
           <div key={id}>
             <Post
               creatorId={creatorId}
@@ -79,8 +57,8 @@ const ContentSearch: React.FC<ContentSearchProps> = (props: ContentSearchProps) 
               likes={likes}
             />
           </div>
-        ))
-      }
+        )
+      )}
     </div>
   );
 };

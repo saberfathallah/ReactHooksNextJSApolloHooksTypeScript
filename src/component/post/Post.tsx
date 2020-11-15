@@ -10,6 +10,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import Comments from '../comments';
 import Like from '../like';
+import { CommentType } from '../../types/comment';
+import { User } from '../../types/user';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   card: {
@@ -33,23 +35,12 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-interface User {
-  name: string;
-  id: string;
-}
-
-interface Comment {
-  userId: User;
-  description: string;
-  postId: string;
-  id: string;
-}
 interface PostProps {
   categoryId: string;
   postId: string;
   userName: string;
   description: string;
-  comments: Comment[];
+  comments: CommentType[];
   userConnected: User;
   creatorId: string;
   likes: string[];

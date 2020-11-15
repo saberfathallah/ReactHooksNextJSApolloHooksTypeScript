@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Like should display dislike snapshot 1`] = `
+<button
+  aria-label="show 11 new notifications"
+  className="MuiButtonBase-root MuiIconButton-root makeStyles-heart-1 MuiIconButton-colorInherit"
+  disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragLeave={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className="MuiIconButton-label"
+  >
+    <span
+      className="MuiBadge-root"
+    >
+      <svg
+        data-file-name="SvgLikeOn"
+        style={
+          Object {
+            "width": "28px",
+          }
+        }
+      />
+      <span
+        className="MuiBadge-badge MuiBadge-anchorOriginTopRightRectangle"
+      >
+        1
+      </span>
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Like should display like snapshot 1`] = `
+<button
+  aria-label="show 11 new notifications"
+  className="MuiButtonBase-root MuiIconButton-root makeStyles-heart-1 MuiIconButton-colorInherit"
+  disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragLeave={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className="MuiIconButton-label"
+  >
+    <span
+      className="MuiBadge-root"
+    >
+      <svg
+        data-file-name="SvgLikeOff"
+        style={
+          Object {
+            "width": "28px",
+          }
+        }
+      />
+      <span
+        className="MuiBadge-badge MuiBadge-anchorOriginTopRightRectangle"
+      >
+        1
+      </span>
+    </span>
+  </span>
+  <span
+    className="MuiTouchRipple-root"
+  />
+</button>
+`;

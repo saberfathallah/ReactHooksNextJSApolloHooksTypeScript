@@ -1,0 +1,216 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navbar /> should match snapshot 1`] = `
+<div
+  className="makeStyles-grow-1"
+>
+  <WithStyles(ForwardRef(AppBar))
+    position="static"
+  >
+    <WithStyles(ForwardRef(Toolbar))>
+      <WithStyles(ForwardRef(IconButton))
+        aria-label="open drawer"
+        className="makeStyles-menuButton-2"
+        color="inherit"
+        edge="start"
+      >
+        <Memo(MenuIcon) />
+      </WithStyles(ForwardRef(IconButton))>
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-title-3"
+        noWrap={true}
+        onClick={[Function]}
+        variant="h6"
+      >
+        Forum
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-title-3"
+        noWrap={true}
+        onClick={[Function]}
+        variant="h6"
+      >
+        profil
+      </WithStyles(ForwardRef(Typography))>
+      <div
+        className="makeStyles-search-4"
+      >
+        <div
+          className="makeStyles-searchIcon-5"
+        >
+          <Memo(SearchIcon) />
+        </div>
+        <WithStyles(ForwardRef(InputBase))
+          classes={
+            Object {
+              "input": "makeStyles-inputInput-7",
+              "root": "makeStyles-inputRoot-6",
+            }
+          }
+          inputProps={
+            Object {
+              "aria-label": "search",
+            }
+          }
+          onChange={[Function]}
+          placeholder="Search…"
+        />
+      </div>
+      <div
+        className="makeStyles-grow-1"
+      />
+      <div
+        className="makeStyles-sectionDesktop-8"
+      >
+        <WithStyles(ForwardRef(IconButton))
+          aria-label="show 4 new mails"
+          color="inherit"
+        >
+          <WithStyles(ForwardRef(Badge))
+            badgeContent={4}
+            color="secondary"
+          >
+            <Memo(MailIcon) />
+          </WithStyles(ForwardRef(Badge))>
+        </WithStyles(ForwardRef(IconButton))>
+        <WithStyles(ForwardRef(IconButton))
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <WithStyles(ForwardRef(Badge))
+            badgeContent={17}
+            color="secondary"
+          >
+            <Memo(NotificationsIcon) />
+          </WithStyles(ForwardRef(Badge))>
+        </WithStyles(ForwardRef(IconButton))>
+        <WithStyles(ForwardRef(IconButton))
+          color="inherit"
+        >
+          saber
+        </WithStyles(ForwardRef(IconButton))>
+        <WithStyles(ForwardRef(IconButton))
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          aria-label="account of current user"
+          color="inherit"
+          edge="end"
+          onClick={[Function]}
+        >
+          <Memo(AccountCircleIcon) />
+        </WithStyles(ForwardRef(IconButton))>
+      </div>
+      <div
+        className="makeStyles-sectionMobile-9"
+      >
+        <WithStyles(ForwardRef(IconButton))
+          aria-controls="primary-search-account-menu-mobile"
+          aria-haspopup="true"
+          aria-label="show more"
+          color="inherit"
+          onClick={[Function]}
+        >
+          <Memo(MoreVertIcon) />
+        </WithStyles(ForwardRef(IconButton))>
+      </div>
+    </WithStyles(ForwardRef(Toolbar))>
+  </WithStyles(ForwardRef(AppBar))>
+  <WithStyles(ForwardRef(Menu))
+    anchorEl={null}
+    anchorOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+    id="primary-search-account-menu-mobile"
+    keepMounted={true}
+    onClose={[Function]}
+    open={false}
+    transformOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+  >
+    <WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(IconButton))
+        aria-label="show 4 new mails"
+        color="inherit"
+      >
+        <WithStyles(ForwardRef(Badge))
+          badgeContent={4}
+          color="secondary"
+        >
+          <Memo(MailIcon) />
+        </WithStyles(ForwardRef(Badge))>
+      </WithStyles(ForwardRef(IconButton))>
+      <p>
+        Messages
+      </p>
+    </WithStyles(ForwardRef(MenuItem))>
+    <WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(IconButton))
+        aria-label="show 11 new notifications"
+        color="inherit"
+      >
+        <WithStyles(ForwardRef(Badge))
+          badgeContent={11}
+          color="secondary"
+        >
+          <Memo(NotificationsIcon) />
+        </WithStyles(ForwardRef(Badge))>
+      </WithStyles(ForwardRef(IconButton))>
+      <p>
+        Notifications
+      </p>
+    </WithStyles(ForwardRef(MenuItem))>
+    <WithStyles(ForwardRef(MenuItem))
+      onClick={[Function]}
+    >
+      <WithStyles(ForwardRef(IconButton))
+        aria-controls="primary-search-account-menu"
+        aria-haspopup="true"
+        aria-label="account of current user"
+        color="inherit"
+      >
+        <Memo(AccountCircleIcon) />
+      </WithStyles(ForwardRef(IconButton))>
+      <p>
+        Profile
+      </p>
+    </WithStyles(ForwardRef(MenuItem))>
+  </WithStyles(ForwardRef(Menu))>
+  <WithStyles(ForwardRef(Menu))
+    anchorEl={null}
+    anchorOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+    id="primary-search-account-menu"
+    keepMounted={true}
+    onClose={[Function]}
+    open={false}
+    transformOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+  >
+    <WithStyles(ForwardRef(MenuItem))
+      onClick={[Function]}
+    >
+      Profile
+    </WithStyles(ForwardRef(MenuItem))>
+    <WithStyles(ForwardRef(MenuItem))
+      onClick={[Function]}
+    >
+      Se deconnéter
+    </WithStyles(ForwardRef(MenuItem))>
+  </WithStyles(ForwardRef(Menu))>
+</div>
+`;

@@ -1,10 +1,8 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-
-import GET_POSTS_BY_CATEGORY_ID from '@graphql/posts/getPostsByCategoryId';
 
 import Post from '../post';
-
+import { User } from '../../types/user';
+import { PostType } from '../../types/post'; 
 interface PostsResponse {
   getPostsByCategoryId: PostsType;
 }
@@ -12,40 +10,15 @@ interface PostsResponse {
 interface PostsType {
   posts: PostType[];
 }
-
-interface Comment {
-  description: string;
-  userId: User;
-  postId: string;
-  id: string;
-}
-
-interface User {
-  name: string;
-  id: string;
-}
-
-interface PostType {
-  userId: User;
-  categoryId: string;
-  postId: string;
-  comments: Comment[];
-  description: string;
-  id: string;
-  creatorId: string;
-  likes: string[];
-}
-
 interface PostsCategory {
-  currentCategoryId: string;
   userConnected: User;
+  data: PostsResponse,
+  loading: boolean,
 }
 
 const PostsCategory: React.FC<PostsCategory> = (props: PostsCategory) => {
-  const { currentCategoryId, userConnected } = props;
-  const { loading, data } = useQuery<PostsResponse>(GET_POSTS_BY_CATEGORY_ID, {
-    variables: { categoryId: currentCategoryId },
-  });
+  const { userConnected, loading, data } = props;
+
   if (loading) return <p>loading...</p>;
 
   return (

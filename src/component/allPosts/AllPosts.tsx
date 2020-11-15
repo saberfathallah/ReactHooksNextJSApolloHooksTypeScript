@@ -1,79 +1,24 @@
-import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import React from "react";
 
-import GET_ALL_POSTS from '@graphql/posts/getAllPosts';
-import { LIMIT, FROM } from '@constants/posts';
-
-import Post from '../post';
-import PaginationControlled from '../pagination';
-
+import Post from "../post";
+import PaginationControlled from "../pagination";
+import { Posts } from "../../types/post";
+import { User } from "../../types/user";
 interface PostsResponse {
   getAllPosts: Posts;
 }
 
-interface Posts {
-  posts: Post[];
-  totalPosts: number;
-}
-
-interface User {
-  name: string;
-  id: string;
-}
-
-interface Comment {
-  description: string;
-  postId: string;
-  id: string;
-  userId: User;
-}
-
-interface Post {
-  userId: User;
-  categoryId: string;
-  postId: string;
-  comments: Comment[];
-  description: string;
-  id: string;
-  likes: string[];
-}
-
 interface AllPostsProps {
   userConnected: User;
+  page: number;
+  loading: boolean;
+  fetchMorePost: (_event: any, value: number) => void;
+  data: PostsResponse | undefined;
 }
 
 const AllPosts: React.FC<AllPostsProps> = (props: AllPostsProps) => {
-  const [page, setPage] = React.useState(1);
-  const { data, loading, fetchMore } = useQuery<PostsResponse>(GET_ALL_POSTS, {
-    variables: { from: FROM, limit: LIMIT },
-  });
-  const { userConnected } = props;
+  const { userConnected, page, loading, fetchMorePost, data } = props;
 
-  const fetchMorePost = (_event, value): void => {
-    if (value > page) {
-      fetchMore({
-        variables: {
-          offset: data.getAllPosts.totalPosts,
-          from: page * LIMIT,
-          limit: (value - page) * LIMIT,
-        },
-        updateQuery: (prev, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return prev;
-          return {
-            ...fetchMoreResult,
-            getAllPosts: {
-              posts: [
-                ...prev.getAllPosts.posts,
-                ...fetchMoreResult.getAllPosts.posts,
-              ],
-              __typename: 'Posts',
-            },
-          };
-        },
-      });
-      setPage(value);
-    }
-  };
   if (loading) return <p>loading...</p>;
   const {
     getAllPosts: { totalPosts, posts },
@@ -102,7 +47,7 @@ const AllPosts: React.FC<AllPostsProps> = (props: AllPostsProps) => {
               comments={comments}
             />
           </div>
-        ),
+        )
       )}
       <PaginationControlled
         fetchMorePost={fetchMorePost}

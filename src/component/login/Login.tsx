@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '../../hooks/useMutation';
 import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
@@ -27,27 +27,27 @@ interface Values {
   password: string;
 }
 
-interface InputValues {
-  email: string;
-  password: string;
-}
+// interface InputValues {
+//   email: string;
+//   password: string;
+// }
 
-interface User {
-  user: Values;
-  token: string;
-}
+// interface User {
+//   user: Values;
+//   token: string;
+// }
 
-interface LonginResponse {
-  login: User;
-}
+// interface LonginResponse {
+//   login: User;
+// }
 
-interface MyFormValues {
-  loginInput: InputValues;
-}
+// interface MyFormValues {
+//   loginInput: InputValues;
+// }
 
 const Login: React.FC<{}> = () => {
   const classes = useStyles();
-  const [login] = useMutation<LonginResponse, MyFormValues>(LOGIN_MUTATION);
+  const [login] = useMutation(LOGIN_MUTATION, { variables: false });
   const [error, setError] = useState('');
   return (
     <Formik
