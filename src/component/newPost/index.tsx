@@ -9,6 +9,14 @@ import NewPost from "./NewPost";
 
 const NewPostContainer = () => {
   const [categoryId, setCategoryId] = React.useState("");
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = (): void => {
+    setOpen(true);
+  };
+  const handleClose = (): void => {
+    setOpen(false);
+  };
 
   const [addPost] = useMutation(ADD_POST, {
     refetchQueries: [
@@ -19,6 +27,9 @@ const NewPostContainer = () => {
 
   return (
     <NewPost
+      open={open}
+      handleClickOpen={handleClickOpen}
+      handleClose={handleClose}
       addPost={addPost}
       categoryId={categoryId}
       setCategoryId={setCategoryId}

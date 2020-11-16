@@ -2,23 +2,23 @@ import React from "react";
 import renderer from "react-test-renderer";
 
 import PostsCategory from "../PostsCategory";
-import { POST } from '../../../../mock/postsMock';
-import { USER_CONNECTED } from '../../../../mock/usersMock';
+import { POST } from "../../../../mock/postsMock";
+import { USER_CONNECTED } from "../../../../mock/usersMock";
 import { useQuery } from "../../../hooks/useQuery";
 import { useMutation } from "../../../hooks/useMutation";
 
 jest.mock("../../../hooks/useQuery", () => ({
-    useQuery: jest.fn(),
-  }));
-  
-  jest.mock("../../../hooks/useMutation", () => ({
-    useMutation: jest.fn(),
-  }));
-  
-  // @ts-ignore
-  useQuery.mockImplementation(() => ({ data: "ddd" }));
-  // @ts-ignore
-  useMutation.mockImplementation(() => [() => {}, { loading: false}]);
+  useQuery: jest.fn(),
+}));
+
+jest.mock("../../../hooks/useMutation", () => ({
+  useMutation: jest.fn(),
+}));
+
+// @ts-ignore
+useQuery.mockImplementation(() => ({ data: "ddd" }));
+// @ts-ignore
+useMutation.mockImplementation(() => [() => {}, { loading: false }]);
 
 describe("PostsCategory", () => {
   it("should display posts snapshot", () => {
@@ -26,14 +26,12 @@ describe("PostsCategory", () => {
       loading: false,
       data: {
         getPostsByCategoryId: {
-            posts: [POST]
-        }
+          posts: [POST],
+        },
       },
       userConnected: USER_CONNECTED,
-    }
-    const tree = renderer.create(
-      <PostsCategory {...props}  />
-    );
+    };
+    const tree = renderer.create(<PostsCategory {...props} />);
     expect(tree).toMatchSnapshot();
   });
 
@@ -42,10 +40,8 @@ describe("PostsCategory", () => {
       loading: true,
       data: undefined,
       userConnected: USER_CONNECTED,
-    }
-    const tree = renderer.create(
-      <PostsCategory {...props}  />
-    );
+    };
+    const tree = renderer.create(<PostsCategory {...props} />);
     expect(tree).toMatchSnapshot();
   });
 });

@@ -132,7 +132,3 @@ exports[`Like should display like snapshot 1`] = `
   />
 </button>
 `;
-
-exports[`Like should display like snapshot 2`] = `ReactWrapper {}`;
-
-exports[`Like shouldn't call dislike when post is liked should call addLike 1`] = `ReactWrapper {}`;

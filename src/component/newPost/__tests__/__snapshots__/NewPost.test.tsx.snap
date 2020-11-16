@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NewPost should display posts snapshot 1`] = `
+exports[`NewPost should  snapshot open===false 1`] = `
 <div
   className="makeStyles-root-1"
 >
@@ -38,5 +38,42 @@ exports[`NewPost should display posts snapshot 1`] = `
       </svg>
     </span>
   </button>
+</div>
+`;
+
+exports[`NewPost should  snapshot open===true 1`] = `
+<div
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(Fab))
+    aria-label="edit"
+    color="secondary"
+    onClick={[Function]}
+  >
+    <Memo(AddIcon) />
+  </WithStyles(ForwardRef(Fab))>
+  <WithStyles(ForwardRef(Dialog))
+    aria-labelledby="form-dialog-title"
+    onClose={[Function]}
+    open={true}
+  >
+    <WithStyles(ForwardRef(DialogTitle))
+      id="form-dialog-title"
+    >
+      Nouvelle publication
+    </WithStyles(ForwardRef(DialogTitle))>
+    <Formik
+      initialValues={
+        Object {
+          "categoryId": "",
+          "description": "",
+        }
+      }
+      onSubmit={[Function]}
+      validate={[Function]}
+    >
+      [Function]
+    </Formik>
+  </WithStyles(ForwardRef(Dialog))>
 </div>
 `;
