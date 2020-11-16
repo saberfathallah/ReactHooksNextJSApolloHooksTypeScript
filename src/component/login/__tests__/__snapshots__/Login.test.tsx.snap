@@ -113,3 +113,238 @@ exports[`<Login /> should match snapshot 1`] = `
   
 </form>
 `;
+
+exports[`<Login /> should match snapshot with error 1`] = `
+<form
+  action="#"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <div
+    className="MuiFormControl-root MuiTextField-root"
+    style={
+      Object {
+        "width": "225px",
+      }
+    }
+  >
+    <label
+      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+      data-shrink={false}
+    >
+      Email
+    </label>
+    <div
+      className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+      onClick={[Function]}
+    >
+      <input
+        aria-invalid={false}
+        autoFocus={false}
+        className="MuiInputBase-input MuiInput-input"
+        disabled={false}
+        name="email"
+        onAnimationStart={[Function]}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        required={false}
+        type="email"
+        value=""
+      />
+    </div>
+  </div>
+  <br />
+  <div
+    className="MuiFormControl-root MuiTextField-root"
+    style={
+      Object {
+        "marginBottom": "20px",
+        "width": "225px",
+      }
+    }
+  >
+    <label
+      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+      data-shrink={false}
+    >
+      Password
+    </label>
+    <div
+      className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+      onClick={[Function]}
+    >
+      <input
+        aria-invalid={false}
+        autoFocus={false}
+        className="MuiInputBase-input MuiInput-input"
+        disabled={false}
+        name="password"
+        onAnimationStart={[Function]}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        required={false}
+        type="password"
+        value=""
+      />
+    </div>
+  </div>
+  <br />
+  <div>
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-2 MuiButton-containedPrimary"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Se connecter
+      </span>
+    </button>
+    <a
+      href="/inscription"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      Inscription
+    </a>
+  </div>
+  <p
+    className="makeStyles-msgError-1"
+  >
+    error
+  </p>
+</form>
+`;
+
+exports[`<Login /> should match snapshot with without error 1`] = `
+<form
+  action="#"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <div
+    className="MuiFormControl-root MuiTextField-root"
+    style={
+      Object {
+        "width": "225px",
+      }
+    }
+  >
+    <label
+      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+      data-shrink={false}
+    >
+      Email
+    </label>
+    <div
+      className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+      onClick={[Function]}
+    >
+      <input
+        aria-invalid={false}
+        autoFocus={false}
+        className="MuiInputBase-input MuiInput-input"
+        disabled={false}
+        name="email"
+        onAnimationStart={[Function]}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        required={false}
+        type="email"
+        value=""
+      />
+    </div>
+  </div>
+  <br />
+  <div
+    className="MuiFormControl-root MuiTextField-root"
+    style={
+      Object {
+        "marginBottom": "20px",
+        "width": "225px",
+      }
+    }
+  >
+    <label
+      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+      data-shrink={false}
+    >
+      Password
+    </label>
+    <div
+      className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+      onClick={[Function]}
+    >
+      <input
+        aria-invalid={false}
+        autoFocus={false}
+        className="MuiInputBase-input MuiInput-input"
+        disabled={false}
+        name="password"
+        onAnimationStart={[Function]}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        required={false}
+        type="password"
+        value=""
+      />
+    </div>
+  </div>
+  <br />
+  <div>
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-2 MuiButton-containedPrimary"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Se connecter
+      </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
+    </button>
+    <a
+      href="/inscription"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      Inscription
+    </a>
+  </div>
+  
+</form>
+`;

@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
-import { useMutation } from '../../hooks/useMutation';
-import { Formik, Form, Field } from 'formik';
-import { Button, LinearProgress } from '@material-ui/core';
-import { TextField } from 'formik-material-ui';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
-import Link from 'next/link';
+import React from "react";
+import { Formik, Form, Field } from "formik";
+import { Button, LinearProgress } from "@material-ui/core";
+import { TextField } from "formik-material-ui";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import Link from "next/link";
 
-import buildCookies from '@services/cookies';
-import LOGIN_MUTATION from '@graphql/users/mutations/loginMutation';
-import { TOKEN_COOKIE, USER_NAME } from '@constants/cookies';
-
-
-const useStyles = makeStyles(() => createStyles({
-  msgError: {
-    color: 'red',
-  },
-  button: {
-    marginRight: '10px',
-  },
-}));
-
+const useStyles = makeStyles(() =>
+  createStyles({
+    msgError: {
+      color: "red",
+    },
+    button: {
+      marginRight: "10px",
+    },
+  })
+);
 
 interface Values {
   email: string;
@@ -45,48 +40,44 @@ interface Values {
 //   loginInput: InputValues;
 // }
 
-const Login: React.FC<{}> = () => {
+interface LoginVariable {
+  variables: {
+    loginInput: {
+      email: string;
+      password: string;
+    };
+  };
+}
+interface LoginProps {
+  login: (LoginVariable) => any;
+  error: string;
+}
+
+const Login: React.FC<LoginProps> = (props: LoginProps) => {
+  const { login, error } = props;
   const classes = useStyles();
-  const [login] = useMutation(LOGIN_MUTATION);
-  const [error, setError] = useState('');
+
   return (
     <Formik
       initialValues={{
-        email: '',
-        password: '',
+        email: "",
+        password: "",
       }}
       validate={(values): object => {
         const errors: Partial<Values> = {};
         if (!values.password) {
-          errors.password = 'Required';
+          errors.password = "Required";
         }
         if (!values.email) {
-          errors.email = 'Required';
+          errors.email = "Required";
         } else if (
           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
         ) {
-          errors.email = 'Invalid email address';
+          errors.email = "Invalid email address";
         }
         return errors;
       }}
-      onSubmit={async (values): Promise<void> => {
-        setError('');
-        const { data }: any = await login({
-          variables: {
-            loginInput: {
-              ...values,
-            },
-          },
-        });
-        if (data.login.error) {
-          setError(data.login.error);
-        } else {
-          buildCookies().set(TOKEN_COOKIE, data.login.token, { path: '/' });
-          buildCookies().set(USER_NAME, data.login.user.name, { path: '/' });
-          // eslint-disable-next-line no-undef
-          window.location.reload();
-        }
-      }}
+      onSubmit={async (values): Promise<void> => login(values)}
     >
       {({ submitForm, isSubmitting }): any => (
         <Form>
@@ -95,7 +86,7 @@ const Login: React.FC<{}> = () => {
             name="email"
             type="email"
             label="Email"
-            style={{ width: '225px' }}
+            style={{ width: "225px" }}
           />
           <br />
           <Field
@@ -103,7 +94,7 @@ const Login: React.FC<{}> = () => {
             type="password"
             label="Password"
             name="password"
-            style={{ marginBottom: '20px', width: '225px' }}
+            style={{ marginBottom: "20px", width: "225px" }}
           />
           {isSubmitting && <LinearProgress />}
           <br />

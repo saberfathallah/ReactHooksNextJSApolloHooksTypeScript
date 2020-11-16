@@ -128,7 +128,7 @@ const Comments: React.FC<CommentProps> = (props: CommentProps) => {
           if (!values.description) {
             errors = {
               ...errors,
-              email: "Required",
+              description: "Required",
             };
           }
           return errors;
