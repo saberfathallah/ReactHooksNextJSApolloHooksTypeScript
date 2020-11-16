@@ -47,7 +47,7 @@ interface Values {
 
 const Login: React.FC<{}> = () => {
   const classes = useStyles();
-  const [login] = useMutation(LOGIN_MUTATION, { variables: false });
+  const [login] = useMutation(LOGIN_MUTATION);
   const [error, setError] = useState('');
   return (
     <Formik

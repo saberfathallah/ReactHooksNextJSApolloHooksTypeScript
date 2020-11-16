@@ -7,17 +7,15 @@ import GET_CURRENT_CATEGORY_ID from "@graphql/client/queries/getCurrentCategoryI
 import GET_USER_DETAILS from "@graphql/users/queries/getUserDetails";
 
 const PostContainerContainer = () => {
-  const { data, loading: loadingUserDetails } = useQuery(GET_USER_DETAILS, {
-    variables: false,
-  });
+  const { data, loading: loadingUserDetails } = useQuery(GET_USER_DETAILS);
   const {
     data: { currentCategoryId },
     loading,
-  } = useQuery(GET_CURRENT_CATEGORY_ID, { variables: false });
+  } = useQuery(GET_CURRENT_CATEGORY_ID);
   const {
     data: dataSearchQuery,
     loading: loadingSearchQuery,
-  } = useQuery(GET_SEARCH_QUERY, { variables: false });
+  } = useQuery(GET_SEARCH_QUERY);
 
   return (
     <PostsContainer

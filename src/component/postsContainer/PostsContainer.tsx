@@ -3,8 +3,18 @@ import * as React from "react";
 import ContentSearch from "../contentSearch";
 import AllPosts from "../allPosts";
 import PostsCategory from "../postsCategory";
+import { User } from "../../types/user";
+interface PostsContainerProps {
+  currentCategoryId: string;
+  data: { getUserDetails: { user: User } };
+  dataSearchQuery: { query: string } | undefined;
+  loading: boolean;
+  loadingSearchQuery: boolean;
+  loadingUserDetails: boolean;
+}
 
-const PostsContainer: React.FC<any> = (props:any) => {
+const PostsContainer: React.FC<PostsContainerProps> = (props: PostsContainerProps) => {
+
   const {
     loadingUserDetails,
     data,

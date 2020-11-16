@@ -13,10 +13,8 @@ import CHANGE_CURRENT_CATEGORY from "@graphql/client/mutation/changeCurrentCateg
 
 const CategoriesContainer = (props) => {
   const { selectCategoryId, isDisplayCategories } = props;
-  const { data, loading } = useQuery(CATEGORIES, { variables: false });
-  const [changeCurrentCategory] = useMutation(CHANGE_CURRENT_CATEGORY, {
-    variables: false,
-  });
+  const { data, loading } = useQuery(CATEGORIES);
+  const [changeCurrentCategory] = useMutation(CHANGE_CURRENT_CATEGORY);
 
   return (
     <Categories

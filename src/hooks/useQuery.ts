@@ -1,8 +1,8 @@
 import { useQuery as useQueryApollo } from "@apollo/react-hooks";
 
-export const useQuery = (query, { variables }): any => {
+export const useQuery = (query, options={}): any => {
   const { loading, data, ...rest } = useQueryApollo(query, {
-    variables,
+    ...options,
   });
 
   return { data, loading, ...rest };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useMutation } from '@apollo/react-hooks';
 import { Formik } from 'formik';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
@@ -10,11 +9,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
-import ADD_POST from '@graphql/posts/mutation/addPost';
-import GET_ALL_POSTS from '@graphql/posts/getAllPosts';
-import GET_POSTS_BY_CATEGORY_ID from '@graphql/posts/getPostsByCategoryId';
-import { LIMIT, FROM } from '@constants/posts';
 
 import Categories from '../categories';
 
@@ -30,17 +24,25 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 }));
 
-const NewPost = () => {
+interface AddPostVariables {
+  variables: {
+    postInput: {
+      categoryId: string;
+      description: string;
+    }
+  };
+}
+interface NewPostProps {
+  categoryId: string;
+  setCategoryId: React.Dispatch<React.SetStateAction<string>>;
+  addPost: (variables: AddPostVariables) => any;
+}
+
+
+const NewPost = (props: NewPostProps) => {
+  const { categoryId, setCategoryId, addPost } = props;
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [categoryId, setCategoryId] = React.useState('');
-  const [addPost] = useMutation(ADD_POST, {
-    refetchQueries:
-    [
-      { query: GET_ALL_POSTS, variables: { from: FROM, limit: LIMIT } },
-      { query: GET_POSTS_BY_CATEGORY_ID, variables: { categoryId } },
-    ],
-  });
   const initialValues = { description: '', categoryId };
 
   const handleClickOpen = (): void => {

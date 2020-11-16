@@ -23,7 +23,7 @@ const CommentsContainer = (props: CommentContainerProps) => {
 
   const {
     data: { currentCategoryId },
-  } = useQuery(GET_CURRENT_CATEGORY_ID, { variables: false });
+  } = useQuery(GET_CURRENT_CATEGORY_ID);
   const [addComment] = useMutation(ADD_COMMENT, {
     optionCache: {
       variables: currentCategoryId,

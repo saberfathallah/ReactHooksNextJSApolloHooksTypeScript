@@ -68,6 +68,7 @@ module.exports = {
     '**/src/**',
     '!<rootDir>/src/**/stories.{js,jsx,ts,tsx}',
     '!<rootDir>/src/component/**/index.tsx',
+    '!<rootDir>/src/component/**/index.ts',
   ],
   // ignore folder in count coverage
   coveragePathIgnorePatterns: [
@@ -79,5 +80,6 @@ module.exports = {
     '.*/context/.*',
     '.*/HOC/.*',
     '.*/hooks/.*',
+    '.*/types/.*',
   ],
 };

@@ -22,7 +22,7 @@ const LikeContainer = (props: LikeContainerProps) => {
   const isLiked = likes.includes(userConnected.id);
   const {
     data: { currentCategoryId },
-  } = useQuery(GET_CURRENT_CATEGORY_ID, { variables: false });
+  } = useQuery(GET_CURRENT_CATEGORY_ID);
 
   const [addLike] = useMutation(ADD_LIKE, {
     optionCache: {

@@ -8,12 +8,8 @@ import CHANGE_CURRENT_CATEGORY from "@graphql/client/mutation/changeCurrentCateg
 
 const NavbarContainer = () => {
   const { userName } = useContext(UserContext);
-  const [changeSearchQuery] = useMutation(CHANGE_SEARCH_QUERY, {
-    variables: false,
-  });
-  const [changeCurrentCategory] = useMutation(CHANGE_CURRENT_CATEGORY, {
-    variables: false,
-  });
+  const [changeSearchQuery] = useMutation(CHANGE_SEARCH_QUERY);
+  const [changeCurrentCategory] = useMutation(CHANGE_CURRENT_CATEGORY);
 
   return (
     <Navbar

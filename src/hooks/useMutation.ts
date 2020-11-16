@@ -2,16 +2,17 @@ import { useMutation as useMutationApollo } from "@apollo/react-hooks";
 
 export const useMutation = (
   mutation: any,
-  { variables, optionCache, ...otherOptions }: any
+  options= {},
 ): any => {
-  if (optionCache) {
+  //@ts-ignore
+  if (options.optionCache) {
     const [mutationFunction, { data, error, loading }] = useMutationApollo(
       mutation,
       {
-        variables,
         update: (cache, { data }) =>
-          optionCache.updateCacheFunction(cache, data, optionCache.variables),
-          ...otherOptions,
+          //@ts-ignore
+        options.optionCache.updateCacheFunction(cache, data, options.optionCache.variables),
+          ...options,
       }
     );
     return [mutationFunction, { data, error, loading }];
@@ -20,7 +21,7 @@ export const useMutation = (
   const [mutationFunction, { data, error, loading }] = useMutationApollo(
     mutation,
     {
-      variables,
+      ...options,
     }
   );
 
