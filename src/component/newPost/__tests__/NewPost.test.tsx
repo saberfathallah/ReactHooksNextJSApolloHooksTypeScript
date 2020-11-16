@@ -1,7 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import ShallowRenderer from "react-test-renderer/shallow";
-import { Formik } from 'formik';
+import { Formik } from "formik";
+import Button from "@material-ui/core/Button";
 
 import { useQuery } from "../../../hooks/useQuery";
 import { useMutation } from "../../../hooks/useMutation";
@@ -66,7 +67,7 @@ describe("NewPost", () => {
       open: false,
       handleClickOpen: handleClickOpen,
       handleClose: handleClose,
-    }
+    };
     const wrapper = mount(<NewPost {...props} />);
 
     wrapper.find("button").simulate("click");
@@ -81,15 +82,14 @@ describe("NewPost", () => {
       open: true,
       handleClickOpen: handleClickOpen,
       handleClose: handleClose,
-    }
+    };
 
     const wrapper = shallow(<NewPost {...props} />);
     console.log("wrapper", wrapper);
     expect(wrapper.text()).toContain("Nouvelle publication");
   });
 
-  it('should update password field on change', () => {
-
+  it("should update description field on change", () => {
     const props = {
       categoryId: "",
       setCategoryId: setCategoryId,
@@ -97,22 +97,22 @@ describe("NewPost", () => {
       open: true,
       handleClickOpen: handleClickOpen,
       handleClose: handleClose,
-    }
+    };
     const wrapper = mount(<NewPost {...props} />);
     const descriptionInput = wrapper.find("input[name='description']");
 
-    descriptionInput.simulate('change', {
+    descriptionInput.simulate("change", {
       persist: () => {},
       target: {
-        name: 'description',
-        value: 'new post'
-      }
+        name: "description",
+        value: "new post",
+      },
     });
 
-    expect(descriptionInput.html()).toMatch('new post');
+    expect(descriptionInput.html()).toMatch("new post");
   });
 
-  it('should return error for invalid description', () => {
+  it("should return error for invalid description", () => {
     const props = {
       categoryId: "",
       setCategoryId: setCategoryId,
@@ -120,64 +120,57 @@ describe("NewPost", () => {
       open: true,
       handleClickOpen: handleClickOpen,
       handleClose: handleClose,
-    }
+    };
     const tree = mount(<NewPost {...props} />);
 
     const form = (props: any = { errors: {} }) =>
-      tree
-        .find(NewPost)
-        .find(Formik)
-        .renderProp('children')(props);
+      tree.find(NewPost).find(Formik).renderProp("children")(props);
 
     const formWithInvalidDescriptionErrors = form({
       values: {
-        description: ''
+        description: "",
       },
       errors: {
-        description: 'Required'
+        description: "Required",
       },
       touched: { description: true },
-      isSubmitting: false
+      isSubmitting: false,
     });
 
     expect(formWithInvalidDescriptionErrors.html()).toMatch(/Required/);
   });
 
-  // it("should click addPost", () => {
-  //   const setCategoryId = jest.fn();
-  //   const addPost = jest.fn();
-  //   const handleClickOpen = jest.fn();
-  //   const handleClose = jest.fn();
+  it("should call handleClose", () => {
+    const props = {
+      categoryId: "",
+      setCategoryId: setCategoryId,
+      addPost: addPost,
+      open: true,
+      handleClickOpen: handleClickOpen,
+      handleClose: handleClose,
+    };
+    const wrapper = mount(<NewPost {...props} />);
+    const button = wrapper.findWhere(
+      (node) => node.is(Button) && node.text() === "Annuler"
+    );
+    button.simulate("click");
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
 
+  // it("should call handleClose", () => {
   //   const props = {
-  //     categoryId: "sssss",
+  //     categoryId: "",
   //     setCategoryId: setCategoryId,
   //     addPost: addPost,
   //     open: true,
   //     handleClickOpen: handleClickOpen,
   //     handleClose: handleClose,
-  //   }
-  //   const tree = mount(<NewPost {...props} />);
-
-  //   const form: any = (props: any = { errors: {} }) =>
-  //   tree
-  //     .find(NewPost)
-  //     .find(Formik)
-  //     .renderProp('children')(props);
-
-
-  //   const formFormik = form({
-  //     values: {
-  //       description: 'description'
-  //     },
-  //     errors: {},
-  //     touched: { description: true },
-  //     isSubmitting: false
-  //   });
-
-  //   console.log("formFormik", formFormik)
-  //   formFormik.find(".button").simulate("click");
-  //   expect(handleClose).toHaveBeenCalledTimes(1);
+  //   };
+  //   const wrapper = mount(<NewPost {...props} />);
+  //   const button = wrapper.findWhere(
+  //     (node) => node.is(Button) && node.text() === "Ajouter"
+  //   );
+  //   button.simulate("click");
+  //   expect(addPost).toHaveBeenCalledTimes(1);
   // });
-
 });

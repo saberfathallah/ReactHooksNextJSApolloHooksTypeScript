@@ -32,7 +32,8 @@ const CommentContainer = (props: CommetContainerProps) => {
     id,
     currentCategoryId,
   } = props;
-
+  const [isShown, setIsShown] = React.useState(false);
+  const [isClickEdit, setIsClickEdit] = React.useState(false);
   const [deleteComment] = useMutation(DELETE_COMMENT, {
     optionCache: {
       variables: currentCategoryId,
@@ -58,6 +59,10 @@ const CommentContainer = (props: CommetContainerProps) => {
       creatorId={creatorId}
       postId={postId}
       id={id}
+      isShown={isShown}
+      isClickEdit={isClickEdit}
+      setIsShown={setIsShown}
+      setIsClickEdit={setIsClickEdit}
     />
   );
 };

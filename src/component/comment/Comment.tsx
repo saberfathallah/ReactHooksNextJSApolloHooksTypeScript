@@ -38,6 +38,10 @@ interface CommetProps {
   id: string;
   updateComment: (variables: VariablesUpdate) => any;
   deleteComment: (variables: VariablesDelete) => any;
+  isClickEdit: boolean;
+  isShown: boolean;
+  setIsShown: (boolean) => void;
+  setIsClickEdit: (boolean) => void;
 }
 
 // interface CommentType {
@@ -89,9 +93,11 @@ const Comment: React.FC<CommetProps> = (props: CommetProps) => {
     creatorId,
     postId,
     id,
+    isClickEdit,
+    isShown,
+    setIsShown,
+    setIsClickEdit,
   } = props;
-  const [isShown, setIsShown] = React.useState(false);
-  const [isClickEdit, setIsClickEdit] = React.useState(false);
   const initialValues: CommentEditFormInput = { description, commentId: id };
 
   return (
@@ -161,6 +167,7 @@ const Comment: React.FC<CommetProps> = (props: CommetProps) => {
         </Formik>
       ) : (
         <div
+          id="comment-actions"
           style={{ display: "contents" }}
           onMouseEnter={(): void => setIsShown(true)}
           onMouseLeave={(): void => setIsShown(false)}
