@@ -46,7 +46,7 @@ interface PostProps {
   likes: string[];
 }
 
-const Post: React.FC<PostProps> = (props: PostProps) => {
+const Post: React.FC<PostProps> = React.memo((props: PostProps) => {
   const {
     description, comments, userName, categoryId, postId, creatorId, userConnected, likes,
   } = props;
@@ -92,6 +92,6 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
       </CardContent>
     </Card>
   );
-};
+});
 
 export default Post;

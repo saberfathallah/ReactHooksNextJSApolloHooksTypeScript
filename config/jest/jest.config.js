@@ -79,7 +79,6 @@ module.exports = {
     '.*/lib/.*',
     '.*/context/.*',
     '.*/HOC/.*',
-    '.*/hooks/.*',
     '.*/types/.*',
   ],
 };

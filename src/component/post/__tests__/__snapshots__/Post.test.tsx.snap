@@ -701,7 +701,7 @@ exports[`<Post /> should match snapshot 1`] = `
     }
   }
 >
-  <Post
+  <Memo
     categoryId="5e89c6458245cd0d75dec50f"
     comments={Array []}
     creatorId="5e89c2fd8245cd0d75dec501"
