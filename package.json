@@ -9,7 +9,7 @@
     "start": "next",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "storybook": "start-storybook -p 6006 -c ./storybook",
-    "test:updateSnapshot": "jest --config config/jest/jest.config.js --updateSnapshot",
+    "test:update": "jest --config config/jest/jest.config.js --updateSnapshot",
     "test": "jest --config config/jest/jest.config.js",
     "test:watch": "cross-env NODE_ICU_DATA=node_modules/full-icu jest -c config/jest/jest.config.js --watch",
     "test:cov": "jest --config config/jest/jest.config.js --coverage"
