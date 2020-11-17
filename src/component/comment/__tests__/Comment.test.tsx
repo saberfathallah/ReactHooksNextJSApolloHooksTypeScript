@@ -127,26 +127,8 @@ describe("Comment", () => {
   });
 
   // it("should call setIsClickEdit with true", () => {
-  //   const props = {
-  //     deleteComment,
-  //     setIsShown,
-  //     updateComment,
-  //     setIsClickEdit,
-  //     isShown: true,
-  //     isClickEdit: false,
-  //     categoryId: "5e89c6458245cd0d75dec50f",
-  //     name: "commment",
-  //     description: "description",
-  //     creatorId: "5e89c2fd8245cd0d75dec501",
-  //     postId: "5e89c6878245cd0d75dec510",
-  //     userCommentedId: "5e89c6878245cd0d75dec510",
-  //     id: "5e89c6878245cd0d75dec510",
-  //     userConnected: {
-  //       id: "5e89c6878245cd0d75dec510",
-  //       email: "sberrr@gmail.com",
-  //       name: "sberrr",
-  //     },
-  //   };
+  // props.isShown = true;
+
   //   const wrapper = mount(<Comment {...props} />);
   //   wrapper.find("#IconButtondelete").simulate("click");
 
