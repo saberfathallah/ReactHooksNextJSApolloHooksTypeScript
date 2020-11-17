@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import { mount } from "enzyme";
 
 import PostsCategory from "../PostsCategory";
 import { POST } from "../../../../mock/postsMock";
@@ -21,27 +22,36 @@ useQuery.mockImplementation(() => ({ data: "ddd" }));
 useMutation.mockImplementation(() => [() => {}, { loading: false }]);
 
 describe("PostsCategory", () => {
-  it("should display posts snapshot", () => {
-    const props = {
-      loading: false,
-      data: {
-        getPostsByCategoryId: {
-          posts: [POST],
-        },
+  const props = {
+    loading: false,
+    data: {
+      getPostsByCategoryId: {
+        posts: [POST],
       },
-      userConnected: USER_CONNECTED,
-    };
+    },
+    userConnected: USER_CONNECTED,
+  };
+
+  it("should display post", () => {
+    const wrapper = mount(<PostsCategory {...props} />);
+    expect(wrapper.text()).toContain("corona france post");
+  });
+
+  it("should display posts snapshot", () => {
+    const tree = renderer.create(<PostsCategory {...props} />);
+    expect(tree).toMatchSnapshot();
+  });
+
+  it("should match snapshot loading", () => {
+    props.loading = true;
+    props.data = undefined;
+
     const tree = renderer.create(<PostsCategory {...props} />);
     expect(tree).toMatchSnapshot();
   });
 
   it("should display loading", () => {
-    const props = {
-      loading: true,
-      data: undefined,
-      userConnected: USER_CONNECTED,
-    };
-    const tree = renderer.create(<PostsCategory {...props} />);
-    expect(tree).toMatchSnapshot();
+    const wrapper = mount(<PostsCategory {...props} />);
+    expect(wrapper.text()).toContain("loading...");
   });
 });

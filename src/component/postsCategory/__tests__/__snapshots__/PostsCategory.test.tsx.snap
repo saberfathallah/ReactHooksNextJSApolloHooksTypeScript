@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PostsCategory should display loading 1`] = `
-<p>
-  loading...
-</p>
-`;
-
 exports[`PostsCategory should display posts snapshot 1`] = `
 <div>
   <div>
@@ -211,4 +205,10 @@ exports[`PostsCategory should display posts snapshot 1`] = `
     </div>
   </div>
 </div>
+`;
+
+exports[`PostsCategory should match snapshot loading 1`] = `
+<p>
+  loading...
+</p>
 `;
