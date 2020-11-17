@@ -1,7 +1,6 @@
 import TextField from "@material-ui/core/TextField";
 
 const Input = (props) => {
-    console.log("props", props)
   const {
     handleChange,
     handleBlur,
@@ -12,6 +11,7 @@ const Input = (props) => {
     touched,
     style
   } = props;
+
   return (
     <>
       <TextField

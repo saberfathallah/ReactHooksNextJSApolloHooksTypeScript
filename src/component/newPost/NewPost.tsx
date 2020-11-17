@@ -11,6 +11,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import Categories from "../categories";
 import Input from "@component/input";
+import validationForm from "@helpers/validation";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -68,16 +69,7 @@ const NewPost = (props: NewPostProps) => {
         <DialogTitle id="form-dialog-title">Nouvelle publication</DialogTitle>
         <Formik
           initialValues={initialValues}
-          validate={(values): object => {
-            let errors = {};
-            if (!values.description) {
-              errors = {
-                ...errors,
-                description: "Required",
-              };
-            }
-            return errors;
-          }}
+          validate={(values): object => validationForm(values)}
           onSubmit={async (values): Promise<void> => {
             if (categoryId) {
               await addPost({

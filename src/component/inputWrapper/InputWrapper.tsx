@@ -5,6 +5,7 @@ import Icon from "@material-ui/core/Icon";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import EditCommentIconButton from "@component/comment/EditCommentIconButton";
 import Input from "@component/input";
+import validationForm from "@helpers/validation";
 interface CommentEditFormInput {
   description: string;
 }
@@ -23,19 +24,11 @@ const InputWrapper = (props) => {
   const initialValues: CommentEditFormInput = variables;
   const classes = useStyles();
   const style = { margin: 8 };
+
   return (
     <Formik
       initialValues={initialValues}
-      validate={(values): object => {
-        let errors = {};
-        if (!values.description) {
-          errors = {
-            ...errors,
-            description: "Required",
-          };
-        }
-        return errors;
-      }}
+      validate={(values): object => validationForm(values)}
       onSubmit={async (values): Promise<void> => {
         if (label === "Ajouter un commentaire") {
           await addComment({
