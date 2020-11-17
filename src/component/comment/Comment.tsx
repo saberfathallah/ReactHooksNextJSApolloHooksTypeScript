@@ -169,21 +169,19 @@ const Comment: React.FC<CommetProps> = (props: CommetProps) => {
           </ListItemAvatar>
           <ListItemText primary={name} secondary={description} />
           {isShown && (
-            <div>
-              <>
-                {(userConnected.id === userCommentedId ||
-                  userConnected.id === creatorId) && (
-                  <DeleteCommentIconButton
-                    deleteComment={deleteComment}
-                    postId={postId}
-                    commentId={id}
-                  />
-                )}
-                {userConnected.id === userCommentedId && (
-                  <EditCommentIconButton setIsClickEdit={setIsClickEdit} />
-                )}
-              </>
-            </div>
+            <>
+              {(userConnected.id === userCommentedId ||
+                userConnected.id === creatorId) && (
+                <DeleteCommentIconButton
+                  deleteComment={deleteComment}
+                  postId={postId}
+                  commentId={id}
+                />
+              )}
+              {userConnected.id === userCommentedId && (
+                <EditCommentIconButton setIsClickEdit={setIsClickEdit} />
+              )}
+            </>
           )}
         </div>
       )}

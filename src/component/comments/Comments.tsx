@@ -104,7 +104,7 @@ const Comments: React.FC<CommentProps> = (props: CommentProps) => {
             postId: postIdent,
             id,
           }) => (
-            <React.Fragment key={description}>
+            <React.Fragment key={id}>
               <ListItem button>
                 <Comment
                   currentCategoryId={currentCategoryId}
