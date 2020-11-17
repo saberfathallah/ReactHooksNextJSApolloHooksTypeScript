@@ -125,17 +125,4 @@ describe("Comment", () => {
     wrapper.find("button").simulate("click");
     expect(deleteComment).toHaveBeenCalledTimes(1);
   });
-
-  // it("should call setIsClickEdit with true", () => {
-  // props.isShown = true;
-
-  //   const wrapper = mount(<Comment {...props} />);
-  //   wrapper.find("#IconButtondelete").simulate("click");
-
-  // const button = wrapper.findWhere(
-  //   (node) => node.type() === 'button' && node.find(DeleteIcon)
-  // );
-  // button.simulate("click");
-  // expect(setIsClickEdit).toHaveBeenCalledTimes(1);
-  // });
 });

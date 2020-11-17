@@ -313,7 +313,7 @@ exports[`Comment should match snapshot isShown===true && isClickEdit===false dis
       onTouchMove={[Function]}
       onTouchStart={[Function]}
       tabIndex={0}
-      type="button"
+      type="submit"
     >
       <span
         className="MuiIconButton-label"

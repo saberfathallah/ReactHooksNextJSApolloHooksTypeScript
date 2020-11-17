@@ -2,14 +2,12 @@ import React from "react";
 import { Formik } from "formik";
 import TextField from "@material-ui/core/TextField";
 import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 
 import { User } from "../../types/user";
-
+import EditCommentIconButton from "./EditCommentIconButton";
+import DeleteCommentIconButton from "./DeleteCommentIconButton";
 interface VariablesUpdate {
   variables: {
     updateCommentInput: {
@@ -155,13 +153,7 @@ const Comment: React.FC<CommetProps> = (props: CommetProps) => {
                 }}
               />
               {errors.description && touched.description && errors.description}
-              <IconButton
-                type="submit"
-                onClick={(): void => setIsClickEdit(true)}
-                aria-label="modify"
-              >
-                <EditIcon />
-              </IconButton>
+              <EditCommentIconButton setIsClickEdit={setIsClickEdit} />
             </form>
           )}
         </Formik>
@@ -181,26 +173,14 @@ const Comment: React.FC<CommetProps> = (props: CommetProps) => {
               <>
                 {(userConnected.id === userCommentedId ||
                   userConnected.id === creatorId) && (
-                  <IconButton
-                    aria-label="delete"
-                    onClick={(): Promise<object> =>
-                      deleteComment({
-                        variables: {
-                          deleteCommentInput: { postId, commentId: id },
-                        },
-                      })
-                    }
-                  >
-                    <DeleteIcon fontSize="small" />
-                  </IconButton>
+                  <DeleteCommentIconButton
+                    deleteComment={deleteComment}
+                    postId={postId}
+                    commentId={id}
+                  />
                 )}
                 {userConnected.id === userCommentedId && (
-                  <IconButton
-                    onClick={(): void => setIsClickEdit(true)}
-                    aria-label="modify"
-                  >
-                    <EditIcon />
-                  </IconButton>
+                  <EditCommentIconButton setIsClickEdit={setIsClickEdit} />
                 )}
               </>
             </div>
