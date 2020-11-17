@@ -1,5 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Categories should display categories snapshot 1`] = `
+<div>
+  <ul
+    aria-multiselectable={true}
+    className="MuiTreeView-root makeStyles-root-1"
+    role="tree"
+  >
+    <div>
+      <li
+        aria-expanded={false}
+        aria-selected={false}
+        className="MuiTreeItem-root"
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="treeitem"
+        tabIndex={-1}
+      >
+        <div
+          className="MuiTreeItem-content"
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <div
+            className="MuiTreeItem-iconContainer"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+              />
+            </svg>
+          </div>
+          <div
+            className="MuiTypography-root MuiTreeItem-label MuiTypography-body1"
+          >
+            Sport
+          </div>
+        </div>
+      </li>
+    </div>
+  </ul>
+</div>
+`;
+
 exports[`Categories should display posts snapshot 1`] = `
 <div>
   <ul
