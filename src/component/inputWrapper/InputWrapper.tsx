@@ -1,11 +1,10 @@
 import React from "react";
 import { Formik } from "formik";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import EditCommentIconButton from "@component/comment/EditCommentIconButton";
-
+import Input from "@component/input";
 interface CommentEditFormInput {
   description: string;
 }
@@ -23,7 +22,7 @@ const InputWrapper = (props) => {
   const { label, addComment, variables, updateComment, setIsClickEdit } = props;
   const initialValues: CommentEditFormInput = variables;
   const classes = useStyles();
-
+  const style = { margin: 8 };
   return (
     <Formik
       initialValues={initialValues}
@@ -71,23 +70,16 @@ const InputWrapper = (props) => {
         handleSubmit,
       }): any => (
         <form style={{ display: "contents" }} onSubmit={handleSubmit}>
-          <TextField
-            type="description"
-            name="description"
-            onChange={handleChange}
+          <Input
+            handleChange={handleChange}
             onBlur={handleBlur}
-            value={values.description}
-            id={`${variables.description}standard-full-width`}
+            values={values}
+            errors={errors}
+            touched={touched}
             label={label}
-            style={{ margin: 8 }}
-            placeholder=""
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
+            variables={variables}
+            style={style}
           />
-          {errors.description && touched.description && errors.description}
           {label === "Ajouter un commentaire" ? (
             <Button
               type="submit"

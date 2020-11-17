@@ -4,13 +4,13 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 import Categories from "../categories";
+import Input from "@component/input";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -53,6 +53,7 @@ const NewPost = (props: NewPostProps) => {
   } = props;
   const classes = useStyles();
   const initialValues = { description: "", categoryId };
+  const style = { width: "500px"};
 
   return (
     <div className={classes.root}>
@@ -103,25 +104,16 @@ const NewPost = (props: NewPostProps) => {
               <DialogContent>
                 <Categories selectCategoryId={setCategoryId} />
                 {!categoryId && <p>Il faut séléctionner une catégorie</p>}
-                <TextField
-                  type="description"
-                  name="description"
-                  onChange={handleChange}
+                <Input
+                  handleChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.description}
-                  id="standard-full-width"
-                  label="Ajouter un commentaire"
-                  style={{ width: "500px" }}
-                  placeholder=""
-                  fullWidth
-                  margin="normal"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
+                  values={values}
+                  errors={errors}
+                  touched={touched}
+                  label="Ajouter une publication"
+                  variables={values}
+                  style={style}
                 />
-                {errors.description &&
-                  touched.description &&
-                  errors.description}
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleClose} color="primary">
