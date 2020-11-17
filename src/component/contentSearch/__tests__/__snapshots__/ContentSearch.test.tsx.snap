@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ContentSearch should display loading 1`] = `
+exports[`ContentSearch should display loading snapshot 1`] = `
 <p>
   loading...
 </p>
