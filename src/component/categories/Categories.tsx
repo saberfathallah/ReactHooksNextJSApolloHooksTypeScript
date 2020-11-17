@@ -61,7 +61,7 @@ const categoryChildren: any = (
           </TreeItem>
         </div>
       ))
-    : <div></div>;
+    : <></>;
 
 const Categories: React.FC<CategoriesProps> = (props: CategoriesProps) => {
   const {
