@@ -9,7 +9,7 @@ exports[`NewPost should  snapshot open===false 1`] = `
     className="MuiButtonBase-root MuiFab-root MuiFab-secondary"
     disabled={false}
     onBlur={[Function]}
-    onClick={[Function]}
+    onClick={[MockFunction]}
     onDragLeave={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -48,13 +48,13 @@ exports[`NewPost should  snapshot open===true 1`] = `
   <WithStyles(ForwardRef(Fab))
     aria-label="edit"
     color="secondary"
-    onClick={[Function]}
+    onClick={[MockFunction]}
   >
     <Memo(AddIcon) />
   </WithStyles(ForwardRef(Fab))>
   <WithStyles(ForwardRef(Dialog))
     aria-labelledby="form-dialog-title"
-    onClose={[Function]}
+    onClose={[MockFunction]}
     open={true}
   >
     <WithStyles(ForwardRef(DialogTitle))

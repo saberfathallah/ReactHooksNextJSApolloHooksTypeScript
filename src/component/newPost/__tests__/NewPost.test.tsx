@@ -31,58 +31,39 @@ describe("NewPost", () => {
   const addPost = jest.fn();
   const handleClickOpen = jest.fn();
   const handleClose = jest.fn();
+
+  const props = {
+    categoryId: "",
+    setCategoryId,
+    addPost,
+    open: false,
+    handleClickOpen,
+    handleClose,
+  };
   it("should  snapshot open===false", () => {
-    const props = {
-      categoryId: "",
-      setCategoryId: () => "",
-      addPost: () => {},
-      open: false,
-      handleClickOpen: () => () => {},
-      handleClose: () => () => {},
-    };
+
     const tree = renderer.create(<NewPost {...props} />);
     expect(tree).toMatchSnapshot();
   });
 
   it("should  snapshot open===true", () => {
-    const props = {
-      categoryId: "",
-      setCategoryId: () => "",
-      addPost: () => {},
-      open: true,
-      handleClickOpen: () => () => {},
-      handleClose: () => () => {},
-    };
-    const rendererComponent = new ShallowRenderer();
+    props.open = true;
 
+    const rendererComponent = new ShallowRenderer();
     const tree = rendererComponent.render(<NewPost {...props} />);
     expect(tree).toMatchSnapshot();
   });
 
   it("should call handleClickOpen", () => {
-    const props = {
-      categoryId: "",
-      setCategoryId: setCategoryId,
-      addPost: addPost,
-      open: false,
-      handleClickOpen: handleClickOpen,
-      handleClose: handleClose,
-    };
-    const wrapper = mount(<NewPost {...props} />);
+    props.open = false;
 
+    const wrapper = mount(<NewPost {...props} />);
     wrapper.find("button").simulate("click");
     expect(handleClickOpen).toHaveBeenCalledTimes(1);
   });
 
   it("should display Nouvelle publication", () => {
-    const props = {
-      categoryId: "",
-      setCategoryId: setCategoryId,
-      addPost: addPost,
-      open: true,
-      handleClickOpen: handleClickOpen,
-      handleClose: handleClose,
-    };
+    props.open = true;
 
     const wrapper = shallow(<NewPost {...props} />);
     console.log("wrapper", wrapper);
@@ -90,14 +71,6 @@ describe("NewPost", () => {
   });
 
   it("should update description field on change", () => {
-    const props = {
-      categoryId: "",
-      setCategoryId: setCategoryId,
-      addPost: addPost,
-      open: true,
-      handleClickOpen: handleClickOpen,
-      handleClose: handleClose,
-    };
     const wrapper = mount(<NewPost {...props} />);
     const descriptionInput = wrapper.find("input[name='description']");
 
@@ -113,14 +86,6 @@ describe("NewPost", () => {
   });
 
   it("should return error for invalid description", () => {
-    const props = {
-      categoryId: "",
-      setCategoryId: setCategoryId,
-      addPost: addPost,
-      open: true,
-      handleClickOpen: handleClickOpen,
-      handleClose: handleClose,
-    };
     const tree = mount(<NewPost {...props} />);
 
     const form = (props: any = { errors: {} }) =>
@@ -141,14 +106,6 @@ describe("NewPost", () => {
   });
 
   it("should call handleClose", () => {
-    const props = {
-      categoryId: "",
-      setCategoryId: setCategoryId,
-      addPost: addPost,
-      open: true,
-      handleClickOpen: handleClickOpen,
-      handleClose: handleClose,
-    };
     const wrapper = mount(<NewPost {...props} />);
     const button = wrapper.findWhere(
       (node) => node.is(Button) && node.text() === "Annuler"
@@ -158,14 +115,6 @@ describe("NewPost", () => {
   });
 
   // it("should call handleClose", () => {
-  //   const props = {
-  //     categoryId: "",
-  //     setCategoryId: setCategoryId,
-  //     addPost: addPost,
-  //     open: true,
-  //     handleClickOpen: handleClickOpen,
-  //     handleClose: handleClose,
-  //   };
   //   const wrapper = mount(<NewPost {...props} />);
   //   const button = wrapper.findWhere(
   //     (node) => node.is(Button) && node.text() === "Ajouter"
