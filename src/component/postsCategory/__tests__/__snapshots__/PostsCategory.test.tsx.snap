@@ -128,6 +128,11 @@ exports[`PostsCategory should display posts snapshot 1`] = `
         />
         <form
           onSubmit={[Function]}
+          style={
+            Object {
+              "display": "contents",
+            }
+          }
         >
           <div
             className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal MuiFormControl-fullWidth"
@@ -140,8 +145,8 @@ exports[`PostsCategory should display posts snapshot 1`] = `
             <label
               className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
               data-shrink={true}
-              htmlFor="5e89c6878245cd0d75dec510standard-full-width"
-              id="5e89c6878245cd0d75dec510standard-full-width-label"
+              htmlFor="standard-full-width"
+              id="standard-full-width-label"
             >
               Ajouter un commentaire
             </label>
@@ -154,7 +159,7 @@ exports[`PostsCategory should display posts snapshot 1`] = `
                 autoFocus={false}
                 className="MuiInputBase-input MuiInput-input"
                 disabled={false}
-                id="5e89c6878245cd0d75dec510standard-full-width"
+                id="standard-full-width"
                 name="description"
                 onAnimationStart={[Function]}
                 onBlur={[Function]}
@@ -168,7 +173,7 @@ exports[`PostsCategory should display posts snapshot 1`] = `
             </div>
           </div>
           <button
-            className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-124 MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+            className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-129 MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
             disabled={false}
             onBlur={[Function]}
             onDragLeave={[Function]}

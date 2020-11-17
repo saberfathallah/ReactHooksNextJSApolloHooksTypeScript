@@ -66,10 +66,10 @@ exports[`Comment should match snapshot isShown===false && isClickEdit===true 1`]
     <label
       className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
       data-shrink={true}
-      htmlFor="standard-full-width"
-      id="standard-full-width-label"
+      htmlFor="descriptionstandard-full-width"
+      id="descriptionstandard-full-width-label"
     >
-      Ajouter un commentaire
+      Modifier ton commentaire
     </label>
     <div
       className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
@@ -80,7 +80,7 @@ exports[`Comment should match snapshot isShown===false && isClickEdit===true 1`]
         autoFocus={false}
         className="MuiInputBase-input MuiInput-input"
         disabled={false}
-        id="standard-full-width"
+        id="descriptionstandard-full-width"
         name="description"
         onAnimationStart={[Function]}
         onBlur={[Function]}
@@ -353,10 +353,10 @@ exports[`Comment should match snapshot isShown===true && isClickEdit===true 1`] 
     <label
       className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
       data-shrink={true}
-      htmlFor="standard-full-width"
-      id="standard-full-width-label"
+      htmlFor="descriptionstandard-full-width"
+      id="descriptionstandard-full-width-label"
     >
-      Ajouter un commentaire
+      Modifier ton commentaire
     </label>
     <div
       className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
@@ -367,7 +367,7 @@ exports[`Comment should match snapshot isShown===true && isClickEdit===true 1`] 
         autoFocus={false}
         className="MuiInputBase-input MuiInput-input"
         disabled={false}
-        id="standard-full-width"
+        id="descriptionstandard-full-width"
         name="description"
         onAnimationStart={[Function]}
         onBlur={[Function]}

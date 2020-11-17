@@ -1,6 +1,4 @@
 import React from "react";
-import { Formik } from "formik";
-import TextField from "@material-ui/core/TextField";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -8,6 +6,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { User } from "../../types/user";
 import EditCommentIconButton from "./EditCommentIconButton";
 import DeleteCommentIconButton from "./DeleteCommentIconButton";
+import InputWrapper from "@component/inputWrapper";
+
 interface VariablesUpdate {
   variables: {
     updateCommentInput: {
@@ -62,10 +62,10 @@ interface CommetProps {
 //   deleteComment: DeleteComment;
 // }
 
-interface CommentEditFormInput {
-  description: string;
-  commentId: string;
-}
+// interface CommentEditFormInput {
+//   description: string;
+//   commentId: string;
+// }
 
 // interface FormUpdate {
 //   description: string;
@@ -96,67 +96,17 @@ const Comment: React.FC<CommetProps> = (props: CommetProps) => {
     setIsShown,
     setIsClickEdit,
   } = props;
-  const initialValues: CommentEditFormInput = { description, commentId: id };
+  const variables = { commentId: id, description };
 
   return (
     <>
       {isClickEdit ? (
-        <Formik
-          initialValues={initialValues}
-          validate={(values): object => {
-            let errors = {};
-            if (!values.description) {
-              errors = {
-                ...errors,
-                description: "Required",
-              };
-            }
-            return errors;
-          }}
-          onSubmit={async (values): Promise<void> => {
-            if (values.description !== description) {
-              await updateComment({
-                variables: {
-                  updateCommentInput: {
-                    ...values,
-                    commentId: id,
-                  },
-                },
-              });
-            }
-            setIsClickEdit(false);
-          }}
-        >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-          }): any => (
-            <form style={{ display: "contents" }} onSubmit={handleSubmit}>
-              <TextField
-                type="description"
-                name="description"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.description}
-                id="standard-full-width"
-                label="Ajouter un commentaire"
-                style={{ margin: 8 }}
-                placeholder=""
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-              {errors.description && touched.description && errors.description}
-              <EditCommentIconButton setIsClickEdit={setIsClickEdit} />
-            </form>
-          )}
-        </Formik>
+        <InputWrapper
+          label="Modifier ton commentaire"
+          variables={variables}
+          updateComment={updateComment}
+          setIsClickEdit={setIsClickEdit}
+        />
       ) : (
         <div
           id="comment-actions"

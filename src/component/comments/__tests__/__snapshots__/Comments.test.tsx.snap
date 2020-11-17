@@ -69,6 +69,11 @@ Array [
   </ul>,
   <form
     onSubmit={[Function]}
+    style={
+      Object {
+        "display": "contents",
+      }
+    }
   >
     <div
       className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal MuiFormControl-fullWidth"
@@ -81,8 +86,8 @@ Array [
       <label
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
         data-shrink={true}
-        htmlFor="5e89c6878245cd0d75dec510standard-full-width"
-        id="5e89c6878245cd0d75dec510standard-full-width-label"
+        htmlFor="standard-full-width"
+        id="standard-full-width-label"
       >
         Ajouter un commentaire
       </label>
@@ -95,7 +100,7 @@ Array [
           autoFocus={false}
           className="MuiInputBase-input MuiInput-input"
           disabled={false}
-          id="5e89c6878245cd0d75dec510standard-full-width"
+          id="standard-full-width"
           name="description"
           onAnimationStart={[Function]}
           onBlur={[Function]}
@@ -109,7 +114,7 @@ Array [
       </div>
     </div>
     <button
-      className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-9 MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-82 MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
       disabled={false}
       onBlur={[Function]}
       onDragLeave={[Function]}
