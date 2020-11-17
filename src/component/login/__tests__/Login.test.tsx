@@ -1,44 +1,27 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { mount } from "enzyme";
-import { Formik } from "formik";
 
 import Login from "../Login";
-import { useMutation } from "../../../hooks/useMutation";
-
-jest.mock("../../../hooks/useMutation", () => ({
-  useMutation: jest.fn(),
-}));
-
-// @ts-ignore
-useMutation.mockImplementation(() => [() => {}, { loading: false }]);
 
 describe("<Login />", () => {
+  const props = {
+    login: () => {},
+    error: "error",
+  };
   it("should match snapshot with error", () => {
-    const props = {
-      login: () => {},
-      error: "error",
-    }
-
-    const tree = renderer.create(<Login  {...props} />);
+    const tree = renderer.create(<Login {...props} />);
     expect(tree).toMatchSnapshot();
   });
 
   it("should match snapshot with without error", () => {
-    const props = {
-      login: () => {},
-      error: "",
-    }
+    props.error = "";
 
-    const tree = renderer.create(<Login  {...props} />);
+    const tree = renderer.create(<Login {...props} />);
     expect(tree).toMatchSnapshot();
   });
 
   it("should update email field on change", () => {
-    const props = {
-      login: () => {},
-      error: "",
-    }
     const wrapper = mount(<Login {...props} />);
     const emailInput = wrapper.find("input[name='email']");
 
@@ -54,11 +37,6 @@ describe("<Login />", () => {
   });
 
   // it("should return error for invalid email", () => {
-
-  //   const props = {
-  //     login: () => {},
-  //     error: "",
-  //   }
   //   const tree = mount(<Login {...props} />);
 
   //   const form = (props: any = { errors: {} }) =>
@@ -81,10 +59,6 @@ describe("<Login />", () => {
   // });
 
   it("should update password field on change", () => {
-    const props = {
-      login: () => {},
-      error: "",
-    }
     const wrapper = mount(<Login {...props} />);
     const emailInput = wrapper.find("input[name='password']");
 
@@ -101,11 +75,6 @@ describe("<Login />", () => {
 
   // it("should call logine", () => {
   //   const login = jest.fn();
-
-  //   const props = {
-  //     login,
-  //     error: "",
-  //   }
 
   //   const wrapper = mount(<Login {...props} />);
   //   wrapper.find("button").simulate("click");
