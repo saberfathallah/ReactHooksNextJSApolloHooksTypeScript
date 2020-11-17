@@ -23,54 +23,47 @@ useQuery.mockImplementation(() => ({
 useMutation.mockImplementation(() => [() => {}, { loading: false }]);
 
 describe("AllPosts", () => {
-  it("should display snapshot", () => {
-    const props = {
-      userConnected: {
-        id: "5fac3671dd9b1b079249d522",
-        email: "sberrr@gmail.com",
-        name: "sberrr",
-      },
-      data: { getAllPosts: { posts: [POST], totalPosts: 10 } },
-      loading: false,
-      page: 1,
-      fetchMorePost: () => {},
-    };
+  const propsWithPosts = {
+    userConnected: {
+      id: "5fac3671dd9b1b079249d522",
+      email: "sberrr@gmail.com",
+      name: "sberrr",
+    },
+    data: { getAllPosts: { posts: [POST], totalPosts: 10 } },
+    loading: false,
+    page: 1,
+    fetchMorePost: () => {},
+  };
 
-    const tree = renderer.create(<AllPosts {...props} />);
+  const propsWithoutProps = {
+    userConnected: {
+      id: "5fac3671dd9b1b079249d522",
+      email: "sberrr@gmail.com",
+      name: "sberrr",
+    },
+    data: undefined,
+    loading: true,
+    page: 1,
+    fetchMorePost: () => {},
+  };
+
+  it("should display snapshot", () => {
+    const tree = renderer.create(<AllPosts {...propsWithPosts} />);
     expect(tree).toMatchSnapshot();
   });
 
   it("should display loading snapshot", () => {
-    const props = {
-      userConnected: {
-        id: "5fac3671dd9b1b079249d522",
-        email: "sberrr@gmail.com",
-        name: "sberrr",
-      },
-      data: undefined,
-      loading: true,
-      page: 1,
-      fetchMorePost: () => {},
-    };
-
-    const tree = renderer.create(<AllPosts {...props} />);
+    const tree = renderer.create(<AllPosts {...propsWithoutProps} />);
     expect(tree).toMatchSnapshot();
   });
 
   it("should display loading", () => {
-    const props = {
-      userConnected: {
-        id: "5fac3671dd9b1b079249d522",
-        email: "sberrr@gmail.com",
-        name: "sberrr",
-      },
-      data: undefined,
-      loading: true,
-      page: 1,
-      fetchMorePost: () => {},
-    };
-
-    const wrapper = mount(<AllPosts {...props} />)
+    const wrapper = mount(<AllPosts {...propsWithoutProps} />);
     expect(wrapper.text()).toContain("loading");
+  });
+
+  it("should display posts", () => {
+    const tree = mount(<AllPosts {...propsWithPosts} />);
+    expect(tree.text()).toContain("corona france post");
   });
 });
