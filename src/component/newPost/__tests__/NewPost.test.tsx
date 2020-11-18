@@ -66,7 +66,6 @@ describe("NewPost", () => {
     props.open = true;
 
     const wrapper = shallow(<NewPost {...props} />);
-    console.log("wrapper", wrapper);
     expect(wrapper.text()).toContain("Nouvelle publication");
   });
 
