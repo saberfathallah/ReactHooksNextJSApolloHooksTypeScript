@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should display snapshot with Ajouter un commentaire 1`] = `
+Array [
+  <div
+    className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal MuiFormControl-fullWidth"
+    style={
+      Object {
+        "margin": 8,
+      }
+    }
+  >
+    <label
+      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
+      data-shrink={true}
+      htmlFor="descriptionstandard-full-width"
+      id="descriptionstandard-full-width-label"
+    >
+      Ajouter un commentaire
+    </label>
+    <div
+      className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+      onClick={[Function]}
+    >
+      <input
+        aria-invalid={false}
+        autoFocus={false}
+        className="MuiInputBase-input MuiInput-input"
+        disabled={false}
+        id="descriptionstandard-full-width"
+        name="description"
+        onAnimationStart={[Function]}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder=""
+        required={false}
+        type="description"
+        value=""
+      />
+    </div>
+  </div>,
+  "",
+]
+`;
+
+exports[`Input should display snapshot with Modifier ton commentaire 1`] = `
+Array [
+  <div
+    className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal MuiFormControl-fullWidth"
+    style={
+      Object {
+        "margin": 8,
+      }
+    }
+  >
+    <label
+      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
+      data-shrink={true}
+      htmlFor="descriptionstandard-full-width"
+      id="descriptionstandard-full-width-label"
+    >
+      Modifier ton commentaire
+    </label>
+    <div
+      className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+      onClick={[Function]}
+    >
+      <input
+        aria-invalid={false}
+        autoFocus={false}
+        className="MuiInputBase-input MuiInput-input"
+        disabled={false}
+        id="descriptionstandard-full-width"
+        name="description"
+        onAnimationStart={[Function]}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder=""
+        required={false}
+        type="description"
+        value=""
+      />
+    </div>
+  </div>,
+  "",
+]
+`;

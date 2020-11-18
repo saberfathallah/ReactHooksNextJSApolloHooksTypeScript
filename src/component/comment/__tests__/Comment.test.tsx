@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { mount } from "enzyme";
-import { Formik } from "formik";
 
 import Comment from "../Comment";
 
@@ -66,45 +65,6 @@ describe("Comment", () => {
 
     const tree = renderer.create(<Comment {...props} />);
     expect(tree).toMatchSnapshot();
-  });
-
-  it("should update description field on change", () => {
-    props.isClickEdit = true;
-    props.isShown = false;
-
-    const wrapper = mount(<Comment {...props} />);
-    const descriptionInput = wrapper.find("input");
-    descriptionInput.simulate("change", {
-      persist: () => {},
-      target: {
-        name: "description",
-        value: "new comment",
-      },
-    });
-
-    expect(descriptionInput.html()).toMatch("new comment");
-  });
-
-  it("should return error for invalid comment", () => {
-    props.isClickEdit = true;
-    props.isShown = true;
-
-    const tree = mount(<Comment {...props} />);
-    const form = (props: any = { errors: {} }) =>
-      tree.find(Comment).find(Formik).renderProp("children")(props);
-
-    const formWithInvalidDescriptionErrors = form({
-      values: {
-        description: "",
-      },
-      errors: {
-        description: "Required",
-      },
-      touched: { description: true },
-      isSubmitting: false,
-    });
-
-    expect(formWithInvalidDescriptionErrors.html()).toMatch(/Required/);
   });
 
   it("should call setIsShown", () => {

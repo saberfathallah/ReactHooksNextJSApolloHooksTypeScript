@@ -18,51 +18,53 @@ const useStyles = makeStyles((theme: Theme) =>
 interface CommentEditFormInput {
   description: string;
 }
-interface InputWrapperProps  {
-  label: string;
-  setIsClickEdit: (boolean) => void;
-  updateComment: (variables: any) => any;
-  addComment: (variables: any) => any;
-  variables: {
-    description: string;
+// interface InputWrapperProps  {
+//   label: string;
+//   setIsClickEdit: (boolean) => void;
+//   updateComment: (variables: any) => any;
+//   addComment?: any;
+//   variables: {
+//     description: string;
 
-  }
-}
+//   }
+// }
 
-const InputWrapper = (props: InputWrapperProps) => {
+const InputWrapper = (props: any) => {
   const { label, addComment, variables, updateComment, setIsClickEdit } = props;
   const initialValues: CommentEditFormInput = variables;
   const classes = useStyles();
   const style = { margin: 8 };
 
+  const onSubmit = async (values) => {
+    if (label === "Ajouter un commentaire") {
+      await addComment({
+        variables: {
+          commentInput: {
+            ...variables,
+            ...values,
+          },
+        },
+      });
+    } else {
+      if (values.description !== variables.description) {
+        await updateComment({
+          variables: {
+            updateCommentInput: {
+              ...variables,
+              ...values,
+            },
+          },
+        });
+      }
+      setIsClickEdit(false);
+    }
+  }
+
   return (
     <Formik
       initialValues={initialValues}
       validate={(values): object => validationForm(values)}
-      onSubmit={async (values): Promise<void> => {
-        if (label === "Ajouter un commentaire") {
-          await addComment({
-            variables: {
-              commentInput: {
-                ...variables,
-                ...values,
-              },
-            },
-          });
-        } else {
-          if (values.description !== variables.description) {
-            await updateComment({
-              variables: {
-                updateCommentInput: {
-                  ...variables,
-                  ...values,
-                },
-              },
-            });
-          }
-          setIsClickEdit(false);
-        }
-      }}
+      onSubmit={async (values): Promise<void> => onSubmit(values)}
     >
       {({
         values,
@@ -75,7 +77,7 @@ const InputWrapper = (props: InputWrapperProps) => {
         <form style={{ display: "contents" }} onSubmit={handleSubmit}>
           <Input
             handleChange={handleChange}
-            onBlur={handleBlur}
+            handleBlur={handleBlur}
             values={values}
             errors={errors}
             touched={touched}

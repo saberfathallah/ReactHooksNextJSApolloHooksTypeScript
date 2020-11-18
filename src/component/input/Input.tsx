@@ -8,11 +8,9 @@ interface InputProps {
   },
   label: string;
   variables: any;
-  errors: {
-    description: string;
-  }
-  touched: any
-  style: any
+  errors: any;
+  touched: any;
+  style: any;
 }
 
 const Input = (props: InputProps) => {

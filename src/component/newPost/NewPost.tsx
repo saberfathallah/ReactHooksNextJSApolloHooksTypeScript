@@ -98,7 +98,7 @@ const NewPost = (props: NewPostProps) => {
                 {!categoryId && <p>Il faut séléctionner une catégorie</p>}
                 <Input
                   handleChange={handleChange}
-                  onBlur={handleBlur}
+                  handleBlur={handleBlur}
                   values={values}
                   errors={errors}
                   touched={touched}
