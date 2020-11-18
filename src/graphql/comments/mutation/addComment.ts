@@ -22,8 +22,6 @@ const ADD_COMMENT = gql`
   }
 `;
 export const updateCacheAfterAddComment = (cache, data, currentCategoryId): void => {
-  console.log("data", data)
-  console.log("currentCategoryId", currentCategoryId)
   const existingAllPosts = cache.readQuery({
     variables: { from: FROM, limit: LIMIT },
     query: GET_ALL_POSTS,
