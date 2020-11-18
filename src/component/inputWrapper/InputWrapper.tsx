@@ -18,15 +18,14 @@ const useStyles = makeStyles((theme: Theme) =>
 interface CommentEditFormInput {
   description: string;
 }
-interface InputWrapperProps  {
+interface InputWrapperProps {
   label: string;
   setIsClickEdit: (boolean) => void;
   updateComment: (variables: any) => any;
   addComment?: any;
   variables: {
     description: string;
-
-  }
+  };
 }
 
 const InputWrapper = (props: Partial<InputWrapperProps>) => {
@@ -58,13 +57,13 @@ const InputWrapper = (props: Partial<InputWrapperProps>) => {
       }
       setIsClickEdit(false);
     }
-  }
+  };
 
   return (
     <Formik
       initialValues={initialValues}
       validate={(values): object => validationForm(values)}
-      onSubmit={async (values): Promise<void> => onSubmit(values)}
+      onSubmit={(values) => onSubmit(values)}
     >
       {({
         values,

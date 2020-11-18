@@ -5,6 +5,9 @@ import { Formik } from "formik";
 
 import InputWrapper from "../InputWrapper";
 
+const wait = (amount = 0) =>
+  new Promise((resolve) => setTimeout(resolve, amount));
+
 describe("InputWrapper", () => {
   const setIsClickEdit = jest.fn();
   const updateComment = jest.fn();
@@ -31,7 +34,7 @@ describe("InputWrapper", () => {
   });
 
   it("should display modify comment icon", () => {
-    props.label = "Modifier ton commentaire"
+    props.label = "Modifier ton commentaire";
 
     const wrapper = mount(<InputWrapper {...props} />);
 
@@ -71,16 +74,77 @@ describe("InputWrapper", () => {
     expect(formWithInvalidDescriptionErrors.html()).toMatch(/Required/);
   });
 
-  // it("shouldn't call dislike should call addLike", () => {
-  // const addComment = jest.fn();
-  //   props.addComment = addComment;
+  it("should call updateComment and setIsClickEdit", async () => {
+    const setIsClickEdit = jest.fn();
+    const updateComment = jest.fn();
+    props.setIsClickEdit = setIsClickEdit;
+    props.updateComment = updateComment;
+    props.variables.description = "descriptionss";
 
-  //   const wrapper = mount(<InputWrapper {...props} />);
+    const wrapper = mount(<InputWrapper {...props} />);
+    wrapper.find("input[type='description']").simulate("change", {
+      target: {
+        name: "description",
+        value: "description",
+      },
+    });
 
-  //   //wrapper.find('[type="submit"]').simmulte('click')
-  // .find(`input[name="${name}"]`)
+    //   wrapper.find('[type="submit"]').simmulte('click')
+    // .find(`input[name="${name}"]`)
 
-  //   wrapper.find('MuiInputBase-root').simmulte('click')
-  //   expect(addComment).toHaveBeenCalledTimes(1);
-  // });
+    wrapper.find("form").simulate("submit");
+    await wait(200);
+
+    expect(updateComment).toHaveBeenCalledTimes(1);
+    expect(setIsClickEdit).toHaveBeenCalledTimes(1);
+  });
+
+  it("should call only setIsClickEdit", async () => {
+    const setIsClickEdit = jest.fn();
+    props.setIsClickEdit = setIsClickEdit;
+    props.addComment = addComment;
+
+    props.variables.description = "description";
+
+    const wrapper = mount(<InputWrapper {...props} />);
+    wrapper.find("input[type='description']").simulate("change", {
+      target: {
+        name: "description",
+        value: "description",
+      },
+    });
+
+    //   wrapper.find('[type="submit"]').simmulte('click')
+    // .find(`input[name="${name}"]`)
+
+    wrapper.find("form").simulate("submit");
+    await wait(200);
+
+    expect(updateComment).toHaveBeenCalledTimes(0);
+    expect(setIsClickEdit).toHaveBeenCalledTimes(1);
+  });
+
+  it("should call addComment", async () => {
+    props.label = "Ajouter un commentaire";
+    const addComment = jest.fn();
+    const setIsClickEdit = jest.fn();
+    const updateComment = jest.fn();
+    props.addComment = addComment;
+    props.setIsClickEdit = setIsClickEdit;
+    props.updateComment = updateComment;
+
+    const wrapper = mount(<InputWrapper {...props} />);
+    wrapper.find("input[type='description']").simulate("change", {
+      target: {
+        name: "description",
+        value: "description",
+      },
+    });
+
+    wrapper.find("form").simulate("submit");
+    await wait(200);
+    expect(addComment).toHaveBeenCalledTimes(1);
+    expect(setIsClickEdit).toHaveBeenCalledTimes(0);
+    expect(updateComment).toHaveBeenCalledTimes(0);
+  });
 });
