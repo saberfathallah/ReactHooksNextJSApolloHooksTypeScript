@@ -18,18 +18,18 @@ const useStyles = makeStyles((theme: Theme) =>
 interface CommentEditFormInput {
   description: string;
 }
-// interface InputWrapperProps  {
-//   label: string;
-//   setIsClickEdit: (boolean) => void;
-//   updateComment: (variables: any) => any;
-//   addComment?: any;
-//   variables: {
-//     description: string;
+interface InputWrapperProps  {
+  label: string;
+  setIsClickEdit: (boolean) => void;
+  updateComment: (variables: any) => any;
+  addComment?: any;
+  variables: {
+    description: string;
 
-//   }
-// }
+  }
+}
 
-const InputWrapper = (props: any) => {
+const InputWrapper = (props: Partial<InputWrapperProps>) => {
   const { label, addComment, variables, updateComment, setIsClickEdit } = props;
   const initialValues: CommentEditFormInput = variables;
   const classes = useStyles();
