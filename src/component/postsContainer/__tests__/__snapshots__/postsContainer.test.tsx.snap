@@ -217,3 +217,221 @@ exports[`PostsContainer should match snapshot 1`] = `
   </div>
 </div>
 `;
+
+exports[`PostsContainer should match snapshot 2`] = `
+<p>
+  laoding....
+</p>
+`;
+
+exports[`PostsContainer should match snapshot searchcontent 1`] = `
+<div>
+  <div>
+    <div
+      className="MuiPaper-root MuiCard-root makeStyles-card-1 MuiPaper-elevation1 MuiPaper-rounded"
+    >
+      <div
+        className="MuiCardHeader-root"
+      >
+        <div
+          className="MuiCardHeader-avatar"
+        >
+          <div
+            className="MuiAvatar-root MuiAvatar-circle"
+          >
+            <img
+              alt="Ted talk"
+              className="MuiAvatar-img"
+              src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg"
+            />
+          </div>
+        </div>
+        <div
+          className="MuiCardHeader-content"
+        >
+          <span
+            className="MuiTypography-root MuiCardHeader-title MuiTypography-body2 MuiTypography-displayBlock"
+          >
+            sberrr
+          </span>
+          <span
+            className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+          >
+            5 hours ago
+          </span>
+        </div>
+        <div
+          className="MuiCardHeader-action"
+        >
+          <button
+            aria-label="settings"
+            className="MuiButtonBase-root MuiIconButton-root"
+            disabled={false}
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiIconButton-label"
+            >
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div
+        className="MuiCardContent-root"
+      >
+        <p
+          className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+        >
+          corona france post
+        </p>
+        <button
+          aria-label="show 11 new notifications"
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-heart-100 MuiIconButton-colorInherit"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <span
+              className="MuiBadge-root"
+            >
+              <svg
+                data-file-name="SvgLikeOff"
+                style={
+                  Object {
+                    "width": "28px",
+                  }
+                }
+              />
+              <span
+                className="MuiBadge-badge MuiBadge-anchorOriginTopRightRectangle"
+              >
+                2
+              </span>
+            </span>
+          </span>
+        </button>
+        <ul
+          className="MuiList-root makeStyles-list-118 MuiList-padding"
+        />
+        <form
+          onSubmit={[Function]}
+          style={
+            Object {
+              "display": "contents",
+            }
+          }
+        >
+          <div
+            className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal MuiFormControl-fullWidth"
+            style={
+              Object {
+                "margin": 8,
+              }
+            }
+          >
+            <label
+              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
+              data-shrink={true}
+              htmlFor="standard-full-width"
+              id="standard-full-width-label"
+            >
+              Ajouter un commentaire
+            </label>
+            <div
+              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+              onClick={[Function]}
+            >
+              <input
+                aria-invalid={false}
+                autoFocus={false}
+                className="MuiInputBase-input MuiInput-input"
+                disabled={false}
+                id="standard-full-width"
+                name="description"
+                onAnimationStart={[Function]}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                placeholder=""
+                required={false}
+                type="description"
+                value=""
+              />
+            </div>
+          </div>
+          <button
+            className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-129 MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+            disabled={false}
+            onBlur={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="submit"
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Commenter
+              <span
+                className="MuiButton-endIcon MuiButton-iconSizeSmall"
+              >
+                <span
+                  aria-hidden={true}
+                  className="material-icons MuiIcon-root"
+                >
+                  send
+                </span>
+              </span>
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

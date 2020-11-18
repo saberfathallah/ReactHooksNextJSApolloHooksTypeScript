@@ -1,27 +1,29 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import { useFormik } from 'formik';
+import React, { useState } from "react";
+import Router from "next/router";
+import { Formik } from "formik";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+
+import validationForm from "@helpers/validation";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    position: 'relative',
-    top: '6rem',
-
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    position: "relative",
+    top: "6rem",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -29,153 +31,124 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const validate = (values) => {
-  const errors: any = {};
-  if (!values.firstName) {
-    errors.firstName = 'Veuillez remplir ce champs';
-  }
-  if (!values.lastName) {
-    errors.lastName = 'Veuillez remplir ce champs';
-  }
-  //   if (!values.date) {
-  //     errors.date = 'Veuillez remplir ce champs';
-  //   }
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (
-    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-  ) {
-    errors.email = 'Invalid email address';
-  }
-
-  if (!values.country) {
-    errors.country = 'Veuillez remplir ce champs';
-  }
-
-  return errors;
-};
-
-const EditProfil = (props: any) => {
-  const { user } = props;
-  const isUpdate = false;
+const Form = (props: any) => {
+  const [error, setError] = useState("");
+  const { user, userFormType, createUser, updateUser } = props;
+  const isCreate = userFormType === "inscription";
   const classes = useStyles();
 
+  const initialValues = {
+    name: user?.name || "",
+    email: user?.email || "",
+    password: "",
+  };
 
-  const formik = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      // date: '',
-      email: user.email,
-      country: '',
-    },
-    validate,
-    onSubmit: async (values) => {
-      console.log('values', values);
-    },
-  });
+  const onSubmit = async (values) => {
+    if (isCreate) {
+      const data = await createUser({
+        variables: {
+          userInput: {
+            ...values,
+          },
+        },
+      });
+      if (data.data.createUser.error) {
+        setError(data.data.createUser.error);
+      } else {
+        Router.push("/");
+      }
+    } else {
+      updateUser();
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
-          {isUpdate ? 'MODIFIER PROFIL' : 'INSCRIPTION'}
+          {isCreate ? "INSCRIPTION" : "MODIFIER PROFIL"}
         </Typography>
-        <form
-          className={classes.form}
-          noValidate
-          onSubmit={formik.handleSubmit}
+        <Formik
+          initialValues={initialValues}
+          validate={(values): object => validationForm(values)}
+          onSubmit={(values) => onSubmit(values)}
         >
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="firstName"
-            label="Nom"
-            name="firstName"
-            autoComplete="firstName"
-            autoFocus
-            onChange={formik.handleChange}
-            value={formik.values.firstName}
-            helperText={formik.touched.firstName ? formik.errors.firstName : ''}
-            error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="lastName"
-            label="Prenom"
-            name="lastName"
-            autoComplete="lastName"
-            autoFocus
-            onChange={formik.handleChange}
-            value={formik.values.lastName}
-            helperText={formik.touched.lastName ? formik.errors.lastName : ''}
-            error={formik.touched.lastName && Boolean(formik.errors.lastName)}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="email"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            helperText={formik.touched.email ? formik.errors.email : ''}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-          />
-          {/* <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="date"
-            label="Date "
-            type="date"
-            id="date"
-            onChange={formik.handleChange}
-            value={formik.values.date}
-            helperText={formik.touched.date ? formik.errors.date : ''}
-            error={formik.touched.date && Boolean(formik.errors.date)}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          /> */}
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="country"
-            label="Ville"
-            name="country"
-            autoComplete="country"
-            autoFocus
-            onChange={formik.handleChange}
-            value={formik.values.country}
-            helperText={formik.touched.country ? formik.errors.country : ''}
-            error={formik.touched.country && Boolean(formik.errors.country)}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            className={classes.submit}
-          >
-            {isUpdate ? 'MODIFIER PROFIL' : 'INSCRIPTION'}
-          </Button>
-        </form>
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+          }): any => (
+            <form style={{ display: "contents" }} onSubmit={handleSubmit}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="name"
+                label="name"
+                name="name"
+                type="name"
+                autoComplete="name"
+                autoFocus
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.name}
+                helperText={touched.name ? errors.name : ""}
+                error={touched.name && Boolean(errors.name)}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                autoFocus
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+                helperText={touched.email ? errors.email : ""}
+                error={touched.email && Boolean(errors.email)}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="password"
+                label="password"
+                name="password"
+                type="password"
+                autoComplete="password"
+                autoFocus
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+                helperText={touched.password ? errors.password : ""}
+                error={touched.password && Boolean(errors.password)}
+              />
+              <p>{error}</p>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                className={classes.submit}
+              >
+                {isCreate ? "INSCRIPTION" : "MODIFIER PROFIL"}
+              </Button>
+            </form>
+          )}
+        </Formik>
       </div>
     </Container>
   );
 };
 
-export default EditProfil;
+export default Form;

@@ -12,6 +12,12 @@ const validationForm = (values) => {
       description: "Required",
     };
   }
+  if (values.name !== undefined && !values.name) {
+    errors = {
+      ...errors,
+      name: "Required",
+    };
+  }
   if (values.password !== undefined && !values.password) {
     errors.password = "Required";
   }

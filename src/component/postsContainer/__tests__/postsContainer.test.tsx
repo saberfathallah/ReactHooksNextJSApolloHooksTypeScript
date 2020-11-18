@@ -72,4 +72,24 @@ describe("PostsContainer", () => {
     const wrapper = mount(<PostsContainer {...props} />);
     expect(wrapper.text()).toContain("laoding....");
   });
+
+  it("should match snapshot searchcontent", () => {
+    props.loading = false;
+
+    props.dataSearchQuery.query = "corona";
+    // @ts-ignore
+    useQuery.mockImplementation(() => ({
+      data: {
+        search: { posts: [POST] },
+        laoding: false,
+      },
+    }));
+    const tree = renderer.create(<PostsContainer {...props} />);
+    expect(tree).toMatchSnapshot();
+  });
+
+  it("should display searchcontent", () => {
+    const wrapper = mount(<PostsContainer {...props} />);
+    expect(wrapper.text()).toContain("corona france post");
+  });
 });

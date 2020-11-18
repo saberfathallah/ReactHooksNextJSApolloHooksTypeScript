@@ -5,7 +5,7 @@ interface InputProps {
   handleBlur: any;
   values: {
     description: string;
-  },
+  };
   label: string;
   variables: any;
   errors: any;
@@ -22,7 +22,7 @@ const Input = (props: InputProps) => {
     variables,
     errors,
     touched,
-    style
+    style,
   } = props;
 
   return (
