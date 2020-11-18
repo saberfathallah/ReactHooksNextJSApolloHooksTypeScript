@@ -6,9 +6,6 @@ import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import EditCommentIconButton from "@component/comment/EditCommentIconButton";
 import Input from "@component/input";
 import validationForm from "@helpers/validation";
-interface CommentEditFormInput {
-  description: string;
-}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,8 +15,21 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
+interface CommentEditFormInput {
+  description: string;
+}
+interface InputWrapperProps  {
+  label: string;
+  setIsClickEdit: (boolean) => void;
+  updateComment: (variables: any) => any;
+  addComment: (variables: any) => any;
+  variables: {
+    description: string;
 
-const InputWrapper = (props) => {
+  }
+}
+
+const InputWrapper = (props: InputWrapperProps) => {
   const { label, addComment, variables, updateComment, setIsClickEdit } = props;
   const initialValues: CommentEditFormInput = variables;
   const classes = useStyles();

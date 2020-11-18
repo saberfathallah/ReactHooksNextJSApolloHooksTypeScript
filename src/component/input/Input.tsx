@@ -1,6 +1,21 @@
 import TextField from "@material-ui/core/TextField";
 
-const Input = (props) => {
+interface InputProps {
+  handleChange: any;
+  handleBlur: any;
+  values: {
+    description: string;
+  },
+  label: string;
+  variables: any;
+  errors: {
+    description: string;
+  }
+  touched: any
+  style: any
+}
+
+const Input = (props: InputProps) => {
   const {
     handleChange,
     handleBlur,
