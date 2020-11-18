@@ -3,6 +3,8 @@ import renderer from "react-test-renderer";
 import { mount } from "enzyme";
 
 import Login from "../Login";
+const wait = (amount = 0) =>
+  new Promise(resolve => setTimeout(resolve, amount));
 
 describe("<Login />", () => {
   const props = {
@@ -36,28 +38,6 @@ describe("<Login />", () => {
     expect(emailInput.html()).toMatch("sabr@gmail.com");
   });
 
-  // it("should return error for invalid email", () => {
-  //   const tree = mount(<Login {...props} />);
-
-  //   const form = (props: any = { errors: {} }) =>
-  //     tree.find(Formik).renderProp("children")(props);
-
-  //   const formWithInvalidDescriptionErrors = form({
-  //     values: {
-  //       email: "zzzz",
-  //     },
-  //     errors: {
-  //       email: "Invalid email addres",
-  //     },
-  //     touched: { description: true },
-  //     isSubmitting: false,
-  //   });
-
-  //   expect(formWithInvalidDescriptionErrors.html()).toMatch(
-  //     /Invalid email addres/
-  //   );
-  // });
-
   it("should update password field on change", () => {
     const wrapper = mount(<Login {...props} />);
     const emailInput = wrapper.find("input[name='password']");
@@ -73,11 +53,28 @@ describe("<Login />", () => {
     expect(emailInput.html()).toMatch("xxxxxx");
   });
 
-  // it("should call logine", () => {
-  //   const login = jest.fn();
+  it("should call login", async () => {
+    const login = jest.fn();
+    props.login = login;
+    const wrapper = mount(<Login {...props} />);
+    const email = "test@toast.com";
 
-  //   const wrapper = mount(<Login {...props} />);
-  //   wrapper.find("button").simulate("click");
-  //   expect(login).toHaveBeenCalledTimes(1);
-  // });
+    wrapper.find("input[type='email']").simulate("change", {
+      target: {
+        name: "email",
+        value: email,
+      },
+    });
+
+    wrapper.find("input[type='password']").simulate("change", {
+      target: {
+        name: "password",
+        value: "password",
+      },
+    });
+
+    wrapper.find("form").simulate("submit");
+    await wait(200);
+    expect(login).toHaveBeenCalledTimes(1);
+  });
 });

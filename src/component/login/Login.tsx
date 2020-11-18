@@ -1,9 +1,10 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import { Button, LinearProgress } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { TextField } from "formik-material-ui";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Link from "next/link";
+import validationForm from "@helpers/validation";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -16,11 +17,11 @@ const useStyles = makeStyles(() =>
   })
 );
 
-interface Values {
-  email: string;
-  name: string;
-  password: string;
-}
+// interface Values {
+//   email: string;
+//   name: string;
+//   password: string;
+// }
 
 // interface InputValues {
 //   email: string;
@@ -63,23 +64,10 @@ const Login: React.FC<LoginProps> = (props: LoginProps) => {
         email: "",
         password: "",
       }}
-      validate={(values): object => {
-        const errors: Partial<Values> = {};
-        if (!values.password) {
-          errors.password = "Required";
-        }
-        if (!values.email) {
-          errors.email = "Required";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-        ) {
-          errors.email = "Invalid email address";
-        }
-        return errors;
-      }}
+      validate={(values): object => validationForm(values)}
       onSubmit={async (values): Promise<void> => login(values)}
     >
-      {({ submitForm, isSubmitting }): any => (
+      {() => (
         <Form>
           <Field
             component={TextField}
@@ -96,15 +84,13 @@ const Login: React.FC<LoginProps> = (props: LoginProps) => {
             name="password"
             style={{ marginBottom: "20px", width: "225px" }}
           />
-          {isSubmitting && <LinearProgress />}
           <br />
           <div>
             <Button
+              type="submit"
               className={classes.button}
               variant="contained"
               color="primary"
-              disabled={isSubmitting}
-              onClick={submitForm}
             >
               Se connecter
             </Button>
