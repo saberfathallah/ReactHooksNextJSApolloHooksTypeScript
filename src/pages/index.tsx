@@ -5,6 +5,7 @@ import Login from "@component/login";
 import Categories from "@component/categories";
 import NewPost from "@component/newPost";
 import PostsContainer from "@component/postsContainer";
+import TestSCSS from "@component/TestSCSS";
 import UserContext from "@context/userContext";
 
 const HomePage: React.FC<{}> = () => {
@@ -31,9 +32,12 @@ const HomePage: React.FC<{}> = () => {
     );
   }
   return (
-    <div style={{ textAlign: "center", paddingTop: "30px" }}>
-      <Login />
-    </div>
+    <>
+      <TestSCSS />
+      <div style={{ textAlign: "center", paddingTop: "30px" }}>
+        <Login />
+      </div>
+    </>
   );
 };
 
