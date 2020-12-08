@@ -1,6 +1,33 @@
 @import '../../../public/styles/variables.scss';
+// can use without params button-style {...}
+@mixin button-style ($color, $radius: 0) {
+    background-color: $color; 
+    color: $c-white; 
+    border-color: $color;
+    @if $radius != 0 {
+        border-width: $radius;
+      }
+  }
 
 .text {
-  color: blue;
+  color: $c-red;
+  width: sum(50px, 30px, 100px);
   margin-left: $marginLeft;
+}
+
+.button {
+  @include button-style($c-red, $radius:5px);
+  &:hover { 
+    cursor: pointer;
+    background-color: $c-green; 
+  }
+
+  &:disabled {
+    background-color: $c-gray; 
+    cursor: default;
+  }
+}
+
+.mixin-button {
+  @include button-style($c-yellow);
 }
