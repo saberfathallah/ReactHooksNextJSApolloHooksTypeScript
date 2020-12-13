@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./testSCSS.scss";
+import withScreenDimension from "@context/deviceContext";
 
-const TestSCSS = () => {
+const TestSCSS = (props) => {
+  console.log("props", props);
   const [disable, setDisable] = useState(false);
   return (
     <div>
@@ -18,4 +20,4 @@ const TestSCSS = () => {
   );
 };
 
-export default TestSCSS;
+export default withScreenDimension(TestSCSS);

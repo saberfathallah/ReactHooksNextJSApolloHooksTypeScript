@@ -1,0 +1,2 @@
+export const ESKTOP_BREAKPOINT = 1280;
+export const IS_MOBILE_DIMENSION = 769;
