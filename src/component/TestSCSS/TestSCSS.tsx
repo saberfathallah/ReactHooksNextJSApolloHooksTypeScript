@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./testSCSS.scss";
-import withScreenDimension from "@context/deviceContext";
+import withScreenDimension from "@context/screenContext";
 
 const TestSCSS = (props) => {
   console.log("props", props);

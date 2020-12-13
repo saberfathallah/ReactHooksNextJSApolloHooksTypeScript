@@ -6,7 +6,7 @@ import withApolloClient from "@lib/withApollo";
 
 import Navbar from "@component/navbar";
 import { USER_NAME, TOKEN_COOKIE } from "@constants/cookies";
-import { DeviceProvider } from "@context/deviceContext";
+import { ScreenProvider } from "@context/screenContext";
 import { UserProvider } from "@context/userContext";
 import isBrowser from "@utils/isBrowser";
 
@@ -17,14 +17,14 @@ const MyApp: React.FC<any> = ({ Component, pageProps, apollo }): any => {
   const isClient = isBrowser();
 
   return (
-    <DeviceProvider isClient={isClient}>
+    <ScreenProvider isClient={isClient}>
       <UserProvider isAuth={isAuth} userName={userName}>
         <ApolloProvider client={apollo}>
           <Navbar />
           <Component {...pageProps} />
         </ApolloProvider>
       </UserProvider>
-    </DeviceProvider>
+    </ScreenProvider>
   );
 };
 
