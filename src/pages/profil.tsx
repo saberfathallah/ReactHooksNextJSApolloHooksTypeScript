@@ -1,9 +1,9 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
-import withApollo from '@lib/withApollo';
-import Post from '@component/post';
-import GET_POSTS_BY_USER_ID from '@graphql/posts/getPostsByUserId';
+import withApollo from "@lib/withApollo";
+import Post from "@component/post";
+import GET_POSTS_BY_USER_ID from "@graphql/posts/getPostsByUserId";
 
 interface PostsResponse {
   getPostsByUserId: Posts;
@@ -44,16 +44,9 @@ const Profil = (props: PostsResponse): JSX.Element => {
       <Link href="/editProfil">
         <a>modifier profil</a>
       </Link>
-      {
-        getPostsByUserId.posts.length > 0
-          ? getPostsByUserId.posts.map(({
-            userId,
-            description,
-            comments,
-            id,
-            categoryId,
-            likes,
-          }) => (
+      {getPostsByUserId.posts.length > 0 ? (
+        getPostsByUserId.posts.map(
+          ({ userId, description, comments, id, categoryId, likes }) => (
             <div key={id}>
               <Post
                 likes={likes}
@@ -66,15 +59,19 @@ const Profil = (props: PostsResponse): JSX.Element => {
                 comments={comments}
               />
             </div>
-          ))
-          : <p>acune publication</p>
-      }
+          )
+        )
+      ) : (
+        <p>acune publication</p>
+      )}
     </div>
   );
 };
 
 Profil.getInitialProps = async function ({ apolloClient }: any): Promise<any> {
-  const { data: { getPostsByUserId } } = await apolloClient.query({
+  const {
+    data: { getPostsByUserId },
+  } = await apolloClient.query({
     query: GET_POSTS_BY_USER_ID,
   });
 

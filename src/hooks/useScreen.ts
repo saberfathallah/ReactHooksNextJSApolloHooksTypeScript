@@ -1,23 +1,17 @@
 import { useEffect, useState } from "react";
-import { isMobile, isMobileWidth } from "@utils/isBrowser";
+import { isMobileWidth } from "@utils/isBrowser";
 import { ESKTOP_BREAKPOINT } from "@constants/dimensions";
 
-const useScreen = (isClient) => {
+const useScreen = (isClient: boolean, width: number) => {
   const [screen, setScreen] = useState({
-    screenWidth: ESKTOP_BREAKPOINT,
-    isMobileSize: isMobile,
+    screenWidth: width || ESKTOP_BREAKPOINT,
+    isMobileSize: width ? isMobileWidth(width) : false,
   });
 
   useEffect(() => {
     if (!isClient) {
       return;
     }
-
-    // first load
-    setScreen({
-      screenWidth: window.innerWidth,
-      isMobileSize: isMobileWidth(window.innerWidth),
-    });
 
     const handleResize = () => {
       if (isClient) {
@@ -31,7 +25,7 @@ const useScreen = (isClient) => {
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [isClient]);
+  }, [isClient, setScreen]);
 
   return screen;
 };

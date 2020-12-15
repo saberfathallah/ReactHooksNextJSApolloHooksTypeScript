@@ -31,3 +31,19 @@
 .mixin-button {
   @include button-style($c-yellow);
 }
+
+.text {
+  background-color: $c-green; 
+}
+
+@media screen and (min-width: 768px) {
+  .text {
+    background-color: $c-yellow; 
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .text {
+    background-color: $c-gray; 
+  }
+}

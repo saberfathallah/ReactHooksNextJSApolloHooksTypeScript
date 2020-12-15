@@ -1,6 +1,5 @@
 import React, { createContext, useContext } from "react";
 import { ContextDevTool } from "react-context-devtool";
-import { isMobile } from "@utils/isBrowser";
 import { ESKTOP_BREAKPOINT } from "@constants/dimensions";
 import useScreen from "../hooks/useScreen";
 
@@ -15,14 +14,15 @@ type propsTypes = {
 };
 
 const defaultDeviceValues: deviceType = {
-  isMobileSize: isMobile,
+  isMobileSize: false,
   screenWidth: ESKTOP_BREAKPOINT,
 };
 
 export const ScreenContext = createContext<deviceType>(defaultDeviceValues);
 
 export const ScreenProvider = ({ isClient, children }: propsTypes) => {
-  const screen = useScreen(isClient);
+  const width = isClient && window.innerWidth;
+  const screen = useScreen(isClient, width);
 
   return (
     <ScreenContext.Provider value={{ ...defaultDeviceValues, ...screen }}>
@@ -38,7 +38,6 @@ export const ScreenProvider = ({ isClient, children }: propsTypes) => {
 
 const withScreenDimension = (Component) => (props) => {
   const { screenWidth, isMobileSize } = useContext(ScreenContext);
-
   return (
     <Component
       {...props}
