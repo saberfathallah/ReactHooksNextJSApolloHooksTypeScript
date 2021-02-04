@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node --project tsconfig.server.json server.ts",
+    "prod_start": "NODE_ENV=production ts-node --project tsconfig.server.json server.ts",
     "build": "next build",
     "start": "next",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
