@@ -60,7 +60,7 @@
     "next": "^9.2.1",
     "next-with-apollo": "^5.0.0",
     "node-fetch": "^2.6.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "react": "^16.13.1",
     "react-apollo": "^3.1.5",
     "react-context-devtool": "^2.0.0",
